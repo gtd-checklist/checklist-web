@@ -46,7 +46,6 @@ export const GroupButtons = styled.div`
 export const Button = styled.button`
     font-size: 0.9em;
     width:30%;
-    border: none;
     padding: 20px;
     border-radius: 10px;
     background-color: ${props => (props.signIn ? '#fff' : '#000')};
