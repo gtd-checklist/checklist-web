@@ -3,26 +3,23 @@ import { Formik } from 'formik';
 
 import { UserRegister } from '../components/UserRegister';
 
-function validateEmail(value) {
-  let error = '';
+const validateForm = (values) => {
+  const errors = {};
+  // валидация email
   const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-  if (!value) {
-    error = 'Email обязательное поле';
-  } else if (value.search(regex) === -1) {
-    error = 'Неверный email адрес';
+  if (!values.userEmail) {
+    errors.userEmail = 'Email обязательное поле';
+  } else if (values.userEmail.search(regex) === -1) {
+    errors.userEmail = 'Неверный email адрес';
   }
-  return error;
-}
-
-function validatePass(value) {
-  let error = '';
-  if (!value) {
-    error = 'Пароль обязателен для заполнения';
-  } else if (value.length < 6) {
-    error = 'Пароль должен быть не менее 6 знаков';
+  // валидация пароля
+  if (!values.userPass) {
+    errors.userPass = 'Пароль обязателен для заполнения';
+  } else if (values.userPass.length < 6) {
+    errors.userPass = 'Пароль должен быть не менее 6 знаков';
   }
-  return error;
-}
+  return errors;
+};
 
 class UserRegisterContainer extends React.PureComponent {
   constructor(props) {
@@ -35,15 +32,10 @@ class UserRegisterContainer extends React.PureComponent {
     return (
       <Formik
         initialValues={{ userName: '', userEmail: '', userPass: '' }}
-        validate={(values) => {
-          const errors = {};
-          errors.userEmail = validateEmail(values.userEmail);
-          errors.userPass = validatePass(values.userPass);
-          return errors;
-        }}
+        validate={validateForm}
         onSubmit={(values) => {
           // временные данные для отправки
-          const message = `данные ${values} идут на сервер`;
+          const message = `данные имя = ${values.userName}, email = ${values.userEmail} и  пароль ${values.userPass} идут на сервер`;
           console.log(message);
         }}
         render={({
