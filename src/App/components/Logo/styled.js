@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const lightGreen = '#a2d2cb';
+
 export const StyledLogo = styled.div`
   display: flex;
   justify-content: center;
@@ -14,11 +16,11 @@ export const Brand = styled.div`
   
   :hover {
     cursor: pointer;
-    color: #3aa27f;
+    color: ${lightGreen};
   }
   :hover::after{
     width:76px;
-    background-color: #3aa27f;
+    background-color: ${lightGreen};
   }
 
   :after {
