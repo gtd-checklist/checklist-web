@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+
+const red = '#fa163a';
+const lightGray = '#dcdcdc';
+
 // обертка для формы
 export const Wrapper = styled.div`
     max-width:50%;
@@ -37,16 +41,16 @@ export const Form = styled.form`
 
 export const Input = styled.input`
     display: ${props => (props.hide ? 'none' : 'inline-block')};
-    border: 1px solid ${props => (props.err ? '#fa163a' : '#dcdcdc')};
+    border: 1px solid ${props => (props.err ? red : lightGray)};
     font-size: 1em;
     padding: 20px;
     margin: 10px 0; 
     outline: none;
-    box-shadow: 0 0 10px 0 #dcdcdc;
+    box-shadow: 0 0 10px 0 ${lightGray};
     border-radius: 10px;
 
     :focus{
-        border-color: #dcdcdc #000;
+        border-color: ${lightGray} #000;
     }
 `;
 
@@ -58,14 +62,14 @@ export const Hint = styled.span`
 
 export const Error = styled.span`
     font-size: 0.8em;
-    color: #fa163a;
+    color: ${red};
     padding-left: 10px;
 `;
 
 export const Label = styled.label`
     display: ${props => (props.hide ? 'none' : 'inline-block')};
     font-size: 1.2em;
-    padding-left:5px;
+    padding: 5px 0 0px 5px;
 `;
 
 export const GroupButtons = styled.div`
@@ -86,7 +90,7 @@ export const Button = styled.button`
     border: 1px solid #000;
     transition: all 0.2s ease-in-out;
     outline: none;
-    box-shadow: 0 0 10px 0 #dcdcdc;
+    box-shadow: 0 0 10px 0 ${lightGray};
 
     @media (max-width: 960px) {
         :last-child{
@@ -96,7 +100,7 @@ export const Button = styled.button`
 
     :hover{
         cursor: pointer;
-        border-color: #dcdcdc #000;
+        border-color: ${lightGray} #000;
         background-color: #fff;
         color: #000;
     }
