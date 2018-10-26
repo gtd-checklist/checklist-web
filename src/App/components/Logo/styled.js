@@ -16,7 +16,7 @@ export const Brand = styled.div`
     cursor: pointer;
     color: #3aa27f;
   }
-  :hover:after{
+  :hover::after{
     width:76px;
     background-color: #3aa27f;
   }
