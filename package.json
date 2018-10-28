@@ -1,7 +1,7 @@
 {
   "name": "checklist-web",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "clean": "rimraf -f ./dist",
     "start": "webpack-dev-server --hot --env.development",

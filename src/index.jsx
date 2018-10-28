@@ -2,23 +2,31 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
+import { Router, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 import { configureStore } from './createStore';
 import { GlobalStyle } from './globalStyle';
 
+import routes from './routes';
 import { Logo } from './components/Logo';
-import { RegistrationContainer } from './containers/RegistrationContainer';
 
 const store = configureStore();
 
+export const history = createBrowserHistory();
+
 const App = () => (
-  <Provider store={store}>
-    <Fragment>
-      <GlobalStyle />
-      <Logo />
-      <RegistrationContainer />
-    </Fragment>
-  </Provider>
+  <Router history={history}>
+    <Provider store={store}>
+      <Fragment>
+        <GlobalStyle />
+        <Logo />
+        <Switch>
+          { routes.map((route, index) => <Route key={index} {...route} />) }
+        </Switch>
+      </Fragment>
+    </Provider>
+  </Router>
 );
 
 const render = (Component) => {

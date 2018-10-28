@@ -82,6 +82,7 @@ exports.devServer = () => ({
   devServer: {
     open: true,
     compress: true,
+    historyApiFallback: true,
     port: 3000
   }
 });
