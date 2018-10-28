@@ -44,7 +44,7 @@ export const Input = styled.input`
     border: 1px solid ${props => (props.err ? red : lightGray)};
     font-size: 1em;
     padding: 20px;
-    margin: 10px 0; 
+    margin: 10px 0;
     outline: none;
     box-shadow: 0 0 10px 0 ${lightGray};
     border-radius: 10px;
@@ -106,7 +106,7 @@ export const Button = styled.button`
     }
 
     :active{
-        transform: translateY(2px); 
+        transform: translateY(2px);
     }
 `;
 

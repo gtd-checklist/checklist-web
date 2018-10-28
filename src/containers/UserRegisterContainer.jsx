@@ -3,13 +3,14 @@ import { Formik } from 'formik';
 
 import { UserRegister } from '../components/UserRegister';
 
+const emailValidationRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+
 const validateForm = (values) => {
   const errors = {};
-  // валидация email
-  const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+
   if (!values.userEmail) {
     errors.userEmail = 'Email обязательное поле';
-  } else if (values.userEmail.search(regex) === -1) {
+  } else if (values.userEmail.search(emailValidationRegex) === -1) {
     errors.userEmail = 'Неверный email адрес';
   }
   // валидация пароля
@@ -24,8 +25,7 @@ const validateForm = (values) => {
 class UserRegisterContainer extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -35,17 +35,12 @@ class UserRegisterContainer extends React.PureComponent {
         validate={validateForm}
         onSubmit={(values) => {
           // временные данные для отправки
-          const message = `данные имя = ${values.userName}, email = ${values.userEmail} и  пароль ${values.userPass} идут на сервер`;
+          const message = `данные имя = ${values.userName}, email = ${values.userEmail} и  пароль ${
+            values.userPass
+          } идут на сервер`;
           console.log(message);
         }}
-        render={({
-          touched,
-          errors,
-          values,
-          handleChange,
-          handleBlur,
-          handleSubmit
-        }) => (
+        render={({ touched, errors, values, handleChange, handleBlur, handleSubmit }) => (
           <UserRegister
             touched={touched}
             errors={errors}
@@ -60,9 +55,8 @@ class UserRegisterContainer extends React.PureComponent {
   }
 }
 
-UserRegisterContainer.propTypes = {
-};
-UserRegisterContainer.defaultProps = {
-};
+UserRegisterContainer.propTypes = {};
+
+UserRegisterContainer.defaultProps = {};
 
 export { UserRegisterContainer };
