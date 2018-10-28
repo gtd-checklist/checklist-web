@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import * as uStyle from './styled';
 
+import { Input } from '../../ui/Input';
+
 const UserRegister = (props) => {
   const { touched, errors, values, handleChange, handleBlur, handleSubmit } = props;
 
@@ -10,46 +12,34 @@ const UserRegister = (props) => {
     <uStyle.Wrapper>
       <uStyle.MainHeader>Регистрация</uStyle.MainHeader>
       <uStyle.Form onSubmit={handleSubmit}>
-        <uStyle.Label htmlFor="name">Имя</uStyle.Label>
-        <uStyle.Input
+        <Input
           onChange={handleChange}
           onBlur={handleBlur}
           type="text"
           id="name"
           name="userName"
           value={values.userName}
-          placeholder="Vasya"
+          placeholder="Имя"
         />
-        <uStyle.Label htmlFor="user">
-          Email адрес
-          {errors.userEmail && touched.userEmail
-            ? <uStyle.Error>{errors.userEmail}</uStyle.Error>
-            : <uStyle.Hint>(обязательное поле)</uStyle.Hint>}
-        </uStyle.Label>
-        <uStyle.Input
+        <Input
           onChange={handleChange}
           onBlur={handleBlur}
-          err={errors.userEmail}
+          error={touched.userEmail && errors.userEmail}
           type="text"
           id="user"
           name="userEmail"
           value={values.userEmail}
-          placeholder="vasya@mail.ru"
+          placeholder="Email"
         />
-        <uStyle.Label htmlFor="pass">
-          Пароль
-          {errors.userPass && touched.userPass
-            ? <uStyle.Error>{errors.userPass}</uStyle.Error>
-            : <uStyle.Hint>(обязательное поле)</uStyle.Hint>}
-        </uStyle.Label>
-        <uStyle.Input
+        <Input
           onChange={handleChange}
           onBlur={handleBlur}
-          err={errors.userPass}
+          error={touched.userPass && errors.userPass}
           type="password"
           id="pass"
           name="userPass"
           value={values.userPass}
+          placeholder="Password"
         />
         <uStyle.GroupButtons>
           <uStyle.Button type="submit">Зарегистрироваться</uStyle.Button>

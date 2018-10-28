@@ -9,7 +9,7 @@
     "build": "webpack --env.production",
     "build:local": "webpack --env.production --env.local",
     "lint:styles": "stylelint './src/**/*.js'",
-    "lint:js": "eslint './src/**/*.js'",
+    "lint:code": "eslint './src/**/*.js*'",
     "lint-staged": "lint-staged"
   },
   "repository": {

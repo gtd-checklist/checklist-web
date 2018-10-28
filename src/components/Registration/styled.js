@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-const red = '#fa163a';
 const lightGray = '#dcdcdc';
 
 // обертка для формы
@@ -37,39 +36,6 @@ export const Form = styled.form`
     flex-flow:column;
     flex: auto;
     padding-top:20px;
-`;
-
-export const Input = styled.input`
-    display: ${props => (props.hide ? 'none' : 'inline-block')};
-    border: 1px solid ${props => (props.err ? red : lightGray)};
-    font-size: 1em;
-    padding: 20px;
-    margin: 10px 0;
-    outline: none;
-    box-shadow: 0 0 10px 0 ${lightGray};
-    border-radius: 10px;
-
-    :focus{
-        border-color: ${lightGray} #000;
-    }
-`;
-
-export const Hint = styled.span`
-    font-size: 0.8em;
-    color: #666;
-    padding-left: 10px;
-`;
-
-export const Error = styled.span`
-    font-size: 0.8em;
-    color: ${red};
-    padding-left: 10px;
-`;
-
-export const Label = styled.label`
-    display: ${props => (props.hide ? 'none' : 'inline-block')};
-    font-size: 1.2em;
-    padding: 5px 0 0px 5px;
 `;
 
 export const GroupButtons = styled.div`
