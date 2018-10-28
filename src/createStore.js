@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
 import createHistory from 'history/createHashHistory';
 
-import { rootReducer } from './reducers';
+import { rootReducer } from './services/rootReducer';
 
 export const history = createHistory();
 
@@ -22,7 +22,7 @@ export function configureStore() {
 
   if (process.env.NODE_ENV !== 'production') {
     if (module.hot) {
-      module.hot.accept('./reducers', () => {
+      module.hot.accept('./', () => {
         store.replaceReducer(rootReducer);
       });
     }

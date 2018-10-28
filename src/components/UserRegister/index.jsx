@@ -68,6 +68,7 @@ UserRegister.propTypes = {
   handleChange: PropTypes.func,
   handleBlur: PropTypes.func
 };
+
 UserRegister.defaultProps = {
   touched: {},
   errors: {},

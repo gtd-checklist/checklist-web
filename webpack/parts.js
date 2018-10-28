@@ -42,7 +42,7 @@ exports.scripts = ({ sourceMaps, optimize }) => {
     module: {
       rules: [
         {
-          test: /\.m?js$/,
+          test: /\.jsx?$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
@@ -106,7 +106,7 @@ exports.esLint = () => ({
     rules: [
       {
         enforce: 'pre',
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
         options: {
@@ -128,7 +128,7 @@ exports.resolve = () => ({
     modules: [
       paths.nodeModules
     ],
-    extensions: ['.js']
+    extensions: ['.js', '.jsx']
   }
 });
 

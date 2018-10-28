@@ -13,11 +13,12 @@ export const Brand = styled.div`
   font-size: 3em;
   position: relative;
   transition: all 0.2s ease-in;
-  
+
   :hover {
     cursor: pointer;
     color: ${lightGreen};
   }
+
   :hover::after{
     width:76px;
     background-color: ${lightGreen};
@@ -33,6 +34,6 @@ export const Brand = styled.div`
     transform: translateY(-50%);
     right: 0px;
     background-color: #000;
-    transition: all 0.3s ease-in-out; 
+    transition: all 0.3s ease-in-out;
   }
 `;
