@@ -7,7 +7,7 @@ import { configureStore } from './createStore';
 import { GlobalStyle } from './globalStyle';
 
 import { Logo } from './components/Logo';
-import { UserRegisterContainer } from './containers/UserRegisterContainer';
+import { RegistrationContainer } from './containers/RegistrationContainer';
 
 const store = configureStore();
 
@@ -16,7 +16,7 @@ const App = () => (
     <Fragment>
       <GlobalStyle />
       <Logo />
-      <UserRegisterContainer />
+      <RegistrationContainer />
     </Fragment>
   </Provider>
 );

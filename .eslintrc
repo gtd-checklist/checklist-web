@@ -16,7 +16,6 @@
     "plugin:import/warnings"
   ],
   "globals": {
-    "fetch": true,
     "document": true,
     "window": true,
     "localStorage": true,
