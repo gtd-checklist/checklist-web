@@ -4,10 +4,10 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 
 import { configureStore } from './createStore';
-import { GlobalStyle } from './globalStyle';
+import { GlobalStyle } from './globalStyled';
 
 import { Logo } from './components/Logo';
-import { RegistrationContainer } from './containers/RegistrationContainer';
+import { AuthorizationContainer } from './containers/AuthorizationContainer';
 
 const store = configureStore();
 
@@ -16,7 +16,7 @@ const App = () => (
     <Fragment>
       <GlobalStyle />
       <Logo />
-      <RegistrationContainer />
+      <AuthorizationContainer />
     </Fragment>
   </Provider>
 );
