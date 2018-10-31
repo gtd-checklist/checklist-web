@@ -1,31 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledDescription } from './styled';
+import { StyledError } from './styled';
 import { StyledMainHeader } from '../../globalStyled';
 import { StyledWrapper, StyledForm, StyledGroupButtons } from '../formStyled';
 import { Input } from '../../ui/Input';
 import { Button } from '../../ui/Button';
 
-const Registration = (props) => {
-  const { touched, errors, values, handleChange, handleBlur, handleSubmit } = props;
+const Authorization = (props) => {
+  const { status, touched, errors, values, handleChange, handleBlur, handleSubmit } = props;
 
   return (
     <StyledWrapper>
-      <StyledMainHeader>Регистрация</StyledMainHeader>
+      <StyledMainHeader>Вход в свой Checklist</StyledMainHeader>
+      <StyledError>{status.msg}</StyledError>
       <StyledForm onSubmit={handleSubmit}>
         <Input
-          label="Имя пользователя"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          type="text"
-          id="name"
-          name="userName"
-          value={values.userName}
-          placeholder="Пример: Николай"
-        />
-        <Input
-          label="Email пользователя (логин)"
+          label="Логин (email)"
           onChange={handleChange}
           onBlur={handleBlur}
           error={touched.userEmail && errors.userEmail}
@@ -33,8 +24,7 @@ const Registration = (props) => {
           id="user"
           name="userEmail"
           value={values.userEmail}
-          placeholder="Пример: nikola@mail.ru"
-          isRequired
+          placeholder=""
         />
         <Input
           label="Пароль для входа"
@@ -45,18 +35,16 @@ const Registration = (props) => {
           id="pass"
           name="userPass"
           value={values.userPass}
-          placeholder="любой пароль из 6 символов"
-          isRequired
+          placeholder=""
         />
-        <StyledDescription>Поля, отмеченные *, обязательны для заполнения</StyledDescription>
         <StyledGroupButtons>
           <Button
-            title="Зарегистрироваться"
+            title="Войти"
             type="submit"
             isSubmit
           />
           <Button
-            title="Войти через email"
+            title="Зарегистрироваться через email"
             type="button"
           />
         </StyledGroupButtons>
@@ -65,22 +53,24 @@ const Registration = (props) => {
   );
 };
 
-Registration.propTypes = {
+Authorization.propTypes = {
+  status: PropTypes.instanceOf(Object),
   touched: PropTypes.instanceOf(Object),
   errors: PropTypes.instanceOf(Object),
   values: PropTypes.instanceOf(Object),
-  handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
-  handleBlur: PropTypes.func
+  handleBlur: PropTypes.func,
+  handleSubmit: PropTypes.func
 };
 
-Registration.defaultProps = {
+Authorization.defaultProps = {
+  status: {},
   touched: {},
   errors: {},
   values: {},
-  handleSubmit: () => false,
   handleChange: () => false,
-  handleBlur: () => false
+  handleBlur: () => false,
+  handleSubmit: () => false
 };
 
-export { Registration };
+export { Authorization };

@@ -2,33 +2,31 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 
-import { Registration } from '../components/Registration';
+import { Authorization } from '../components/Authorization';
 
-import { emailValidator, passwordValidator } from '../utils/formValidators';
+import { emailValidator } from '../utils/formValidators';
 
-class RegistrationContainer extends PureComponent {
+class AuthorizationContainer extends PureComponent {
   validateForm = (values) => {
     const errors = {};
-    const email = emailValidator(values.userEmail, true);
-    const pass = passwordValidator(values.userPass, true);
+    const email = emailValidator(values.userEmail, false);
     if (email) {
       errors.userEmail = email;
-    }
-    if (pass) {
-      errors.userPass = pass;
     }
     return errors;
   };
 
-  formSubmit = (values) => {
-    const message = `данные имя = ${values.userName}, email = ${values.userEmail} и  пароль 
-    ${values.userPass} идут на сервер`;
-    console.log(message);
+  formSubmit = (values, actions) => {
+    if (values.userEmail !== 'user@user.by' || values.userPass !== '123') {
+      actions.setStatus({ msg: 'Введен неверный логин или пароль' });
+    } else {
+      actions.setStatus({ msg: '' });
+      console.log('переход на главную страницу');
+    }
   };
 
   render() {
     const formInitValues = {
-      userName: '',
       userEmail: '',
       userPass: ''
     };
@@ -37,13 +35,14 @@ class RegistrationContainer extends PureComponent {
         initialValues={formInitValues}
         validate={this.validateForm}
         onSubmit={this.formSubmit}
-        render={props => <Registration {...props} />}
+        render={props => <Authorization {...props} />}
       />
     );
   }
 }
 
-RegistrationContainer.propTypes = {
+AuthorizationContainer.propTypes = {
+  status: PropTypes.instanceOf(Object),
   touched: PropTypes.instanceOf(Object),
   errors: PropTypes.instanceOf(Object),
   values: PropTypes.instanceOf(Object),
@@ -52,7 +51,8 @@ RegistrationContainer.propTypes = {
   handleSubmit: PropTypes.func
 };
 
-RegistrationContainer.defaultProps = {
+AuthorizationContainer.defaultProps = {
+  status: {},
   touched: {},
   errors: {},
   values: {},
@@ -61,4 +61,4 @@ RegistrationContainer.defaultProps = {
   handleSubmit: () => false
 };
 
-export { RegistrationContainer };
+export { AuthorizationContainer };
