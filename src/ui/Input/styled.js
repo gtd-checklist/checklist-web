@@ -1,20 +1,19 @@
 import styled from 'styled-components';
 
-const error = '#fa163a';
-const border = '#dcdcdc';
+import lightScheme from '../Colors';
 
 export const StyledInput = styled.input`
     display: ${props => (props.hide ? 'none' : 'inline-block')};
-    border: 1px solid ${props => (props.error ? error : border)};
+    border: 1px solid ${props => (props.error ? lightScheme.red : lightScheme.lightGray)};
     font-size: 1em;
     padding: 20px;
     margin: 10px 0;
     outline: none;
-    box-shadow: 0 0 10px 0 ${border};
+    box-shadow: 0 0 10px 0 ${lightScheme.lightGray};
     border-radius: 10px;
 
     :focus {
-        border-color: ${border} #000;
+        border-color: ${lightScheme.lightGray} ${lightScheme.black};
     }
 `;
 
@@ -26,12 +25,12 @@ export const StyledLabel = styled.label`
 
 export const StyledError = styled.span`
     font-size: 0.8em;
-    color: ${error};
+    color: ${lightScheme.red};
     padding-left: 10px;
 `;
 
 export const StyledHint = styled.span`
-    font-size: 0.8em;
-    color: #666;
+    font-size: 1.1em;
+    color: ${lightScheme.red};
     padding-left: 10px;
 `;
