@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const lightGreen = '#a2d2cb';
+import lightScheme from '../../ui/Colors';
 
 export const StyledLogo = styled.div`
   display: flex;
@@ -16,12 +16,12 @@ export const Brand = styled.div`
 
   :hover {
     cursor: pointer;
-    color: ${lightGreen};
+    color: ${lightScheme.lightGreen};
   }
 
   :hover::after{
     width:76px;
-    background-color: ${lightGreen};
+    background-color: ${lightScheme.lightGreen};
   }
 
   :after {

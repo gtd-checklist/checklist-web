@@ -6,9 +6,11 @@ export const StyledInput = styled.input`
     display: ${props => (props.hide ? 'none' : 'inline-block')};
     border: 1px solid ${props => (props.error ? lightScheme.red : lightScheme.lightGray)};
     font-size: 1em;
+    width: 100%;
     padding: 20px;
     margin: 10px 0;
     outline: none;
+    box-sizing: border-box;
     box-shadow: 0 0 10px 0 ${lightScheme.lightGray};
     border-radius: 10px;
 

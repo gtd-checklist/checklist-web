@@ -29,7 +29,7 @@ const Registration = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           error={touched.userEmail && errors.userEmail}
-          type="text"
+          type="email"
           id="user"
           name="userEmail"
           value={values.userEmail}

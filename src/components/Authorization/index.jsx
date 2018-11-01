@@ -12,7 +12,7 @@ const Authorization = (props) => {
 
   return (
     <StyledWrapper>
-      <StyledMainHeader>Вход в свой Checklist</StyledMainHeader>
+      <StyledMainHeader>Авторизация</StyledMainHeader>
       <StyledError>{status.msg}</StyledError>
       <StyledForm onSubmit={handleSubmit}>
         <Input
@@ -20,7 +20,7 @@ const Authorization = (props) => {
           onChange={handleChange}
           onBlur={handleBlur}
           error={touched.userEmail && errors.userEmail}
-          type="text"
+          type="email"
           id="user"
           name="userEmail"
           value={values.userEmail}
