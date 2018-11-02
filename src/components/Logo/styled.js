@@ -16,12 +16,12 @@ export const Brand = styled.div`
 
   :hover {
     cursor: pointer;
-    color: ${lightScheme.lightGreen};
+    color: ${lightScheme.Secondary};
   }
 
   :hover::after{
     width:76px;
-    background-color: ${lightScheme.lightGreen};
+    background-color: ${lightScheme.Secondary};
   }
 
   :after {
@@ -33,7 +33,7 @@ export const Brand = styled.div`
     top: 50%;
     transform: translateY(-50%);
     right: 0px;
-    background-color: #000;
+    background-color: ${lightScheme.Surface};
     transition: all 0.3s ease-in-out;
   }
 `;
