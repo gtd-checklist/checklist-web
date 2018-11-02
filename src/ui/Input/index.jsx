@@ -10,10 +10,8 @@ const Input = (props) => {
     <Fragment>
       <StyledLabel htmlFor="name">
         {label}
-        {(isRequired && !error)
-          ? <StyledHint>*</StyledHint>
-          : <StyledError>{error}</StyledError>
-        }
+        {isRequired ? <StyledHint>*</StyledHint> : null}
+        {error ? <StyledError>{error}</StyledError> : null}
       </StyledLabel>
       <StyledInput {...props} />
     </Fragment>

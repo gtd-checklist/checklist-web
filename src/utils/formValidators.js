@@ -23,3 +23,17 @@ export const passwordValidator = (value, isRequired) => {
 
   return null;
 };
+
+export const createFormValidator = (rules) => {
+  const { inputValues, email, pass } = rules;
+  const errors = {};
+  if (email) {
+    const emailValidateResult = emailValidator(inputValues.userEmail, email.isRequired);
+    if (emailValidateResult) errors.userEmail = emailValidateResult;
+  }
+  if (pass) {
+    const passValidateResult = passwordValidator(inputValues.userPass, pass.isRequired);
+    if (passValidateResult) errors.userPass = passValidateResult;
+  }
+  return errors;
+};

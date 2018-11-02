@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledError } from './styled';
-import { StyledMainHeader } from '../../globalStyled';
-import { StyledWrapper, StyledForm, StyledGroupButtons } from '../formStyled';
 import { Input } from '../../ui/Input';
 import { Button } from '../../ui/Button';
+import { StyledMainHeader } from '../../globalStyled';
+import { StyledWrapper, StyledForm, StyledGroupButtons } from '../formStyled';
+import { StyledError } from '../../ui/Input/styled';
 
 const Authorization = (props) => {
   const { status, touched, errors, values, handleChange, handleBlur, handleSubmit } = props;
@@ -13,7 +13,7 @@ const Authorization = (props) => {
   return (
     <StyledWrapper>
       <StyledMainHeader>Авторизация</StyledMainHeader>
-      <StyledError>{status.msg}</StyledError>
+      {status.errorMessage ? <StyledError>{status.errorMessage}</StyledError> : null}
       <StyledForm onSubmit={handleSubmit}>
         <Input
           label="Логин (email)"
@@ -24,7 +24,6 @@ const Authorization = (props) => {
           id="user"
           name="userEmail"
           value={values.userEmail}
-          placeholder=""
         />
         <Input
           label="Пароль для входа"
@@ -35,7 +34,6 @@ const Authorization = (props) => {
           id="pass"
           name="userPass"
           value={values.userPass}
-          placeholder=""
         />
         <StyledGroupButtons>
           <Button

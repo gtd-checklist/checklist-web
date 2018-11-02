@@ -4,23 +4,19 @@ import { Formik } from 'formik';
 
 import { Authorization } from '../components/Authorization';
 
-import { emailValidator } from '../utils/formValidators';
+import { createFormValidator } from '../utils/formValidators';
 
 class AuthorizationContainer extends PureComponent {
-  validateForm = (values) => {
-    const errors = {};
-    const email = emailValidator(values.userEmail, false);
-    if (email) {
-      errors.userEmail = email;
-    }
-    return errors;
-  };
+  validateForm = values => createFormValidator({
+    email: { isRequired: false },
+    inputValues: values
+  });
 
   formSubmit = (values, actions) => {
     if (values.userEmail !== 'user@user.by' || values.userPass !== '123') {
-      actions.setStatus({ msg: 'Введен неверный логин или пароль' });
+      actions.setStatus({ errorMessage: 'Введен неверный логин или пароль' });
     } else {
-      actions.setStatus({ msg: '' });
+      actions.setStatus({ errorMessage: '' });
       console.log('переход на главную страницу');
     }
   };

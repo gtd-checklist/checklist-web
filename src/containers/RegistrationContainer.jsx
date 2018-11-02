@@ -4,21 +4,14 @@ import { Formik } from 'formik';
 
 import { Registration } from '../components/Registration';
 
-import { emailValidator, passwordValidator } from '../utils/formValidators';
+import { createFormValidator } from '../utils/formValidators';
 
 class RegistrationContainer extends PureComponent {
-  validateForm = (values) => {
-    const errors = {};
-    const email = emailValidator(values.userEmail, true);
-    const pass = passwordValidator(values.userPass, true);
-    if (email) {
-      errors.userEmail = email;
-    }
-    if (pass) {
-      errors.userPass = pass;
-    }
-    return errors;
-  };
+  validateForm = values => createFormValidator({
+    email: { isRequired: true },
+    pass: { isRequired: true },
+    inputValues: values
+  });
 
   formSubmit = (values) => {
     const message = `данные имя = ${values.userName}, email = ${values.userEmail} и  пароль 

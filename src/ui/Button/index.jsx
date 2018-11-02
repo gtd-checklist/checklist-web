@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { StyledButton } from './styled';
@@ -7,9 +7,7 @@ const Button = (props) => {
   const { title } = props;
 
   return (
-    <Fragment>
-      <StyledButton {...props}>{title}</StyledButton>
-    </Fragment>
+    <StyledButton {...props}>{title}</StyledButton>
   );
 };
 
