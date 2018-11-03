@@ -31,7 +31,7 @@ class AuthorizationContainer extends PureComponent {
         initialValues={formInitValues}
         validate={this.validateForm}
         onSubmit={this.formSubmit}
-        render={props => <Authorization {...props} />}
+        render={props => (<Authorization {...props} />)}
       />
     );
   }
