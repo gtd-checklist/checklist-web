@@ -4,17 +4,11 @@ import { Formik } from 'formik';
 
 import { Registration } from '../components/Registration';
 
-import { createFormValidator } from '../utils/formValidators';
+import { RegistrationSchema } from '../utils/schemeValidators';
 
 class RegistrationContainer extends PureComponent {
-  validateForm = values => createFormValidator({
-    email: { isRequired: true },
-    pass: { isRequired: true },
-    inputValues: values
-  });
-
   formSubmit = (values) => {
-    const message = `данные имя = ${values.userName}, email = ${values.userEmail} и  пароль 
+    const message = `данные: имя = ${values.userName}, email = ${values.userEmail} и  пароль 
     ${values.userPass} идут на сервер`;
     console.log(message);
   };
@@ -28,7 +22,7 @@ class RegistrationContainer extends PureComponent {
     return (
       <Formik
         initialValues={formInitValues}
-        validate={this.validateForm}
+        validationSchema={RegistrationSchema}
         onSubmit={this.formSubmit}
         render={props => <Registration {...props} />}
       />

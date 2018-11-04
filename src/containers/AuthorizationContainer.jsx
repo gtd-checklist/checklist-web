@@ -4,14 +4,9 @@ import { Formik } from 'formik';
 
 import { Authorization } from '../components/Authorization';
 
-import { createFormValidator } from '../utils/formValidators';
+import { AuthorizationSchema } from '../utils/schemeValidators';
 
 class AuthorizationContainer extends PureComponent {
-  validateForm = values => createFormValidator({
-    email: { isRequired: false },
-    inputValues: values
-  });
-
   formSubmit = (values, actions) => {
     if (values.userEmail !== 'user@user.by' || values.userPass !== '123') {
       actions.setStatus({ errorMessage: 'Введен неверный логин или пароль' });
@@ -29,7 +24,7 @@ class AuthorizationContainer extends PureComponent {
     return (
       <Formik
         initialValues={formInitValues}
-        validate={this.validateForm}
+        validationSchema={AuthorizationSchema}
         onSubmit={this.formSubmit}
         render={props => <Authorization {...props} />}
       />
