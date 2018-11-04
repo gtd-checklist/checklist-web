@@ -10,7 +10,8 @@
     "build:local": "webpack --env.production --env.local",
     "lint:styles": "stylelint './src/**/*.js'",
     "lint:code": "eslint './src/**/*.js*'",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -47,7 +48,9 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@types/styled-components": "^4.0.3",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.2",
     "babel-plugin-styled-components": "^1.7.1",
     "babel-polyfill": "^6.26.0",
@@ -60,8 +63,11 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "file-loader": "^2.0.0",
+    "jest": "^23.6.0",
     "lint-staged": "^7.3.0",
     "pre-commit": "^1.2.2",
+    "react-test-renderer": "^16.6.0",
+    "regenerator-runtime": "^0.12.1",
     "rimraf": "^2.6.2",
     "stylelint": "^9.6.0",
     "stylelint-config-recommended": "^2.1.0",
@@ -84,7 +90,15 @@
     "plugins": [
       "styled-components",
       "@babel/plugin-proposal-class-properties"
-    ]
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env",
+          "@babel/preset-react"
+        ]
+      }
+    }
   },
   "stylelint": {
     "processors": [
