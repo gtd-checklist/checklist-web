@@ -4,9 +4,10 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 
 import { configureStore } from './createStore';
-import { GlobalStyle } from './globalStyle';
+import { GlobalStyle } from './globalStyled';
 
 import { Logo } from './components/Logo';
+// import { AuthorizationContainer } from './containers/AuthorizationContainer';
 import { RegistrationContainer } from './containers/RegistrationContainer';
 
 const store = configureStore();

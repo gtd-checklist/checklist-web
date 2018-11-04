@@ -1,37 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as uStyle from './styled';
-
+import { StyledDescription } from './styled';
+import { StyledMainHeader } from '../../globalStyled';
+import { StyledWrapper, StyledForm, StyledGroupButtons } from '../formStyled';
 import { Input } from '../../ui/Input';
+import { Button } from '../../ui/Button';
 
-const UserRegister = (props) => {
+const Registration = (props) => {
   const { touched, errors, values, handleChange, handleBlur, handleSubmit } = props;
 
   return (
-    <uStyle.Wrapper>
-      <uStyle.MainHeader>Регистрация</uStyle.MainHeader>
-      <uStyle.Form onSubmit={handleSubmit}>
+    <StyledWrapper>
+      <StyledMainHeader>Регистрация</StyledMainHeader>
+      <StyledForm onSubmit={handleSubmit}>
         <Input
+          label="Имя пользователя"
           onChange={handleChange}
           onBlur={handleBlur}
+          error={touched.userName && errors.userName}
           type="text"
           id="name"
           name="userName"
           value={values.userName}
-          placeholder="Имя"
+          placeholder="Пример: Николай"
         />
         <Input
+          label="Email пользователя (логин)"
           onChange={handleChange}
           onBlur={handleBlur}
           error={touched.userEmail && errors.userEmail}
-          type="text"
+          type="email"
           id="user"
           name="userEmail"
           value={values.userEmail}
-          placeholder="Email"
+          placeholder="Пример: nikola@mail.ru"
+          isRequired
         />
         <Input
+          label="Пароль для входа"
           onChange={handleChange}
           onBlur={handleBlur}
           error={touched.userPass && errors.userPass}
@@ -39,18 +46,27 @@ const UserRegister = (props) => {
           id="pass"
           name="userPass"
           value={values.userPass}
-          placeholder="Password"
+          placeholder="любой пароль более 4 символов"
+          isRequired
         />
-        <uStyle.GroupButtons>
-          <uStyle.Button type="submit">Зарегистрироваться</uStyle.Button>
-          <uStyle.SignUp type="button">Войти через email</uStyle.SignUp>
-        </uStyle.GroupButtons>
-      </uStyle.Form>
-    </uStyle.Wrapper>
+        <StyledDescription>Поля, отмеченные *, обязательны для заполнения</StyledDescription>
+        <StyledGroupButtons>
+          <Button
+            title="Зарегистрироваться"
+            type="submit"
+            isSubmit
+          />
+          <Button
+            title="Войти через email"
+            type="button"
+          />
+        </StyledGroupButtons>
+      </StyledForm>
+    </StyledWrapper>
   );
 };
 
-UserRegister.propTypes = {
+Registration.propTypes = {
   touched: PropTypes.instanceOf(Object),
   errors: PropTypes.instanceOf(Object),
   values: PropTypes.instanceOf(Object),
@@ -59,7 +75,7 @@ UserRegister.propTypes = {
   handleBlur: PropTypes.func
 };
 
-UserRegister.defaultProps = {
+Registration.defaultProps = {
   touched: {},
   errors: {},
   values: {},
@@ -68,4 +84,4 @@ UserRegister.defaultProps = {
   handleBlur: () => false
 };
 
-export { UserRegister };
+export { Registration };

@@ -2,27 +2,16 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 
-import { UserRegister } from '../components/Registration';
+import { Registration } from '../components/Registration';
 
-import { emailValidator, passwordValidator } from '../utils/formValidators';
-
-const validateForm = values => ({
-  userEmail: emailValidator(values.userEmail, true),
-  userPass: passwordValidator(values.userPass, true)
-});
-
-const formSubmit = (values) => {
-  const message = `данные имя = ${values.userName}, email = ${values.userEmail} и  пароль ${
-    values.userPass
-  } идут на сервер`;
-  console.log(message);
-};
+import { RegistrationSchema } from '../utils/schemeValidators';
 
 class RegistrationContainer extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  formSubmit = (values, { resetForm }) => {
+    const message = `данные: имя = ${values.userName}, email = ${values.userEmail} и  пароль 
+    ${values.userPass} идут на сервер`;
+    resetForm();
+  };
 
   render() {
     const formInitValues = {
@@ -30,13 +19,12 @@ class RegistrationContainer extends PureComponent {
       userEmail: '',
       userPass: ''
     };
-
     return (
       <Formik
         initialValues={formInitValues}
-        validate={validateForm}
-        onSubmit={formSubmit}
-        render={props => <UserRegister {...props} />}
+        validationSchema={RegistrationSchema}
+        onSubmit={this.formSubmit}
+        render={props => <Registration {...props} />}
       />
     );
   }
@@ -46,18 +34,18 @@ RegistrationContainer.propTypes = {
   touched: PropTypes.instanceOf(Object),
   errors: PropTypes.instanceOf(Object),
   values: PropTypes.instanceOf(Object),
-  handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
-  handleBlur: PropTypes.func
+  handleBlur: PropTypes.func,
+  handleSubmit: PropTypes.func
 };
 
 RegistrationContainer.defaultProps = {
   touched: {},
   errors: {},
   values: {},
-  handleSubmit: () => false,
   handleChange: () => false,
-  handleBlur: () => false
+  handleBlur: () => false,
+  handleSubmit: () => false
 };
 
 export { RegistrationContainer };

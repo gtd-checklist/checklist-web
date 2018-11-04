@@ -72,7 +72,11 @@ exports.file = () => ({
     rules: [
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)/,
-        loader: 'file?name=[path][name].[ext]'
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'img/'
+        }
       }
     ]
   }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const lightGreen = '#a2d2cb';
+import lightScheme from '../../ui/Colors';
 
 export const StyledLogo = styled.div`
   display: flex;
@@ -16,12 +16,12 @@ export const Brand = styled.div`
 
   :hover {
     cursor: pointer;
-    color: ${lightGreen};
+    color: ${lightScheme.Secondary};
   }
 
   :hover::after{
     width:76px;
-    background-color: ${lightGreen};
+    background-color: ${lightScheme.Secondary};
   }
 
   :after {
@@ -33,7 +33,7 @@ export const Brand = styled.div`
     top: 50%;
     transform: translateY(-50%);
     right: 0px;
-    background-color: #000;
+    background-color: ${lightScheme.Surface};
     transition: all 0.3s ease-in-out;
   }
 `;
