@@ -7,12 +7,12 @@ import { Authorization } from '../components/Authorization';
 import { AuthorizationSchema } from '../utils/schemeValidators';
 
 class AuthorizationContainer extends PureComponent {
-  formSubmit = (values, actions) => {
+  formSubmit = (values, { setStatus, resetForm }) => {
     if (values.userEmail !== 'user@user.by' || values.userPass !== '123') {
-      actions.setStatus({ errorMessage: 'Введен неверный логин или пароль' });
+      setStatus({ errorMessage: 'Введен неверный логин или пароль' });
     } else {
-      actions.setStatus({ errorMessage: '' });
-      console.log('переход на главную страницу');
+      setStatus({ errorMessage: '' });
+      resetForm();
     }
   };
 

@@ -7,10 +7,10 @@ import { Registration } from '../components/Registration';
 import { RegistrationSchema } from '../utils/schemeValidators';
 
 class RegistrationContainer extends PureComponent {
-  formSubmit = (values) => {
+  formSubmit = (values, { resetForm }) => {
     const message = `данные: имя = ${values.userName}, email = ${values.userEmail} и  пароль 
     ${values.userPass} идут на сервер`;
-    console.log(message);
+    resetForm();
   };
 
   render() {
