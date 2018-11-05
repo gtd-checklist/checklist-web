@@ -1,6 +1,6 @@
 import { RegistrationContainer } from './containers/RegistrationContainer';
 import MainPageContainer from './containers/MainPageContainer';
-import LoginContainer from './containers/LoginContainer';
+import SigninContainer from './containers/SigninContainer';
 
 export default [
   {
@@ -14,8 +14,8 @@ export default [
     exact: true
   },
   {
-    path: '/login',
-    component: LoginContainer,
+    path: '/signin',
+    component: SigninContainer,
     exact: true
   }
 ];
