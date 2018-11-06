@@ -18,6 +18,7 @@ const Registration = (props) => {
           label="Имя пользователя"
           onChange={handleChange}
           onBlur={handleBlur}
+          error={touched.userName && errors.userName}
           type="text"
           id="name"
           name="userName"
@@ -45,7 +46,7 @@ const Registration = (props) => {
           id="pass"
           name="userPass"
           value={values.userPass}
-          placeholder="любой пароль из 6 символов"
+          placeholder="любой пароль более 4 символов"
           isRequired
         />
         <StyledDescription>Поля, отмеченные *, обязательны для заполнения</StyledDescription>
