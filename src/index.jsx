@@ -2,12 +2,13 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 import { configureStore } from './createStore';
 import { GlobalStyle } from './globalStyle';
 
+import ProtectedRoute from './containers/ProtectedRoute';
 import routes from './routes';
 import { Logo } from './components/Logo';
 
@@ -22,7 +23,7 @@ const App = () => (
         <GlobalStyle />
         <Logo />
         <Switch>
-          { routes.map((route, index) => <Route key={index} {...route} />) }
+          { routes.map((route, index) => <ProtectedRoute key={index} {...route} />) }
         </Switch>
       </Fragment>
     </Provider>
