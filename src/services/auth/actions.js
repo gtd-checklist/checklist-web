@@ -1,19 +1,15 @@
-import axios from 'axios';
+import { getAuthToken } from '../api';
 
 export const AUTHENTICATED = 'authenticated_user';
 export const UNAUTHENTICATED = 'unauthenticated_user';
 export const AUTHENTICATION_ERROR = 'authentication_error';
 
-const URL = 'http://www.our-website.com'; // TO DO
-
-export function signInAction({ email, password }, history) {
+export function signInAction({ email, password }) {
   return async (dispatch) => {
     try {
-      const res = await axios.post(`${URL}/auth`, { email, password });
-
+      const token = await getAuthToken(email, password);
       dispatch({ type: AUTHENTICATED });
-      localStorage.setItem('user', res.data.token);
-      history.push('/secret');
+      localStorage.setItem('auth', token);
     } catch (error) {
       dispatch({
         type: AUTHENTICATION_ERROR,

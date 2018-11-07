@@ -1,6 +1,6 @@
 import { RegistrationContainer } from './containers/RegistrationContainer';
 import MainPageContainer from './containers/MainPageContainer';
-import SigninContainer from './containers/SigninContainer';
+import { AuthorizationContainer } from './containers/AuthorizationContainer';
 
 export default [
   {
@@ -14,8 +14,8 @@ export default [
     exact: true
   },
   {
-    path: '/signin',
-    component: SigninContainer,
+    path: '/auth',
+    component: AuthorizationContainer,
     exact: true
   }
 ];
