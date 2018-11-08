@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 
+import { ThemeProvider } from 'styled-components';
+
 import { configureStore } from './createStore';
+
+import themeLight from './ui/Themes';
 import { GlobalStyle } from './globalStyled';
 
 import { Logo } from './components/Logo';
@@ -14,11 +18,13 @@ const store = configureStore();
 
 const App = () => (
   <Provider store={store}>
-    <Fragment>
-      <GlobalStyle />
-      <Logo />
-      <RegistrationContainer />
-    </Fragment>
+    <ThemeProvider theme={themeLight}>
+      <Fragment>
+        <GlobalStyle />
+        <Logo />
+        <RegistrationContainer />
+      </Fragment>
+    </ThemeProvider>
   </Provider>
 );
 

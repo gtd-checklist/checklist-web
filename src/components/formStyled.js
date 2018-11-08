@@ -20,6 +20,7 @@ export const StyledGroupButtons = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    
     @media (max-width: 960px) {
         flex-flow: column;
     }

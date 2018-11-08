@@ -26,7 +26,7 @@ class AuthorizationContainer extends PureComponent {
         initialValues={formInitValues}
         validationSchema={AuthorizationSchema}
         onSubmit={this.formSubmit}
-        render={props => <Authorization {...props} />}
+        render={props => (<Authorization {...props} />)}
       />
     );
   }
