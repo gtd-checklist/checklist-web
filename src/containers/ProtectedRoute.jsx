@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 class ProtectedRoute extends PureComponent {
   render() {
-    const { authenticated, location } = this.props;
-    if (!authenticated && location.pathname !== '/auth' && location.pathname !== '/registration') {
+    const { authenticated, responseStatus, location } = this.props;
+    if ((!authenticated && location.pathname !== '/auth' && location.pathname !== '/registration') || responseStatus === 401) {
       return <Redirect to={{ pathname: '/auth', state: { from: location } }} />;
     }
 
@@ -20,7 +20,8 @@ class ProtectedRoute extends PureComponent {
 function mapStateToProps(state, ownProps) {
   return {
     ...ownProps,
-    authenticated: state.authenticated
+    authenticated: state.authenticated,
+    responseStatus: state.responseStatus
   };
 }
 
