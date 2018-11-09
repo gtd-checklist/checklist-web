@@ -5,7 +5,11 @@ import { Provider } from 'react-redux';
 import { Router, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
+import { ThemeProvider } from 'styled-components';
+
 import { configureStore } from './createStore';
+
+import themeLight from './ui/Themes';
 import { GlobalStyle } from './globalStyled';
 
 import ProtectedRoute from './containers/ProtectedRoute';
@@ -19,13 +23,15 @@ export const history = createBrowserHistory();
 const App = () => (
   <Router history={history}>
     <Provider store={store}>
-      <Fragment>
-        <GlobalStyle />
-        <Logo />
-        <Switch>
-          { routes.map((route, index) => <ProtectedRoute key={index} {...route} />) }
-        </Switch>
-      </Fragment>
+      <ThemeProvider theme={themeLight}>
+        <Fragment>
+          <GlobalStyle />
+          <Logo />
+          <Switch>
+            { routes.map((route, index) => <ProtectedRoute key={index} {...route} />) }
+          </Switch>
+        </Fragment>
+      </ThemeProvider>
     </Provider>
   </Router>
 );

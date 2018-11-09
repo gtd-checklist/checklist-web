@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Input } from '../../ui/Input';
 import { Button } from '../../ui/Button';
+
 import { StyledMainHeader } from '../../globalStyled';
 import { StyledWrapper, StyledForm, StyledGroupButtons } from '../formStyled';
 import { StyledError } from '../../ui/Input/styled';
