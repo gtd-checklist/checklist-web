@@ -12,7 +12,7 @@ import ProtectedRoute from './containers/ProtectedRoute';
 import routes from './routes';
 import { Logo } from './components/Logo';
 
-const store = configureStore();
+export const store = configureStore();
 
 export const history = createBrowserHistory();
 
