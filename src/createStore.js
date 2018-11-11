@@ -1,11 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
-import createHistory from 'history/createHashHistory';
 
 import { rootReducer } from './services/rootReducer';
-
-export const history = createHistory();
+import { history } from './index';
 
 export function configureStore() {
   let composeEnhancers;
