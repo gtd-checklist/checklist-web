@@ -6,6 +6,7 @@ import { Router, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 import { ThemeProvider } from 'styled-components';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { configureStore } from './createStore';
 
@@ -14,7 +15,6 @@ import { GlobalStyle } from './globalStyled';
 
 import ProtectedRoute from './containers/ProtectedRoute';
 import routes from './routes';
-import { Logo } from './components/Logo';
 
 export const store = configureStore();
 
@@ -25,8 +25,8 @@ const App = () => (
     <Provider store={store}>
       <ThemeProvider theme={themeLight}>
         <Fragment>
+          <CssBaseline />
           <GlobalStyle />
-          <Logo />
           <Switch>
             { routes.map((route, index) => <ProtectedRoute key={index} {...route} />) }
           </Switch>
