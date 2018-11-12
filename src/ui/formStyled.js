@@ -69,8 +69,4 @@ export const StyledLink = styled.a`
   text-decoration: none;
   font-weight: 500;
   margin-left: 20px;
-  
-  :hover{
-    text-decoration: underline;
-  }
 `;

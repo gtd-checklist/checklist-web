@@ -37,4 +37,8 @@ export const StyledGoToAuth = styled(StyledGoTo)`
 
 export const StyledLinkAuth = styled(StyledLink)`
   color: ${props => props.theme.colors.OnSurface};
+
+  :hover{
+    text-decoration: underline;
+  }
 `;

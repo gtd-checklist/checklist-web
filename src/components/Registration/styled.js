@@ -41,4 +41,8 @@ export const StyledGoToReg = styled(StyledGoTo)`
 
 export const StyledLinkReg = styled(StyledLink)`
   color: ${props => props.theme.colors.OnOppositeSurface};
+
+  :hover{
+    text-decoration: underline;
+  }
 `;
