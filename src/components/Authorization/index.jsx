@@ -1,53 +1,65 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Input } from '../../ui/Input';
-import { Button } from '../../ui/Button';
+import { Logo } from '../Logo';
+import back from '../../img/back-mountain.jpg';
 
-import { StyledMainHeader } from '../../globalStyled';
-import { StyledWrapper, StyledForm, StyledGroupButtons } from '../formStyled';
-import { StyledError } from '../../ui/Input/styled';
+import { StyledWrapper, StyledLogo, StyledInputAuth, StyledBackFormAuth, StyledGoToAuth, StyledLinkAuth } from './styled';
+import { StyledForm, StyledButton, StyledError } from '../../ui/formStyled';
+import { StyledContent, StyledMainHeader, StyledMainApp } from '../../globalStyled';
 
 const Authorization = (props) => {
   const { status, touched, errors, values, handleChange, handleBlur, handleSubmit } = props;
 
   return (
-    <StyledWrapper>
-      <StyledMainHeader>Авторизация</StyledMainHeader>
-      {status.errorMessage ? <StyledError>{status.errorMessage}</StyledError> : null}
-      <StyledForm onSubmit={handleSubmit}>
-        <Input
-          label="Логин (email)"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.userEmail && errors.userEmail}
-          type="email"
-          id="user"
-          name="userEmail"
-          value={values.userEmail}
-        />
-        <Input
-          label="Пароль для входа"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.userPass && errors.userPass}
-          type="password"
-          id="pass"
-          name="userPass"
-          value={values.userPass}
-        />
-        <StyledGroupButtons>
-          <Button
-            title="Войти"
-            type="submit"
-            isSubmit
-          />
-          <Button
-            title="Зарегистрироваться через email"
-            type="button"
-          />
-        </StyledGroupButtons>
-      </StyledForm>
+    <StyledWrapper container justify="center" back={back} color="primary">
+      <StyledMainApp item md={6} xs={12}>
+        <StyledContent container direction="column" justify="space-between">
+          <StyledLogo container justify="center" alignItems="center">
+            <Logo />
+          </StyledLogo>
+          <StyledContent>
+            <StyledMainHeader color="onDark">Авторизация</StyledMainHeader>
+            <StyledBackFormAuth container>
+              <StyledForm onSubmit={handleSubmit} noValidate autoComplete="off">
+                {status.errorMessage ? <StyledError>{status.errorMessage}</StyledError> : null}
+                <StyledInputAuth
+                  id="user"
+                  className="customStyle"
+                  label="Логин (email)"
+                  type="email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  err={touched.userEmail && errors.userEmail}
+                  name="userEmail"
+                  value={values.userEmail}
+                  helperText={errors.userEmail}
+                  fullWidth
+                  margin="normal"
+                />
+                <StyledInputAuth
+                  id="pass"
+                  type="password"
+                  label="Пароль для входа"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  err={touched.userPass && errors.userPass}
+                  name="userPass"
+                  value={values.userPass}
+                  helperText={errors.userPass}
+                  fullWidth
+                  margin="normal"
+                />
+                <StyledButton variant="contained" type="submit" fullWidth>Войти</StyledButton>
+              </StyledForm>
+              <StyledGoToAuth>
+                Еще нет аккаунта?
+                <StyledLinkAuth href="/registration">Регистрация</StyledLinkAuth>
+              </StyledGoToAuth>
+            </StyledBackFormAuth>
+          </StyledContent>
+        </StyledContent>
+      </StyledMainApp>
     </StyledWrapper>
   );
 };

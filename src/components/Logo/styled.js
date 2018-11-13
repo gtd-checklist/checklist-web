@@ -1,37 +1,18 @@
 import styled from 'styled-components';
 
-export const StyledLogo = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-`;
+import logo from '../../img/logo_big.png';
 
 export const Brand = styled.div`
-  font-family: 'Kalam', cursive;
-  font-size: 3em;
-  position: relative;
-  transition: all 0.2s ease-in;
+  width: 320px;
+  height: 102px;
+  background-image: url('${logo}');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.1s ease-in;
 
   :hover {
     cursor: pointer;
-    color: ${props => props.theme.colors.Secondary};
-  }
-
-  :hover::after{
-    width:76px;
-    background-color: ${props => props.theme.colors.Secondary};
-  }
-
-  :after {
-    content: '';
-    display: inline-block;
-    width:0px;
-    height:4px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0px;
-    background-color: ${props => props.theme.colors.Surface};
-    transition: all 0.3s ease-in-out;
+    opacity: 0.6;
   }
 `;

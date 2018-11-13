@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { StyledLogo, Brand } from './styled';
+import { Brand } from './styled';
 
-const Logo = () => <StyledLogo><Brand>CheckList</Brand></StyledLogo>;
+const Logo = () => <Brand />;
 
 export { Logo };

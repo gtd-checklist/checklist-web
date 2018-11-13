@@ -1,67 +1,84 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledDescription } from './styled';
-import { StyledMainHeader } from '../../globalStyled';
-import { StyledWrapper, StyledForm, StyledGroupButtons } from '../formStyled';
-import { Input } from '../../ui/Input';
-import { Button } from '../../ui/Button';
+import { Logo } from '../Logo';
+import back from '../../img/back-forest.jpg';
+
+import { StyledWrapper, StyledLogo, StyledBackFormReg, StyledInputReg, StyledDescription, StyledGoToReg, StyledLinkReg } from './styled';
+import { StyledForm, StyledButton } from '../../ui/formStyled';
+import { StyledContent, StyledMainHeader, StyledMainApp } from '../../globalStyled';
 
 const Registration = (props) => {
   const { touched, errors, values, handleChange, handleBlur, handleSubmit } = props;
 
   return (
-    <StyledWrapper>
-      <StyledMainHeader>Регистрация</StyledMainHeader>
-      <StyledForm onSubmit={handleSubmit}>
-        <Input
-          label="Имя пользователя"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.userName && errors.userName}
-          type="text"
-          id="name"
-          name="userName"
-          value={values.userName}
-          placeholder="Пример: Николай"
-        />
-        <Input
-          label="Email пользователя (логин)"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.userEmail && errors.userEmail}
-          type="email"
-          id="user"
-          name="userEmail"
-          value={values.userEmail}
-          placeholder="Пример: nikola@mail.ru"
-          isRequired
-        />
-        <Input
-          label="Пароль для входа"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.userPass && errors.userPass}
-          type="password"
-          id="pass"
-          name="userPass"
-          value={values.userPass}
-          placeholder="любой пароль более 4 символов"
-          isRequired
-        />
-        <StyledDescription>Поля, отмеченные *, обязательны для заполнения</StyledDescription>
-        <StyledGroupButtons>
-          <Button
-            title="Зарегистрироваться"
-            type="submit"
-            isSubmit
-          />
-          <Button
-            title="Войти через email"
-            type="button"
-          />
-        </StyledGroupButtons>
-      </StyledForm>
+    <StyledWrapper container justify="center" back={back} color="primary">
+      <StyledMainApp item md={6} xs={12}>
+        <StyledContent container direction="column" justify="space-between">
+          <StyledLogo container justify="center" alignItems="center">
+            <Logo />
+          </StyledLogo>
+          <StyledContent>
+            <StyledMainHeader color="onDark">Регистрация</StyledMainHeader>
+            <StyledBackFormReg container>
+              <StyledForm onSubmit={handleSubmit} noValidate autoComplete="off">
+                <StyledInputReg
+                  label="Имя пользователя"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  err={touched.userName && errors.userName}
+                  type="text"
+                  id="name"
+                  name="userName"
+                  value={values.userName}
+                  placeholder="Пример: Николай"
+                  helperText={errors.userName}
+                  fullWidth
+                  margin="normal"
+                />
+                <StyledInputReg
+                  required
+                  label="Email пользователя (логин)"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  err={touched.userEmail && errors.userEmail}
+                  type="email"
+                  id="user"
+                  name="userEmail"
+                  value={values.userEmail}
+                  placeholder="Пример: nikola@mail.ru"
+                  helperText={errors.userEmail}
+                  fullWidth
+                  margin="normal"
+                />
+                <StyledInputReg
+                  required
+                  label="Пароль для входа"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  err={touched.userPass && errors.userPass}
+                  type="password"
+                  id="pass"
+                  name="userPass"
+                  value={values.userPass}
+                  placeholder="любой пароль более 4 символов"
+                  helperText={errors.userPass}
+                  fullWidth
+                  margin="normal"
+                />
+                <StyledDescription>
+                  Поля, отмеченные *, обязательны для заполнения
+                </StyledDescription>
+                <StyledButton variant="contained" type="submit" fullWidth>Создать аккаунт</StyledButton>
+              </StyledForm>
+              <StyledGoToReg>
+                Уже есть аккаунт?
+                <StyledLinkReg href="/auth">Войти</StyledLinkReg>
+              </StyledGoToReg>
+            </StyledBackFormReg>
+          </StyledContent>
+        </StyledContent>
+      </StyledMainApp>
     </StyledWrapper>
   );
 };
