@@ -1,44 +1,22 @@
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
 
-import { BgImageTransparent } from '../../globalStyled';
-import { StyledBackForm, StyledInput, StyledGoTo, StyledLink } from '../../ui/formStyled';
+import { StyledInput } from '../../ui/formStyled';
 
-export const StyledWrapper = styled(BgImageTransparent)`
-  flex: auto;
-`;
+import { theme } from '../../ui/Themes';
 
-export const StyledLogo = styled(Grid)`
-  min-height: 300px;
-`;
-
-export const StyledBackFormAuth = styled(StyledBackForm)`
-  background-color: ${props => props.theme.colors.OnSurfaceTransparent};
-`;
+const { palette } = theme;
 
 export const StyledInputAuth = styled(StyledInput)`
   && {
     label, p{
-      color: ${props => (props.err ? props.theme.colors.Error : props.theme.colors.LabelOpposite)};
+      color: ${props => (props.err ? palette.error.main : palette.text.inverseLight)};
       font-weight: 500;
     }
     input{
-      color: ${props => props.theme.colors.InputOpposite};
+      color: ${palette.text.inverse};
     }
     div:after, div:before{
-      border-bottom: 1px solid ${props => props.theme.colors.BorderOpposite};
+      border-bottom: 1px solid ${palette.border.inverse};
     } 
-  }
-`;
-
-export const StyledGoToAuth = styled(StyledGoTo)`
-  color: ${props => props.theme.colors.OnSurface};
-`;
-
-export const StyledLinkAuth = styled(StyledLink)`
-  color: ${props => props.theme.colors.OnSurface};
-
-  :hover{
-    text-decoration: underline;
   }
 `;

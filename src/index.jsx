@@ -5,12 +5,11 @@ import { Provider } from 'react-redux';
 import { Router, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-import { ThemeProvider } from 'styled-components';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { configureStore } from './createStore';
-
-import themeLight from './ui/Themes';
+import { theme } from './ui/Themes';
 import { GlobalStyle } from './globalStyled';
 
 import ProtectedRoute from './containers/ProtectedRoute';
@@ -23,7 +22,7 @@ export const history = createBrowserHistory();
 const App = () => (
   <Router history={history}>
     <Provider store={store}>
-      <ThemeProvider theme={themeLight}>
+      <MuiThemeProvider theme={theme}>
         <Fragment>
           <CssBaseline />
           <GlobalStyle />
@@ -31,7 +30,7 @@ const App = () => (
             { routes.map((route, index) => <ProtectedRoute key={index} {...route} />) }
           </Switch>
         </Fragment>
-      </ThemeProvider>
+      </MuiThemeProvider>
     </Provider>
   </Router>
 );

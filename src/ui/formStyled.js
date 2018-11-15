@@ -1,12 +1,20 @@
 import styled from 'styled-components';
+
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
-// background from
+import { theme } from './Themes';
+
+const { palette } = theme;
+
+// background form
 export const StyledBackForm = styled(Grid)`
+  margin-top: 20px;
   border-radius: 20px;
-  box-shadow: 0 6px 10px 0 ${props => props.theme.colors.Shadow};
+  box-shadow: 0 6px 10px 0 ${palette.shadow};
+  background-color: ${props => (props.transparent ? palette.surface.transparent : palette.surface.main)};
 
   @media (max-width: 960px) {
     border-radius: 0;
@@ -15,9 +23,9 @@ export const StyledBackForm = styled(Grid)`
 `;
 
 export const StyledForm = styled.form`
-    box-sizing: border-box;
-    padding: 30px;
-    width: 100%;
+  width: 100%;
+  padding: 30px;
+  flex:auto;
 `;
 
 export const StyledInput = styled(TextField)`
@@ -26,7 +34,6 @@ export const StyledInput = styled(TextField)`
       font-weight: 400;
     }
     p{
-      font-family: inherit;
       font-weight: 500;
     }   
   }
@@ -34,39 +41,38 @@ export const StyledInput = styled(TextField)`
 
 export const StyledButton = styled(Button)`
   && {
-    font-family: inherit;
     font-weight: 400;
     font-size: 0.9em;
     padding: 22px 0;
     margin-top: 20px;
     border-radius: 40px;
-    background-color: ${props => props.theme.colors.Secondary};
-    color: ${props => props.theme.colors.OnSurface};
-    box-shadow: 0 6px 10px 0 ${props => props.theme.colors.Shadow};
-
-    :hover{
-      color: ${props => props.theme.colors.OnOppositeSurface};
-    }
+    color: ${palette.text.inverse};
+    box-shadow: 0 6px 10px 0 ${palette.shadow};
   }
 `;
 
-export const StyledError = styled.div`
-  color: ${props => props.theme.colors.Error};
-  font-size: 0.8em;
-  font-weight: 500;
+export const StyledError = styled(Typography)`
+  &&{
+    color: ${palette.error.main};
+  }
 `;
 // after submit bottom
-export const StyledGoTo = styled.div`
+export const StyledGoTo = styled(Typography)`
   flex: auto;
-  text-align: center;
-  color: ${props => props.theme.colors.OnSurface};
-  margin-bottom: 20px;
+  &&{
+    color: ${props => (props.dark ? palette.text.inverse : palette.text.main)};
+    margin-bottom: 20px;
+  }
 `;
 
 export const StyledLink = styled.a`
-  color: ${props => props.theme.colors.OnSurface};
+color: ${props => (props.dark ? palette.text.inverse : palette.text.main)};
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 500;
   margin-left: 20px;
+    
+  :hover{
+    text-decoration: underline;
+  }
 `;
