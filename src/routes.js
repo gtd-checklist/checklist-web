@@ -1,11 +1,11 @@
 import { RegistrationContainer } from './containers/RegistrationContainer';
-import MainPageContainer from './containers/MainPageContainer';
+import { HomeContainer } from './containers/HomeContainer';
 import { AuthorizationContainer } from './containers/AuthorizationContainer';
 
 export default [
   {
     path: '/',
-    component: MainPageContainer,
+    component: HomeContainer,
     exact: true
   },
   {
