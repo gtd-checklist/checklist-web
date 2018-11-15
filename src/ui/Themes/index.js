@@ -1,21 +1,42 @@
-const themeLight = {
-  colors: {
-    Primary: 'rgb(101, 99, 164)',
-    PrimaryTransparent: 'rgba(101, 99, 164, 0.5)',
-    Secondary: 'rgb(80, 210, 194)',
-    SecondaryTransparent: 'rgba(80, 210, 194, 0.7)',
-    Error: 'rgb(255, 51, 102)',
-    OnSurface: 'rgb(255, 255, 255)',
-    OnSurfaceTransparent: 'rgba(255, 255, 255, 0.4)',
-    OnOppositeSurface: 'rgb(10, 10, 10)',
-    Shadow: 'rgba(0, 0, 0, 0.1)',
-    Label: 'rgb(0, 0, 0, 0.6)',
-    LabelOpposite: 'rgba(255, 255, 255, 0.8)',
-    Input: 'rgb(0, 0, 0, 0.9)',
-    InputOpposite: 'rgb(255, 255, 255)',
-    Border: 'rgba(0, 0, 0, 0.2)',
-    BorderOpposite: 'rgba(255, 255, 255, 0.2)'
-  }
-};
+import { createMuiTheme } from '@material-ui/core/styles';
 
-export default themeLight;
+export const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+    fontSize: 12,
+    fontFamily: [
+      '"Montserrat"',
+      'sans-serif'
+    ].join(',')
+  },
+  palette: {
+    primary: {
+      light: 'rgba(101, 99, 164, 0.5)',
+      main: 'rgb(101, 99, 164)',
+      surface: 'rgba(101, 99, 164, 0.7)'
+    },
+    secondary: {
+      light: 'rgba(80, 210, 194, 0.7)',
+      main: 'rgb(80, 210, 194)',
+      surface: 'rgba(80, 210, 194, 0.7)'
+    },
+    surface: {
+      main: 'rgb(255, 255, 255)',
+      transparent: 'rgba(255, 255, 255, 0.4)'
+    },
+    text: {
+      light: 'rgba(0, 0, 0, 0.6)',
+      main: 'rgb(0, 0, 0)',
+      inverse: 'rgb(255, 255, 255)',
+      inverseLight: 'rgba(255, 255, 255, 0.8)'
+    },
+    error: {
+      main: 'rgb(255, 51, 102)'
+    },
+    shadow: 'rgba(0, 0, 0, 0.1)',
+    border: {
+      main: 'rgba(0, 0, 0, 0.2)',
+      inverse: 'rgba(255, 255, 255, 0.2)'
+    }
+  }
+});

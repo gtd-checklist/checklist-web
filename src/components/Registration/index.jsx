@@ -1,26 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 
-import { Logo } from '../Logo';
+import { Logo } from '../../ui/Logo';
 import back from '../../img/back-forest.jpg';
 
-import { StyledWrapper, StyledLogo, StyledBackFormReg, StyledInputReg, StyledDescription, StyledGoToReg, StyledLinkReg } from './styled';
-import { StyledForm, StyledButton } from '../../ui/formStyled';
-import { StyledContent, StyledMainHeader, StyledMainApp } from '../../globalStyled';
+import { StyledInputReg, StyledDescription } from './styled';
+import { StyledBackForm, StyledForm, StyledButton, StyledGoTo, StyledLink } from '../../ui/formStyled';
+import { BgImageTransparent, StyledContent, StyledLogo, StyledTitle } from '../../globalStyled';
 
 const Registration = (props) => {
   const { touched, errors, values, handleChange, handleBlur, handleSubmit } = props;
 
   return (
-    <StyledWrapper container justify="center" back={back} color="primary">
-      <StyledMainApp item md={6} xs={12}>
+    <BgImageTransparent container justify="center" back={back} color="primary">
+      <Grid item md={6} xs={12}>
         <StyledContent container direction="column" justify="space-between">
           <StyledLogo container justify="center" alignItems="center">
             <Logo />
           </StyledLogo>
           <StyledContent>
-            <StyledMainHeader color="onDark">Регистрация</StyledMainHeader>
-            <StyledBackFormReg container>
+            <StyledTitle component="h1" variant="h1" align="center" back="dark">
+              Регистрация
+            </StyledTitle>
+            <StyledBackForm container>
               <StyledForm onSubmit={handleSubmit} noValidate autoComplete="off">
                 <StyledInputReg
                   label="Имя пользователя"
@@ -66,20 +69,20 @@ const Registration = (props) => {
                   fullWidth
                   margin="normal"
                 />
-                <StyledDescription>
+                <StyledDescription variant="subtitle2">
                   Поля, отмеченные *, обязательны для заполнения
                 </StyledDescription>
-                <StyledButton variant="contained" type="submit" fullWidth>Создать аккаунт</StyledButton>
+                <StyledButton variant="contained" type="submit" color="secondary" fullWidth>Создать аккаунт</StyledButton>
               </StyledForm>
-              <StyledGoToReg>
+              <StyledGoTo align="center" component="p" variant="body1">
                 Уже есть аккаунт?
-                <StyledLinkReg href="/auth">Войти</StyledLinkReg>
-              </StyledGoToReg>
-            </StyledBackFormReg>
+                <StyledLink href="/auth">Войти</StyledLink>
+              </StyledGoTo>
+            </StyledBackForm>
           </StyledContent>
         </StyledContent>
-      </StyledMainApp>
-    </StyledWrapper>
+      </Grid>
+    </BgImageTransparent>
   );
 };
 

@@ -1,48 +1,27 @@
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
 
-import { BgImageTransparent } from '../../globalStyled';
-import { StyledBackForm, StyledInput, StyledGoTo, StyledLink } from '../../ui/formStyled';
+import Typography from '@material-ui/core/Typography';
 
-export const StyledWrapper = styled(BgImageTransparent)`
-  flex: auto;
-`;
+import { StyledInput } from '../../ui/formStyled';
+import { theme } from '../../ui/Themes';
 
-export const StyledLogo = styled(Grid)`
-  min-height: 300px;
-`;
-
-export const StyledBackFormReg = styled(StyledBackForm)`
-  background-color: ${props => props.theme.colors.OnSurface};
-`;
+const { palette } = theme;
 
 export const StyledInputReg = styled(StyledInput)`
   && {
     label, p{
-      color: ${props => (props.err ? props.theme.colors.Error : props.theme.colors.Label)};
+      color: ${props => (props.err ? palette.error.main : palette.text.light)};
     }
     input{
-      color: ${props => props.theme.colors.Input};
+      color: ${palette.text.main};
     }
     div:after, div:before{
-      border-bottom: 1px solid ${props => props.theme.colors.Border};
+      border-bottom: 1px solid ${palette.border.main};
     } 
   }
 `;
 
-export const StyledDescription = styled.div`
+export const StyledDescription = styled(Typography)`
   margin-top:10px;
   font-size: 0.8em;
-`;
-
-export const StyledGoToReg = styled(StyledGoTo)`
-  color: ${props => props.theme.colors.OnOppositeSurface};
-`;
-
-export const StyledLinkReg = styled(StyledLink)`
-  color: ${props => props.theme.colors.OnOppositeSurface};
-
-  :hover{
-    text-decoration: underline;
-  }
 `;

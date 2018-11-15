@@ -1,28 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Logo } from '../Logo';
+import Grid from '@material-ui/core/Grid';
+
+import { Logo } from '../../ui/Logo';
 import back from '../../img/back-mountain.jpg';
 
-import { StyledWrapper, StyledLogo, StyledInputAuth, StyledBackFormAuth, StyledGoToAuth, StyledLinkAuth } from './styled';
-import { StyledForm, StyledButton, StyledError } from '../../ui/formStyled';
-import { StyledContent, StyledMainHeader, StyledMainApp } from '../../globalStyled';
+import { StyledInputAuth } from './styled';
+import { StyledBackForm, StyledForm, StyledButton, StyledError, StyledGoTo, StyledLink } from '../../ui/formStyled';
+import { BgImageTransparent, StyledContent, StyledLogo, StyledTitle } from '../../globalStyled';
 
 const Authorization = (props) => {
   const { status, touched, errors, values, handleChange, handleBlur, handleSubmit } = props;
 
   return (
-    <StyledWrapper container justify="center" back={back} color="primary">
-      <StyledMainApp item md={6} xs={12}>
+    <BgImageTransparent container justify="center" back={back} color="primary">
+      <Grid item md={6} xs={12}>
         <StyledContent container direction="column" justify="space-between">
           <StyledLogo container justify="center" alignItems="center">
             <Logo />
           </StyledLogo>
           <StyledContent>
-            <StyledMainHeader color="onDark">Авторизация</StyledMainHeader>
-            <StyledBackFormAuth container>
+            <StyledTitle component="h1" variant="h1" align="center" back="dark">
+              Авторизация
+            </StyledTitle>
+            <StyledBackForm container transparent>
               <StyledForm onSubmit={handleSubmit} noValidate autoComplete="off">
-                {status.errorMessage ? <StyledError>{status.errorMessage}</StyledError> : null}
+                {status.errorMessage ? <StyledError variant="body2">{status.errorMessage}</StyledError> : null}
                 <StyledInputAuth
                   id="user"
                   className="customStyle"
@@ -50,17 +54,17 @@ const Authorization = (props) => {
                   fullWidth
                   margin="normal"
                 />
-                <StyledButton variant="contained" type="submit" fullWidth>Войти</StyledButton>
+                <StyledButton variant="contained" color="secondary" type="submit" fullWidth>Войти</StyledButton>
               </StyledForm>
-              <StyledGoToAuth>
+              <StyledGoTo align="center" component="p" variant="body1" dark>
                 Еще нет аккаунта?
-                <StyledLinkAuth href="/registration">Регистрация</StyledLinkAuth>
-              </StyledGoToAuth>
-            </StyledBackFormAuth>
+                <StyledLink href="/registration" dark>Регистрация</StyledLink>
+              </StyledGoTo>
+            </StyledBackForm>
           </StyledContent>
         </StyledContent>
-      </StyledMainApp>
-    </StyledWrapper>
+      </Grid>
+    </BgImageTransparent>
   );
 };
 
