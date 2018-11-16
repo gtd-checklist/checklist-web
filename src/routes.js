@@ -4,7 +4,7 @@ import { AuthorizationContainer } from './containers/AuthorizationContainer';
 
 export default [
   {
-    path: '/',
+    path: '/auth',
     component: HomeContainer,
     exact: true
   },
@@ -14,7 +14,7 @@ export default [
     exact: true
   },
   {
-    path: '/auth',
+    path: '/',
     component: AuthorizationContainer,
     exact: true
   }

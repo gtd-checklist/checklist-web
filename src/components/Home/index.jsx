@@ -4,10 +4,10 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import { StyledHeader } from './styled';
-import { StyledGridAuto, StyledContent, StyledTitle } from '../../globalStyled';
+import { StyledContent, StyledTitle } from '../../globalStyled';
 
 import { Navbar } from '../../ui/Navbar';
-import { HorizontalCalend } from '../../ui/HorizontalCalend';
+import { HorizontalCalendContainer } from '../../containers/HorizontalCalendContainer';
 import { Habits } from '../Habits';
 
 import back from '../../img/back-mountain2.jpg';
@@ -23,13 +23,11 @@ const Home = () => {
             Ноябрь
           </StyledTitle>
         </StyledHeader>
-        <StyledContent container direction="column">
-          <StyledGridAuto container justify="space-between" alignItems="center" direction="column">
-            <StyledGridAuto item md={6} xs={12} align="center">
-              <HorizontalCalend />
-              <Habits />
-            </StyledGridAuto>
-          </StyledGridAuto>
+        <StyledContent container justify="center">
+          <Grid item md={8} xs={12} align="center">
+            <HorizontalCalendContainer />
+            <Habits />
+          </Grid>
         </StyledContent>
       </Grid>
     </Grid>

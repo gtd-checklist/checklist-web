@@ -21,6 +21,7 @@ export const theme = createMuiTheme({
       surface: 'rgba(80, 210, 194, 0.7)'
     },
     surface: {
+      light: 'rgba(29, 29, 39, 0.06)',
       main: 'rgb(255, 255, 255)',
       transparent: 'rgba(255, 255, 255, 0.4)'
     },

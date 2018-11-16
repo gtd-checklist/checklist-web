@@ -26,12 +26,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const StyledGridAuto = styled(Grid)`
-  &&{
-      flex: auto;
-    }
-`;
-
 export const StyledContent = styled(Grid)`
   @media (max-width: 960px) {
     min-height: 100%;
