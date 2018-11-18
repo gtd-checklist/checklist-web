@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 
 import { HorizontalCalend } from '../components/HorizontalCalend';
 
-import { getDataWeek, getCurrentDayNumber } from '../utils/getDataWeek';
+import { getDataWeek, getCurrentDayNumber } from '../utils/getData';
 
 class HorizontalCalendContainer extends PureComponent {
   constructor(props) {

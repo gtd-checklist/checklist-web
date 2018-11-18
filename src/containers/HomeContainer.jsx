@@ -2,21 +2,30 @@ import React, { PureComponent } from 'react';
 
 import { Home } from '../components/Home';
 
+import { getMonth, getYear } from '../utils/getData';
+
 class HomeContainer extends PureComponent {
-  fin = () => {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      month: '',
+      year: ''
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      month: getMonth(),
+      year: getYear()
+    });
+  }
 
   render() {
-    const test = '';
+    const { month, year } = this.state;
     return (
-      <Home />
+      <Home month={month} year={year} />
     );
   }
 }
-
-HomeContainer.propTypes = {
-};
-
-HomeContainer.defaultProps = {
-};
 
 export { HomeContainer };
