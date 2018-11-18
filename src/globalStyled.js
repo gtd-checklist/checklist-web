@@ -39,6 +39,7 @@ export const StyledLogo = styled(Grid)`
 export const StyledTitle = styled(Typography)`
   flex: auto;
   letter-spacing: 0.05em;
+  text-transform: capitalize;
   &&{
     font-size: 2.4em;
     font-weight: 300;
