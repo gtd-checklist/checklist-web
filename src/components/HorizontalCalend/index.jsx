@@ -14,7 +14,7 @@ const HorizontalCalend = (props) => {
           <StyledListItem
             key={indx}
             button
-            day={currentDay === indx}
+            day={currentDay === indx ? 1 : 0}
             selected={selectedIndex === indx}
             onClick={event => handleListItemClick(event, indx)}
           >
