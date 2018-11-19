@@ -1,21 +1,29 @@
-import { RegistrationContainer } from './containers/RegistrationContainer';
-import { HomeContainer } from './containers/HomeContainer';
-import { AuthorizationContainer } from './containers/AuthorizationContainer';
+import AuthorizationContainer from './containers/AuthorizationContainer';
+import RegistrationContainer from './containers/RegistrationContainer';
+import HomeContainer from './containers/HomeContainer';
 
-export default [
+const ROUTE_PATHS = {
+  root: '/',
+  auth: '/auth',
+  registration: '/registration'
+};
+
+const routes = [
   {
-    path: '/auth',
-    component: HomeContainer,
+    path: ROUTE_PATHS.auth,
+    component: AuthorizationContainer,
     exact: true
   },
   {
-    path: '/registration',
+    path: ROUTE_PATHS.registration,
     component: RegistrationContainer,
     exact: true
   },
   {
-    path: '/',
-    component: AuthorizationContainer,
+    path: ROUTE_PATHS.root,
+    component: HomeContainer,
     exact: true
   }
 ];
+
+export { ROUTE_PATHS, routes };

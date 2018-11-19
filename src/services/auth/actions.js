@@ -1,20 +1,32 @@
-import { getAuthToken } from '../api';
+import { getAuthToken, register } from '../api';
 
-export const AUTHENTICATED = 'authenticated_user';
-export const UNAUTHENTICATED = 'unauthenticated_user';
-export const AUTHENTICATION_ERROR = 'authentication_error';
+export const AUTHENTICATED = 'AUTHENTICATED';
+export const UNAUTHENTICATED = 'UNAUTHENTICATED';
+export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
 
-export function signInAction({ email, password }) {
-  return async (dispatch) => {
-    try {
-      const token = await getAuthToken(email, password);
-      dispatch({ type: AUTHENTICATED });
-      localStorage.setItem('auth', token);
-    } catch (error) {
-      dispatch({
-        type: AUTHENTICATION_ERROR,
-        payload: 'Invalid email or password'
-      });
-    }
-  };
-}
+export const REGISTERED = 'REGISTERED';
+export const REGISTRATION_ERROR = 'REGISTRATION_ERROR';
+
+export const signInAction = (email, pass) => async (dispatch) => {
+  console.log('signin', email, pass);
+
+  try {
+    const token = await getAuthToken(email, pass);
+    dispatch({ type: AUTHENTICATED });
+    localStorage.setItem('auth', token);
+  } catch (error) {
+    dispatch({
+      type: AUTHENTICATION_ERROR,
+      payload: 'Invalid email or password'
+    });
+  }
+};
+
+export const registerAction = (username, email, pass) => async (dispatch) => {
+  try {
+    const error = await register(username, email, pass);
+    dispatch(error ? { type: REGISTRATION_ERROR, payload: error } : { type: REGISTERED });
+  } catch (error) {
+    dispatch({ type: REGISTRATION_ERROR, payload: error });
+  }
+};
