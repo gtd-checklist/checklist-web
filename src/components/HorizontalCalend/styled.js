@@ -23,8 +23,8 @@ export const StyledList = styled(List)`
 
 export const StyledListItem = styled(ListItem)`
   &&{
-    border-right: ${props => (props.day ? `1px solid ${palette.border.main}` : 'none')};
-    border-left: ${props => (props.day ? `1px solid ${palette.border.main}` : 'none')};
+    background-color: ${props => (props.day ? palette.secondary.light : 'transparent')};
+    padding-bottom: 40px;
   }
 `;
 

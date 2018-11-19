@@ -36,7 +36,7 @@ export const theme = createMuiTheme({
     },
     shadow: 'rgba(0, 0, 0, 0.1)',
     border: {
-      main: 'rgba(0, 0, 0, 0.2)',
+      main: 'rgba(0, 0, 0, 0.08)',
       inverse: 'rgba(255, 255, 255, 0.2)'
     }
   }
