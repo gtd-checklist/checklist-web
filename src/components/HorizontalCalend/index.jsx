@@ -12,7 +12,7 @@ const HorizontalCalend = (props) => {
       <StyledList>
         {week.map((item, indx) => (
           <StyledListItem
-            key={indx}
+            key={`data-${indx}`}
             button
             day={currentDay === indx ? 1 : 0}
             selected={selectedIndex === indx}
