@@ -1,29 +1,28 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { menuData } from '../data';
+import { routes } from '../routes';
 import { Menu } from '../components/Menu';
-
 
 class MenuContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      isOpenned: false
     };
   }
 
   toggleDrawer = () => {
-    const { open } = this.state;
+    const { isOpenned } = this.state;
     this.setState({
-      open: !open
+      isOpenned: !isOpenned
     });
   };
 
   render() {
-    const { open } = this.state;
+    const { isOpenned } = this.state;
     return (
-      <Menu menuData={menuData} open={open} toggleDrawer={this.toggleDrawer} />
+      <Menu routes={routes} isOpenned={isOpenned} toggleDrawer={this.toggleDrawer} />
     );
   }
 }
