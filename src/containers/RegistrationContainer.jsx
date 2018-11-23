@@ -1,16 +1,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Formik } from 'formik';
 
 import { Registration } from '../components/Registration';
 
-import { RegistrationSchema } from '../utils/schemeValidators';
+import { RegistrationSchema } from '../utils/schemaValidators';
+import { registerAction } from '../services/auth/actions';
 
 class RegistrationContainer extends PureComponent {
-  formSubmit = (values, { resetForm }) => {
-    const message = `данные: имя = ${values.userName}, email = ${values.userEmail} и  пароль 
-    ${values.userPass} идут на сервер`;
-    resetForm();
+  formSubmit = (values) => {
+    const { register } = this.props;
+    register(values.userName, values.userEmail, values.userPass);
   };
 
   render() {
@@ -19,6 +20,7 @@ class RegistrationContainer extends PureComponent {
       userEmail: '',
       userPass: ''
     };
+
     return (
       <Formik
         initialValues={formInitValues}
@@ -36,7 +38,8 @@ RegistrationContainer.propTypes = {
   values: PropTypes.instanceOf(Object),
   handleChange: PropTypes.func,
   handleBlur: PropTypes.func,
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
+  register: PropTypes.func.isRequired
 };
 
 RegistrationContainer.defaultProps = {
@@ -48,4 +51,11 @@ RegistrationContainer.defaultProps = {
   handleSubmit: () => false
 };
 
-export { RegistrationContainer };
+const mapDispatchToProps = dispatch => ({
+  register: (email, pass, repeatPass) => dispatch(registerAction(email, pass, repeatPass))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(RegistrationContainer);

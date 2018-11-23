@@ -4,19 +4,19 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { Router, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import path from 'path';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import { configureStore } from './createStore';
-import { theme } from './ui/Themes';
-import { GlobalStyle } from './globalStyled';
+import { configureStore } from './src/createStore';
+import { theme } from './src/ui/Themes';
+import { GlobalStyle } from './src/globalStyled';
 
-import ProtectedRoute from './containers/ProtectedRoute';
-import routes from './routes';
+import ProtectedRoute from './src/containers/ProtectedRoute';
+import { routes } from './src/routes';
 
 export const store = configureStore();
-
 export const history = createBrowserHistory();
 
 const App = () => (
@@ -48,5 +48,5 @@ render(App);
 
 // Webpack Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept('./', () => { render(App); });
+  module.hot.accept(path.resolve(__dirname, '/src'), () => { render(App); });
 }

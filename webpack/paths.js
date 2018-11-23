@@ -6,7 +6,7 @@ const src = path.join(root, 'src');
 const paths = {
   root,
   dist: path.join(root, 'dist'),
-  appIndex: path.join(src, 'index.jsx'),
+  appIndex: path.join(root, 'index.js'),
   mainTemplate: path.join(src, 'index.ejs'),
   nodeModules: path.join(root, 'node_modules')
 };
