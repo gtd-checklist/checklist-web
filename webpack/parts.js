@@ -42,7 +42,7 @@ exports.scripts = ({ sourceMaps, optimize }) => {
     module: {
       rules: [
         {
-          test: /\.m?js$/,
+          test: /\.jsx?$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
@@ -72,7 +72,11 @@ exports.file = () => ({
     rules: [
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)/,
-        loader: 'file?name=[path][name].[ext]'
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'img/'
+        }
       }
     ]
   }
@@ -82,6 +86,7 @@ exports.devServer = () => ({
   devServer: {
     open: true,
     compress: true,
+    historyApiFallback: true,
     port: 3000
   }
 });
@@ -106,7 +111,7 @@ exports.esLint = () => ({
     rules: [
       {
         enforce: 'pre',
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
         options: {
@@ -128,7 +133,7 @@ exports.resolve = () => ({
     modules: [
       paths.nodeModules
     ],
-    extensions: ['.js']
+    extensions: ['.js', '.jsx']
   }
 });
 
