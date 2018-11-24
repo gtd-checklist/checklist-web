@@ -18,3 +18,11 @@ export const RegistrationSchema = Yup.object().shape({
     .max(50, 'Слишком длинный пароль')
     .required('Пароль обязателен для заполнения')
 });
+
+export const NewHabitsScheme = Yup.object().shape({
+  habitName: Yup.string()
+    .max(50, 'Слишком длинное название, перенесите в описание')
+    .required('Обязательно нужно написать название'),
+  habitDescr: Yup.string()
+    .max(100, 'Слишком длинное описание, будте кратки')
+});
