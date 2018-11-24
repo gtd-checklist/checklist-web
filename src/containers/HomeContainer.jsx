@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 
 import { Home } from '../components/Home';
 
@@ -22,10 +23,14 @@ class HomeContainer extends PureComponent {
 
   render() {
     const { month, year } = this.state;
-    return (
-      <Home month={month} year={year} />
-    );
+    return <Home month={month} year={year} />;
   }
 }
 
-export { HomeContainer };
+const mapStateToProps = state => ({ ...state });
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeContainer);

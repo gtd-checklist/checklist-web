@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
 
-import { StyledHeader } from './styled';
 import { StyledContent, StyledTitle } from '../../globalStyled';
+import { StyledHeader } from './styled';
 
 import { Navbar } from '../../ui/Navbar';
-import { HorizontalCalendContainer } from '../../containers/HorizontalCalendContainer';
 import { SubNav } from '../../ui/SubNav';
-import { HabitsContainer } from '../../containers/HabitsContainer';
+
+import HabitsContainer from '../../containers/HabitsContainer';
+import { HorizontalCalendContainer } from '../../containers/HorizontalCalendContainer';
 
 import back from '../../img/back-mountain2.jpg';
 
@@ -41,7 +42,6 @@ Home.propTypes = {
   year: PropTypes.string.isRequired
 };
 
-Home.defaultProps = {
-};
+Home.defaultProps = {};
 
 export { Home };

@@ -1,20 +1,26 @@
 import React, { PureComponent } from 'react';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
+import { Redirect } from 'react-router-dom';
 
 import { Authorization } from '../components/Authorization';
 
-import { AuthorizationSchema } from '../utils/schemeValidators';
+import { AuthorizationSchema } from '../utils/schemaValidators';
+import { signInAction } from '../services/auth/actions';
+import { ROUTE_PATHS } from '../routes';
 
 class AuthorizationContainer extends PureComponent {
-  formSubmit = (values, { setStatus, resetForm }) => {
+  formSubmit = (values, { setStatus }) => {
+    const { signIn } = this.props;
+
     if (values.userEmail !== 'user@user.by' || values.userPass !== '123') {
       setStatus({ errorMessage: 'Введен неверный логин или пароль' });
-    } else {
-      setStatus({ errorMessage: '' });
-      resetForm();
+      return;
     }
+
+    setStatus({ errorMessage: '' });
+    signIn(values.userEmail, values.userPass);
   };
 
   render() {
@@ -22,12 +28,19 @@ class AuthorizationContainer extends PureComponent {
       userEmail: '',
       userPass: ''
     };
+
+    const { authenticated } = this.props;
+
+    if (authenticated) {
+      return <Redirect to={{ pathname: ROUTE_PATHS.auth, state: { from: location } }} />;
+    }
+
     return (
       <Formik
         initialValues={formInitValues}
         validationSchema={AuthorizationSchema}
         onSubmit={this.formSubmit}
-        render={props => (<Authorization {...props} />)}
+        render={props => <Authorization {...props} />}
       />
     );
   }
@@ -40,7 +53,9 @@ AuthorizationContainer.propTypes = {
   values: PropTypes.instanceOf(Object),
   handleChange: PropTypes.func,
   handleBlur: PropTypes.func,
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
+  signIn: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired
 };
 
 AuthorizationContainer.defaultProps = {
@@ -53,4 +68,15 @@ AuthorizationContainer.defaultProps = {
   handleSubmit: () => false
 };
 
-export { AuthorizationContainer };
+const mapStateToProps = state => ({
+  authenticated: state.authenticated
+});
+
+const mapDispatchToProps = dispatch => ({
+  signIn: (email, pass) => dispatch(signInAction(email, pass))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthorizationContainer);

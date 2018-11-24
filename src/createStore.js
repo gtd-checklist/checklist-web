@@ -1,9 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
+import path from 'path';
 
 import { rootReducer } from './services/rootReducer';
-import { history } from './index';
+import { history } from '../index';
 
 export function configureStore() {
   let composeEnhancers;
@@ -20,7 +21,7 @@ export function configureStore() {
 
   if (process.env.NODE_ENV !== 'production') {
     if (module.hot) {
-      module.hot.accept('./', () => {
+      module.hot.accept(path.resolve(__dirname), () => {
         store.replaceReducer(rootReducer);
       });
     }

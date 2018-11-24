@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
@@ -16,7 +16,7 @@ export const StyledListItem = styled(ListItem)`
   }
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
   color: ${palette.text.inverseLight};
   font-size: 1.5em;
   text-decoration: none;

@@ -30,22 +30,3 @@ export const habitsData = [
     done: 'undefined'
   }
 ];
-
-export const menuData = [
-  {
-    name: 'Главная',
-    url: '/'
-  },
-  {
-    name: 'Добавить задачу',
-    url: '/add'
-  },
-  {
-    name: 'Обзор задач',
-    url: '/review'
-  },
-  {
-    name: 'Список задач',
-    url: '/list'
-  }
-];
