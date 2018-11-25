@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 
-import { } from '../../ui/formStyled';
+import { StyledInput } from '../../ui/formStyled';
 import { theme } from '../../ui/Themes';
 
 const { palette } = theme;
@@ -13,7 +12,7 @@ export const StyledFormControl = styled(FormControl)`
   width: ${props => (props.width ? props.width : '100%')};
   &&{
     label{
-      font-size: 1.2em;
+      font-size: 1em;
     }
     div input{
       font-size: 2.2em;
@@ -21,9 +20,11 @@ export const StyledFormControl = styled(FormControl)`
   }
 `;
 
-export const StyledSelect = styled(Select)`
+export const StyledInputNewHabit = styled(StyledInput)`
   &&{
-    margin-top: 20px;
+    label, p{
+      color: ${props => (props.err ? palette.error.main : palette.text.light)};
+    }
   }
 `;
 
@@ -31,5 +32,11 @@ export const StyledHeader = styled(Typography)`
   &&{
     margin-top:${props => (props.gutterBottom ? '20px' : '0')};
     font-weight: 500;
+  }
+`;
+
+export const StyledLabel = styled(Typography)`
+  &&{
+    transform: translateX(-10px);
   }
 `;

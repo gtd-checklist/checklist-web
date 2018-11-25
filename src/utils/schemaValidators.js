@@ -21,8 +21,39 @@ export const RegistrationSchema = Yup.object().shape({
 
 export const NewHabitsScheme = Yup.object().shape({
   habitName: Yup.string()
-    .max(50, 'Слишком длинное название, перенесите в описание')
+    .max(50, 'Слишком длинное название цели, перенесите в описание')
     .required('Обязательно нужно написать название'),
   habitDescr: Yup.string()
-    .max(100, 'Слишком длинное описание, будте кратки')
+    .max(100, 'Слишком длинное описание, будте кратки'),
+  habitType: Yup.mixed()
+    .oneOf(['simple', 'number'])
+    .required('Цель должна быть простой или числовой'),
+  habitCondition: Yup.string()
+    .when('habitType', {
+      is: val => val === 'number',
+      then: Yup.string()
+        .oneOf(['less', 'more', 'equally'])
+        .required('Не выбрано условие')
+    }),
+  habitHours: Yup.string()
+    .when('habitType', {
+      is: val => val === 'number',
+      then: Yup.string()
+        .required('Нет числа для условия')
+    }),
+  habitTypeHours: Yup.string()
+    .when('habitType', {
+      is: val => val === 'number',
+      then: Yup.string()
+        .required('Нет обозначения')
+    }),
+  habitRepeat: Yup.string()
+    .oneOf(['custom', 'everyday'])
+    .required('Не заполнены дни повтора'),
+  habitDays: Yup.array()
+    .when('habitRepeat', {
+      is: val => val === 'custom',
+      then: Yup.array()
+        .required([true], 'Хотя бы один день должен быть отмечен')
+    })
 });
