@@ -25,7 +25,7 @@ class ProtectedRoute extends PureComponent {
 
 const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
-  authenticated: state.authenticated,
+  authenticated: state.auth.authenticated,
   responseStatus: state.responseStatus
 });
 

@@ -24,3 +24,5 @@
 # Local storage #
 /rest/tred-store/*
 *.DS_Store
+
+dist

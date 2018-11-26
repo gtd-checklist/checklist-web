@@ -1,9 +1,10 @@
 import AuthorizationContainer from './containers/AuthorizationContainer';
 import RegistrationContainer from './containers/RegistrationContainer';
-import ListHabitsContainer from './containers/ListHabitsContainer';
-import { Home } from './components/Home';
-import { Page404 } from './components/Page404';
-import { Temp } from './components/Temp';
+import HomeContainer from './containers/HomeContainer';
+import HabitsContainer from './containers/HabitsContainer';
+import AddHabitContainer from './containers/AddHabitContainer';
+import ReviewContainer from './containers/ReviewContainer';
+import Page404 from './containers/Page404';
 
 const ROUTE_PATHS = {
   root: '/',

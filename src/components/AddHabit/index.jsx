@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import Grid from '@material-ui/core/Grid';
 
@@ -15,13 +15,13 @@ import { StyledContent } from '../../globalStyled';
 
 const AddHabit = (props) => {
   const {
-    touched, errors, values, openDialog,
+    touched, errors, values, openDialog, goBack,
     handleChange, handleBlur, handleSubmit, closeDialog
   } = props;
   return (
     <Dialog fullScreen open={openDialog === 'addHabit'} onClose={closeDialog} TransitionComponent={Transition}>
       <Grid container justify="center">
-        <NavbarSub title="Новая цель" action="back" closeDialog={closeDialog} />
+        <NavbarSub title="Новая цель" action={goBack} actionType="back" closeDialog={closeDialog} />
         <Grid item md={6} xs={12}>
           <StyledContent container direction="column" justify="space-between">
             <StyledContent>
@@ -108,6 +108,25 @@ const AddHabit = (props) => {
       </Grid>
     </Dialog>
   );
+};
+
+AddHabit.propTypes = {
+  touched: PropTypes.instanceOf(Object),
+  errors: PropTypes.instanceOf(Object),
+  values: PropTypes.instanceOf(Object),
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+  handleBlur: PropTypes.func,
+  goBack: PropTypes.func.isRequired
+};
+
+AddHabit.defaultProps = {
+  touched: {},
+  errors: {},
+  values: {},
+  handleSubmit: () => false,
+  handleChange: () => false,
+  handleBlur: () => false
 };
 
 export { AddHabit };

@@ -20,9 +20,7 @@ class MenuContainer extends PureComponent {
 
   render() {
     const { isOpenned } = this.state;
-    return (
-      <Menu routes={routes} isOpenned={isOpenned} toggleDrawer={this.toggleDrawer} />
-    );
+    return <Menu routes={routes} isOpenned={isOpenned} toggleDrawer={this.toggleDrawer} />;
   }
 }
 

@@ -1,3 +1,4 @@
+import { initState } from '../initState';
 import {
   AUTHENTICATED,
   UNAUTHENTICATED,
@@ -5,9 +6,7 @@ import {
   REGISTRATION_ERROR
 } from './actions';
 
-export default function (state = {}, action) {
-  console.log('dispatch ', state, action);
-
+export default function (state = initState, action) {
   switch (action.type) {
     case AUTHENTICATED:
       return { ...state, authenticated: true };
