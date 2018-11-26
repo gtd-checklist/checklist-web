@@ -2,6 +2,7 @@ import AuthorizationContainer from './containers/AuthorizationContainer';
 import RegistrationContainer from './containers/RegistrationContainer';
 import HomeContainer from './containers/HomeContainer';
 import HabitsContainer from './containers/HabitsContainer';
+import AddHabitContainer from './containers/AddHabitContainer';
 
 const ROUTE_PATHS = {
   root: '/',
@@ -32,7 +33,7 @@ const routes = [
   {
     path: ROUTE_PATHS.newHabit,
     name: 'Добавить цель',
-    component: null,
+    component: AddHabitContainer,
     exact: true
   },
   {

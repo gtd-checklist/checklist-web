@@ -1,3 +1,5 @@
+import { week } from './week';
+
 const getWeekDay = (currentDay, firstDay, indx) => {
   const weekDay = new Date(currentDay.setDate(firstDay + indx));
   return weekDay.getDate();
@@ -11,7 +13,6 @@ export const getCurrentDayNumber = () => {
 };
 
 export const getDataWeek = () => {
-  const week = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
   const currentDay = new Date();
   const firstDay = (currentDay.getDate() - getCurrentDayNumber());
   const weekData = week.map((item, indx) => (

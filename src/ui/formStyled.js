@@ -25,7 +25,7 @@ export const StyledBackForm = styled(Grid)`
 export const StyledForm = styled.form`
   width: 100%;
   padding: 30px;
-  flex:auto;
+  flex: auto;
 `;
 
 export const StyledInput = styled(TextField)`
@@ -33,9 +33,13 @@ export const StyledInput = styled(TextField)`
     input{
       font-weight: 400;
     }
+    label{
+      font-size: ${props => (props.size === 'big' ? '1.6em' : 'inherit')};
+      position: relative;
+    }
     p{
       font-weight: 500;
-    }   
+    } 
   }
 `;
 

@@ -40,6 +40,7 @@ export const StyledTitle = styled(Typography)`
   flex: auto;
   letter-spacing: 0.05em;
   text-transform: capitalize;
+  padding-top: 20px;
   &&{
     font-size: 2.4em;
     font-weight: 300;

@@ -20,6 +20,8 @@ export const StyledAppBar = styled(AppBar)`
 
 export const StyledIconButton = styled(IconButton)`
   &&{
-    color: ${palette.text.inverse};
+    color: ${props => (props.coloricon === 'white'
+    ? palette.text.inverse
+    : palette.text.main)};
   }
 `;
