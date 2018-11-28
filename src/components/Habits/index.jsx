@@ -9,9 +9,9 @@ import { ButtonUI } from '../../ui/ButtonUI';
 import { StyledAddBlock } from './styled';
 
 const Habits = (props) => {
-  const { habitsData } = props;
-  if (habitsData.length) {
-    return (<HabitItems habitsData={habitsData} />);
+  const { habits } = props;
+  if (habits.length) {
+    return (<HabitItems habits={habits} />);
   }
   return (
     <StyledAddBlock>
@@ -23,11 +23,11 @@ const Habits = (props) => {
 };
 
 Habits.propTypes = {
-  habitsData: PropTypes.instanceOf(Object)
+  habits: PropTypes.instanceOf(Object)
 };
 
 Habits.defaultProps = {
-  habitsData: {}
+  habits: {}
 };
 
 export { Habits };
