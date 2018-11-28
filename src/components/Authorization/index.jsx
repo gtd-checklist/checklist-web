@@ -24,12 +24,11 @@ const Authorization = (props) => {
             <StyledTitle component="h1" variant="h1" align="center" back="dark">
               Авторизация
             </StyledTitle>
-            <StyledBackForm container transparent>
+            <StyledBackForm container transparent="true">
               <StyledForm onSubmit={handleSubmit} noValidate autoComplete="off">
                 {status.errorMessage ? <StyledError variant="body2">{status.errorMessage}</StyledError> : null}
                 <StyledInputAuth
                   id="user"
-                  className="customStyle"
                   label="Логин (email)"
                   type="email"
                   onChange={handleChange}
@@ -56,7 +55,7 @@ const Authorization = (props) => {
                 />
                 <StyledButton variant="contained" color="secondary" type="submit" fullWidth>Войти</StyledButton>
               </StyledForm>
-              <StyledGoTo align="center" component="p" variant="body1" dark>
+              <StyledGoTo align="center" component="p" variant="body1" dark="true">
                 Еще нет аккаунта?
                 <StyledLink href="/registration" dark>Регистрация</StyledLink>
               </StyledGoTo>
