@@ -33,7 +33,7 @@ const Menu = (props) => {
           back={back}
           color="primary"
         >
-          <NavbarSub toggleDrawer={toggleDrawer} />
+          <NavbarSub toggleDrawer={toggleDrawer} action="close" coloricon="white" />
           <List>
             {routes.map((item, indx) => (
               <StyledListItem key={`submenu-${indx}`}>
