@@ -57,3 +57,8 @@ export const NewHabitsScheme = Yup.object().shape({
         .required([true], 'Хотя бы один день должен быть отмечен')
     })
 });
+
+export const ReviewScheme = Yup.object().shape({
+  userResult: Yup.string()
+    .required('Не оставляйте пустым поле результата')
+});
