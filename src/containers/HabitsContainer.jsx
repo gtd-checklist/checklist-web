@@ -9,17 +9,15 @@ class HabitsContainer extends PureComponent {
   getHabitsItem = () => {};
 
   render() {
-    const { habits } = this.props;
-    return <Habits habitsData={habitsData} />;
+    const { habits } = habitsData;
+    return <Habits habits={habits} />;
   }
 }
 
 HabitsContainer.propTypes = {
-  habits: PropTypes.instanceOf(Object)
 };
 
 HabitsContainer.defaultProps = {
-  habits: {}
 };
 
 const mapStateToProps = state => ({ ...state });

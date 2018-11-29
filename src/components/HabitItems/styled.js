@@ -34,7 +34,7 @@ export const StyledStatus = styled(Avatar)`
   &&{
     width: 10px;
     height: 10px;
-    background-color: ${props => (props.type === 'number'
+    background-color: ${props => (props.type === 'true'
     ? palette.primary.main
     : palette.secondary.main)};
   }

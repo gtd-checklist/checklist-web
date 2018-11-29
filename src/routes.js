@@ -3,6 +3,7 @@ import RegistrationContainer from './containers/RegistrationContainer';
 import HomeContainer from './containers/HomeContainer';
 import HabitsContainer from './containers/HabitsContainer';
 import AddHabitContainer from './containers/AddHabitContainer';
+import ReviewContainer from './containers/ReviewContainer';
 
 const ROUTE_PATHS = {
   root: '/',
@@ -39,7 +40,7 @@ const routes = [
   {
     path: ROUTE_PATHS.review,
     name: 'Ревью достижения целей',
-    component: null,
+    component: ReviewContainer,
     exact: true
   },
   {

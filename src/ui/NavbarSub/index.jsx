@@ -7,28 +7,27 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 
-import { StyledAppBar, StyledIconButton } from './styled';
+import { StyledAppBar, StyledIconButton, NavHeader } from './styled';
 
 const NavbarSub = (props) => {
-  const { toggleDrawer, action, title } = props;
+  const { toggleDrawer, action, title, coloricon } = props;
   return (
     <StyledAppBar position="static" color="inherit">
       <Toolbar>
         <Grid container justify="space-between" alignItems="center">
           {action === 'close'
             ? (
-              <StyledIconButton onClick={toggleDrawer} coloricon="white">
+              <StyledIconButton onClick={toggleDrawer} coloricon={coloricon}>
                 <CloseIcon />
               </StyledIconButton>)
             : (
-              <StyledIconButton coloricon="black">
+              <StyledIconButton coloricon={coloricon}>
                 <ArrowBackIcon />
               </StyledIconButton>)
           }
           { title
-            ? <Typography variant="h4">{title}</Typography>
+            ? <NavHeader variant="h4" coloricon={coloricon}>{title}</NavHeader>
             : null
           }
           <IconButton>
@@ -43,13 +42,15 @@ const NavbarSub = (props) => {
 NavbarSub.propTypes = {
   toggleDrawer: PropTypes.func,
   action: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
+  coloricon: PropTypes.string
 };
 
 NavbarSub.defaultProps = {
   toggleDrawer: () => null,
   action: '',
-  title: ''
+  title: '',
+  coloricon: ''
 };
 
 export { NavbarSub };

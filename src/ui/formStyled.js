@@ -39,7 +39,7 @@ export const StyledInput = styled(TextField)`
     }
     p{
       font-weight: 500;
-    } 
+    }
   }
 `;
 

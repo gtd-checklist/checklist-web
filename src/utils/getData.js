@@ -1,6 +1,7 @@
 import { week } from './week';
 
-const getWeekDay = (currentDay, firstDay, indx) => {
+const getWeekDay = (firstDay, indx) => {
+  const currentDay = new Date();
   const weekDay = new Date(currentDay.setDate(firstDay + indx));
   return weekDay.getDate();
 };
@@ -15,19 +16,24 @@ export const getCurrentDayNumber = () => {
 export const getDataWeek = () => {
   const currentDay = new Date();
   const firstDay = (currentDay.getDate() - getCurrentDayNumber());
-  const weekData = week.map((item, indx) => (
-    { name: item, date: getWeekDay(currentDay, firstDay, indx) }));
-  return weekData;
+  const weekDate = week.map((item, indx) => (
+    { name: item, date: getWeekDay(firstDay, indx) }));
+  return weekDate;
 };
 
 export const getMonth = () => {
-  const day = new Date();
-  const month = day.toLocaleString('ru', { month: 'long' });
+  const currentDay = new Date();
+  const month = currentDay.toLocaleString('ru', { month: 'long' });
   return month;
 };
 
 export const getYear = () => {
-  const day = new Date();
-  const year = day.getFullYear();
+  const currentDay = new Date();
+  const year = currentDay.getFullYear();
   return year.toString();
+};
+
+export const getFullDate = (date) => {
+  const currentDate = new Date(date);
+  return currentDate.toLocaleString('ru', { day: 'numeric', month: 'long', year: 'numeric' });
 };
