@@ -19,17 +19,16 @@ class ReviewContainer extends PureComponent {
   }
 
   onReview = (isResolved, value) => {
-    const { activeStep, habitsReview } = this.state;
+    const { activeStep } = this.state;
     const { habits } = habitsData;
     const maxSteps = habits.length - 1;
     const habitsId = habits[activeStep].id;
     this.setState(prevState => ({
-      habitsReview: habitsReview.concat({ habitsId, isResolved, value }),
+      habitsReview: [...prevState.habitsReview, { habitsId, isResolved, value }],
       activeStep: prevState.activeStep + 1
     }));
     if (maxSteps === activeStep) {
-      const resultReview = { date: habitsData.date, habitsResolution: habitsReview };
-      console.log(resultReview);
+      this.createData();
     }
   };
 
@@ -45,6 +44,12 @@ class ReviewContainer extends PureComponent {
     this.onReview(null, values.userResult);
     resetForm();
   };
+
+  createData = () => {
+    const { habitsReview } = this.state;
+    const resultReview = { date: habitsData.date, habitsResolution: habitsReview };
+    console.log(resultReview);
+  }
 
   render() {
     const { activeStep } = this.state;
