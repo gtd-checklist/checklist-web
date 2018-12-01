@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Home } from '../components/Home';
@@ -23,11 +24,24 @@ class HomeContainer extends PureComponent {
 
   render() {
     const { month, year } = this.state;
-    return <Home month={month} year={year} />;
+    const { isOpen } = this.props;
+    console.log(`homCont ${isOpen}`);
+    return <Home month={month} year={year} isOpen={isOpen} />;
   }
 }
 
-const mapStateToProps = state => ({ ...state });
+HomeContainer.propTypes = {
+  isOpen: PropTypes.bool.isRequired
+};
+
+HomeContainer.defaultProps = {
+  // isOpen: false
+};
+
+const mapStateToProps = state => ({
+  isOpen: state.openState
+});
+
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(

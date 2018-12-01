@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Formik } from 'formik';
 
 import { AddHabit } from '../components/AddHabit';
@@ -13,6 +13,8 @@ class AddHabitContainer extends PureComponent {
   };
 
   render() {
+    const { isOpen } = this.props;
+    console.log(`addHabitContainer = ${isOpen}`);
     const formInitValues = {
       habitName: '',
       habitDescr: '',
@@ -29,7 +31,7 @@ class AddHabitContainer extends PureComponent {
         validationSchema={NewHabitsScheme}
         onSubmit={this.formSubmit}
         render={props => (
-          <AddHabit {...props} />
+          <AddHabit {...props} isOpen={isOpen} />
         )
         }
       />
@@ -57,7 +59,8 @@ AddHabitContainer.defaultProps = {
   setFieldValue: () => false
 };
 
-const mapStateToProps = state => ({ ...state });
+const mapStateToProps = state => ({
+});
 
 const mapDispatchToProps = dispatch => ({});
 

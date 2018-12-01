@@ -7,7 +7,8 @@ import { StyledContent, StyledTitle } from '../../globalStyled';
 import { StyledHeader } from './styled';
 
 import { Navbar } from '../../ui/Navbar';
-import { SubNav } from '../../ui/SubNav';
+import SubMenuContainer from '../../containers/SubMenuContainer';
+import AddHabitContainer from '../../containers/AddHabitContainer';
 
 import HabitsContainer from '../../containers/HabitsContainer';
 import { HorizontalCalendContainer } from '../../containers/HorizontalCalendContainer';
@@ -15,7 +16,8 @@ import { HorizontalCalendContainer } from '../../containers/HorizontalCalendCont
 import back from '../../img/back-mountain2.jpg';
 
 const Home = (props) => {
-  const { month, year } = props;
+  const { month, year, isOpen } = props;
+  console.log(`home ${isOpen}`);
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -28,20 +30,20 @@ const Home = (props) => {
         <StyledContent container justify="center">
           <Grid item md={8} xs={12} align="center">
             <HorizontalCalendContainer />
-            <SubNav />
+            <SubMenuContainer />
             <HabitsContainer />
           </Grid>
         </StyledContent>
       </Grid>
+      <AddHabitContainer isOpen={isOpen} />
     </Grid>
   );
 };
 
 Home.propTypes = {
   month: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired
+  year: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool.isRequired
 };
-
-Home.defaultProps = {};
 
 export { Home };

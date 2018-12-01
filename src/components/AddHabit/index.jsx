@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
+import Dialog from '@material-ui/core/Dialog';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
-
 import { NumberTypeForms } from './NumberTypeForms';
 import { CheckDays } from './CheckDays';
 import { NavbarSub } from '../../ui/NavbarSub';
@@ -14,115 +13,100 @@ import { StyledContent } from '../../globalStyled';
 
 const AddHabit = (props) => {
   const {
-    touched, errors, values,
-    handleChange, handleBlur, handleSubmit
+    touched, errors, values, isOpen,
+    handleChange, handleBlur, handleSubmit, handleDialog
   } = props;
+  console.log(`addhabit ${isOpen}`);
   return (
-    <Grid container justify="center">
-      <NavbarSub title="Новая цель" action="back" />
-      <Grid item md={6} xs={12}>
-        <StyledContent container direction="column" justify="space-between">
-          <StyledContent>
-            <StyledBackForm container>
-              <StyledForm onSubmit={handleSubmit} noValidate autoComplete="off">
-                <StyledInputNewHabit
-                  label="Название цели"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  err={touched.habitName && errors.habitName}
-                  type="text"
-                  id="name"
-                  name="habitName"
-                  value={values.habitName}
-                  placeholder="Пример: Делать зарядку"
-                  helperText={errors.habitName}
-                  fullWidth
-                  margin="normal"
-                  size="big"
-                />
-                <StyledInputNewHabit
-                  label="Описание"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  err={touched.habitDescr && errors.habitDescr}
-                  type="text"
-                  id="descr"
-                  name="habitDescr"
-                  value={values.habitDescr}
-                  placeholder="Пример: уделять зарядке 15 минут в день"
-                  helperText={errors.habitDescr}
-                  fullWidth
-                  margin="normal"
-                />
-                <StyledFormControl>
+    <Dialog fullScreen open={isOpen} onClose={handleDialog}>
+      <Grid container justify="center">
+        <NavbarSub title="Новая цель" action="back" />
+        <Grid item md={6} xs={12}>
+          <StyledContent container direction="column" justify="space-between">
+            <StyledContent>
+              <StyledBackForm container>
+                <StyledForm onSubmit={handleSubmit} noValidate autoComplete="off">
                   <StyledInputNewHabit
-                    id="type"
-                    name="habitType"
-                    select
-                    label="Вариант цели"
-                    value={values.habitType}
+                    label="Название цели"
                     onChange={handleChange}
-                    err={touched.habitType && errors.habitType}
-                    helperText={errors.habitType}
+                    onBlur={handleBlur}
+                    err={touched.habitName && errors.habitName}
+                    type="text"
+                    id="name"
+                    name="habitName"
+                    value={values.habitName}
+                    placeholder="Пример: Делать зарядку"
+                    helperText={errors.habitName}
+                    fullWidth
                     margin="normal"
-                  >
-                    <MenuItem value=""><em>Не выбран</em></MenuItem>
-                    <MenuItem value="simple">простой (да/нет)</MenuItem>
-                    <MenuItem value="number">числовой</MenuItem>
-                  </StyledInputNewHabit>
-                </StyledFormControl>
-                {
-                 values.habitType === 'number'
-                   ? <NumberTypeForms {...props} />
-                   : null
-                }
-                <StyledFormControl margin="normal">
+                    size="big"
+                  />
                   <StyledInputNewHabit
-                    id="repeat"
-                    name="habitRepeat"
-                    select
-                    label="В какие дни цель должна быть выполнена?"
-                    value={values.habitRepeat}
+                    label="Описание"
                     onChange={handleChange}
-                    err={touched.habitRepeat && errors.habitRepeat}
-                    helperText={errors.habitRepeat}
+                    onBlur={handleBlur}
+                    err={touched.habitDescr && errors.habitDescr}
+                    type="text"
+                    id="descr"
+                    name="habitDescr"
+                    value={values.habitDescr}
+                    placeholder="Пример: уделять зарядке 15 минут в день"
+                    helperText={errors.habitDescr}
+                    fullWidth
                     margin="normal"
-                  >
-                    <MenuItem value=""><em>Выбрать вариант</em></MenuItem>
-                    <MenuItem value="custom">Выбрать дни недели</MenuItem>
-                    <MenuItem value="everyday">Ежедневно</MenuItem>
-                  </StyledInputNewHabit>
-                </StyledFormControl>
-                {values.habitRepeat === 'custom'
-                  ? <CheckDays {...props} />
-                  : null
-                }
-                <StyledButton variant="contained" type="submit" color="secondary" fullWidth>Создать цель</StyledButton>
-              </StyledForm>
-            </StyledBackForm>
+                  />
+                  <StyledFormControl>
+                    <StyledInputNewHabit
+                      id="type"
+                      name="habitType"
+                      select
+                      label="Вариант цели"
+                      value={values.habitType}
+                      onChange={handleChange}
+                      err={touched.habitType && errors.habitType}
+                      helperText={errors.habitType}
+                      margin="normal"
+                    >
+                      <MenuItem value=""><em>Не выбран</em></MenuItem>
+                      <MenuItem value="simple">простой (да/нет)</MenuItem>
+                      <MenuItem value="number">числовой</MenuItem>
+                    </StyledInputNewHabit>
+                  </StyledFormControl>
+                  {
+                  values.habitType === 'number'
+                    ? <NumberTypeForms {...props} />
+                    : null
+                  }
+                  <StyledFormControl margin="normal">
+                    <StyledInputNewHabit
+                      id="repeat"
+                      name="habitRepeat"
+                      select
+                      label="В какие дни цель должна быть выполнена?"
+                      value={values.habitRepeat}
+                      onChange={handleChange}
+                      err={touched.habitRepeat && errors.habitRepeat}
+                      helperText={errors.habitRepeat}
+                      margin="normal"
+                    >
+                      <MenuItem value=""><em>Выбрать вариант</em></MenuItem>
+                      <MenuItem value="custom">Выбрать дни недели</MenuItem>
+                      <MenuItem value="everyday">Ежедневно</MenuItem>
+                    </StyledInputNewHabit>
+                  </StyledFormControl>
+                  {values.habitRepeat === 'custom'
+                    ? <CheckDays {...props} />
+                    : null
+                  }
+                  <StyledButton variant="contained" type="submit" color="secondary" fullWidth>Создать цель</StyledButton>
+                </StyledForm>
+              </StyledBackForm>
+            </StyledContent>
           </StyledContent>
-        </StyledContent>
+        </Grid>
       </Grid>
-    </Grid>
+    </Dialog>
   );
-};
-
-AddHabit.propTypes = {
-  touched: PropTypes.instanceOf(Object),
-  errors: PropTypes.instanceOf(Object),
-  values: PropTypes.instanceOf(Object),
-  handleSubmit: PropTypes.func,
-  handleChange: PropTypes.func,
-  handleBlur: PropTypes.func
-};
-
-AddHabit.defaultProps = {
-  touched: {},
-  errors: {},
-  values: {},
-  handleSubmit: () => false,
-  handleChange: () => false,
-  handleBlur: () => false
 };
 
 export { AddHabit };
