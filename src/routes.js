@@ -4,6 +4,7 @@ import HomeContainer from './containers/HomeContainer';
 import HabitsContainer from './containers/HabitsContainer';
 import AddHabitContainer from './containers/AddHabitContainer';
 import ReviewContainer from './containers/ReviewContainer';
+import { Page404 } from './components/Page404';
 
 const ROUTE_PATHS = {
   root: '/',
@@ -11,7 +12,8 @@ const ROUTE_PATHS = {
   registration: '/registration',
   newHabit: '/newhabit',
   review: '/review',
-  habits: '/habits'
+  habits: '/habits',
+  page404: '/404'
 };
 
 const routes = [
@@ -47,6 +49,12 @@ const routes = [
     path: ROUTE_PATHS.habits,
     name: 'Цели',
     component: HabitsContainer,
+    exact: true
+  },
+  {
+    path: ROUTE_PATHS.page404,
+    name: 'Страница потеряна',
+    component: Page404,
     exact: true
   }
 ];
