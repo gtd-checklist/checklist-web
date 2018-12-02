@@ -3,23 +3,28 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { SubMenu } from '../components/SubMenu';
-import { dialogOpenAction } from '../services/dialogs/actions';
+import { dialogAddHabitOpenAction, dialogReviewHabitOpenAction } from '../services/dialogs/actions';
 
 class SubMenuContainer extends PureComponent {
   render() {
-    const { openDialog } = this.props;
+    const { openAddHabitDialog, openReviewHabitDialog } = this.props;
     return (
-      <SubMenu openDialog={openDialog} />
+      <SubMenu
+        openAddHabitDialog={openAddHabitDialog}
+        openReviewHabitDialog={openReviewHabitDialog}
+      />
     );
   }
 }
 
 SubMenuContainer.propTypes = {
-  openDialog: PropTypes.func
+  openAddHabitDialog: PropTypes.func,
+  openReviewHabitDialog: PropTypes.func
 };
 
 SubMenuContainer.defaultProps = {
-  openDialog: () => false
+  openAddHabitDialog: () => false,
+  openReviewHabitDialog: () => false
 };
 
 const mapStateToProps = state => ({
@@ -27,7 +32,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openDialog: () => dispatch(dialogOpenAction())
+  openAddHabitDialog: () => dispatch(dialogAddHabitOpenAction()),
+  openReviewHabitDialog: () => dispatch(dialogReviewHabitOpenAction())
 });
 
 export default connect(

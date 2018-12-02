@@ -9,13 +9,13 @@ import { ButtonUI } from '../../ui/ButtonUI';
 import { StyledAddBlock } from './styled';
 
 const Habits = (props) => {
-  const { habits } = props;
+  const { habits, openDialog } = props;
   if (habits.length) {
     return (<HabitItems habits={habits} />);
   }
   return (
     <StyledAddBlock>
-      <ButtonUI type="add" sizeui="large" />
+      <ButtonUI type="add" sizeui="large" handleClick={openDialog} />
       <Typography variant="subtitle1">
         Добавьте свою первую задачу
       </Typography>
@@ -23,11 +23,13 @@ const Habits = (props) => {
 };
 
 Habits.propTypes = {
-  habits: PropTypes.instanceOf(Object)
+  habits: PropTypes.instanceOf(Object),
+  openDialog: PropTypes.func
 };
 
 Habits.defaultProps = {
-  habits: {}
+  habits: {},
+  openDialog: () => false
 };
 
 export { Habits };

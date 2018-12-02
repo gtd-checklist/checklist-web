@@ -9,6 +9,7 @@ import { StyledHeader } from './styled';
 import { Navbar } from '../../ui/Navbar';
 import SubMenuContainer from '../../containers/SubMenuContainer';
 import AddHabitContainer from '../../containers/AddHabitContainer';
+import ReviewContainer from '../../containers/ReviewContainer';
 
 import HabitsContainer from '../../containers/HabitsContainer';
 import { HorizontalCalendContainer } from '../../containers/HorizontalCalendContainer';
@@ -16,8 +17,7 @@ import { HorizontalCalendContainer } from '../../containers/HorizontalCalendCont
 import back from '../../img/back-mountain2.jpg';
 
 const Home = (props) => {
-  const { month, year, isOpen } = props;
-  console.log(`home ${isOpen}`);
+  const { month, year } = props;
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -35,15 +35,15 @@ const Home = (props) => {
           </Grid>
         </StyledContent>
       </Grid>
-      <AddHabitContainer isOpen={isOpen} />
+      <AddHabitContainer />
+      <ReviewContainer />
     </Grid>
   );
 };
 
 Home.propTypes = {
   month: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool.isRequired
+  year: PropTypes.string.isRequired
 };
 
 export { Home };

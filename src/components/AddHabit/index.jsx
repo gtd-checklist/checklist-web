@@ -2,9 +2,11 @@ import React from 'react';
 
 import Dialog from '@material-ui/core/Dialog';
 import Grid from '@material-ui/core/Grid';
+
 import MenuItem from '@material-ui/core/MenuItem';
 import { NumberTypeForms } from './NumberTypeForms';
 import { CheckDays } from './CheckDays';
+import { Transition } from '../../ui/Transition';
 import { NavbarSub } from '../../ui/NavbarSub';
 
 import { StyledFormControl, StyledInputNewHabit } from './styled';
@@ -14,13 +16,12 @@ import { StyledContent } from '../../globalStyled';
 const AddHabit = (props) => {
   const {
     touched, errors, values, isOpen,
-    handleChange, handleBlur, handleSubmit, handleDialog
+    handleChange, handleBlur, handleSubmit, closeDialog
   } = props;
-  console.log(`addhabit ${isOpen}`);
   return (
-    <Dialog fullScreen open={isOpen} onClose={handleDialog}>
+    <Dialog fullScreen open={isOpen} onClose={closeDialog} TransitionComponent={Transition}>
       <Grid container justify="center">
-        <NavbarSub title="Новая цель" action="back" />
+        <NavbarSub title="Новая цель" action="back" closeDialog={closeDialog} />
         <Grid item md={6} xs={12}>
           <StyledContent container direction="column" justify="space-between">
             <StyledContent>

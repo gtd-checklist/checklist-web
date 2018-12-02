@@ -69,7 +69,6 @@ export const BgImageTransparent = styled(Grid)`
     background-image: url('${props => props.back}');
     background-position: center;
     background-size: cover;
-    opacity: 0.7;
     top: 0;
     left: 0;
     bottom: 0;
