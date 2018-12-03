@@ -2,8 +2,6 @@ import AuthorizationContainer from './containers/AuthorizationContainer';
 import RegistrationContainer from './containers/RegistrationContainer';
 import HomeContainer from './containers/HomeContainer';
 import HabitsContainer from './containers/HabitsContainer';
-import AddHabitContainer from './containers/AddHabitContainer';
-import ReviewContainer from './containers/ReviewContainer';
 import { Page404 } from './components/Page404';
 
 const ROUTE_PATHS = {
@@ -36,13 +34,13 @@ const routes = [
   {
     path: ROUTE_PATHS.newHabit,
     name: 'Добавить цель',
-    component: AddHabitContainer,
+    component: HomeContainer,
     exact: true
   },
   {
     path: ROUTE_PATHS.review,
     name: 'Ревью достижения целей',
-    component: ReviewContainer,
+    component: HomeContainer,
     exact: true
   },
   {
