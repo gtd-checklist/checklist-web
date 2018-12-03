@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
@@ -25,11 +24,5 @@ const Navbar = () => (
     </Toolbar>
   </AppBar>
 );
-
-Navbar.propTypes = {
-};
-
-Navbar.defaultProps = {
-};
 
 export { Navbar };

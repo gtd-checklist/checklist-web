@@ -11,7 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { StyledAppBar, StyledIconButton, NavHeader } from './styled';
 
 const NavbarSub = (props) => {
-  const { toggleDrawer, action, title, coloricon } = props;
+  const { toggleDrawer, closeDialog, action, title, coloricon } = props;
   return (
     <StyledAppBar position="static" color="inherit">
       <Toolbar>
@@ -22,7 +22,7 @@ const NavbarSub = (props) => {
                 <CloseIcon />
               </StyledIconButton>)
             : (
-              <StyledIconButton coloricon={coloricon}>
+              <StyledIconButton coloricon={coloricon} onClick={closeDialog}>
                 <ArrowBackIcon />
               </StyledIconButton>)
           }
@@ -41,6 +41,7 @@ const NavbarSub = (props) => {
 
 NavbarSub.propTypes = {
   toggleDrawer: PropTypes.func,
+  closeDialog: PropTypes.func,
   action: PropTypes.string,
   title: PropTypes.string,
   coloricon: PropTypes.string
@@ -48,6 +49,7 @@ NavbarSub.propTypes = {
 
 NavbarSub.defaultProps = {
   toggleDrawer: () => null,
+  closeDialog: () => null,
   action: '',
   title: '',
   coloricon: ''

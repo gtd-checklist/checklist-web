@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { Home } from '../components/Home';
-
 import { getMonth, getYear } from '../utils/getData';
 
 class HomeContainer extends PureComponent {
@@ -27,7 +27,8 @@ class HomeContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({ ...state });
+const mapStateToProps = state => ({});
+
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(

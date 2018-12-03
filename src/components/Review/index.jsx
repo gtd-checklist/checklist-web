@@ -4,87 +4,101 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import { Transition } from '../../ui/Transition';
 import { NavbarSub } from '../../ui/NavbarSub';
 import { ButtonUI } from '../../ui/ButtonUI';
 
-import { StyledPaper, StyledMobileStepper, StyledInputReview, StyledDate, StyledHeaderOnDark } from './styled';
+import { StyledPaper, StyledMobileStepper, StyledInputReview, StyledDate, StyledHeaderOnDark, StyledCloseButton, StyledDialog } from './styled';
 import { BgImageTransparent, StyledContent } from '../../globalStyled';
 import back from '../../img/back-lake.jpg';
 
 const Review = (props) => {
   const {
-    activeStep, values, touched, errors, maxSteps, date, habits,
-    handleSubmit, handleChange, handleBlur, onCancel, onCheck
+    activeStep, values, touched, errors, maxSteps, date, habits, isOpen,
+    handleSubmit, handleChange, handleBlur, onCancel, onCheck, closeDialog
   } = props;
-
   return (
-    <BgImageTransparent container justify="center" back={back} color="primary">
-      <NavbarSub title="Ревью достижения целей" action="back" coloricon="white" />
-      <Grid item md={6} xs={12}>
-        <StyledContent container direction="column" justify="space-between">
-          <StyledContent>
-            {activeStep < maxSteps
-              ? (
-                <Fragment>
-                  <StyledDate align="right" variant="body1" gutterBottom>
-                    Цели, запланированные на:
-                    <br />
-                    <strong>{date}</strong>
-                  </StyledDate>
-                  <StyledPaper elevation={0}>
-                    <Typography align="center" variant="h3" gutterBottom>{habits[activeStep].name}</Typography>
-                    <Typography align="center" variant="subtitle1">{habits[activeStep].description}</Typography>
-                    { habits[activeStep].isNumerical
-                      ? (
-                        <form noValidate autoComplete="off">
-                          <StyledInputReview
-                            id="result"
-                            label="Результат выполнения"
-                            type="text"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            err={touched.userResult && errors.userResult}
-                            name="userResult"
-                            value={values.userResult}
-                            helperText={errors.userResult}
-                            fullWidth
-                            margin="normal"
-                          />
-                        </form>
-                      )
-                      : null
-                    }
-                  </StyledPaper>
-                  <StyledMobileStepper
-                    steps={maxSteps}
-                    variant="text"
-                    position="bottom"
-                    activeStep={activeStep}
-                    nextButton={
-                      (
-                        <ButtonUI
-                          handleClick={habits[activeStep].isNumerical
-                            ? handleSubmit
-                            : onCheck}
-                          type="check"
-                          sizeui="large"
-                        />
-                      )
-                    }
-                    backButton={
-                      !habits[activeStep].isNumerical
-                        ? <ButtonUI handleClick={onCancel} type="cancel" sizeui="large" />
+    <StyledDialog
+      fullScreen
+      open={isOpen}
+      onClose={closeDialog}
+      TransitionComponent={Transition}
+    >
+      <BgImageTransparent container justify="center" back={back} color="primary">
+        <NavbarSub title="Ревью достижения целей" action="back" coloricon="white" closeDialog={closeDialog} />
+        <Grid item md={6} xs={12}>
+          <StyledContent container direction="column" justify="space-between">
+            <StyledContent>
+              {activeStep < maxSteps
+                ? (
+                  <Fragment>
+                    <StyledDate align="right" variant="body1" gutterBottom>
+                      Цели, запланированные на:
+                      <br />
+                      <strong>{date}</strong>
+                    </StyledDate>
+                    <StyledPaper elevation={0}>
+                      <Typography align="center" variant="h3" gutterBottom>{habits[activeStep].name}</Typography>
+                      <Typography align="center" variant="subtitle1">{habits[activeStep].description}</Typography>
+                      { habits[activeStep].isNumerical
+                        ? (
+                          <form noValidate autoComplete="off">
+                            <StyledInputReview
+                              id="result"
+                              label="Результат выполнения"
+                              type="text"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              err={touched.userResult && errors.userResult}
+                              name="userResult"
+                              value={values.userResult}
+                              helperText={errors.userResult}
+                              fullWidth
+                              margin="normal"
+                            />
+                          </form>
+                        )
                         : null
-                    }
-                  />
-                </Fragment>
-              )
-              : <StyledHeaderOnDark align="center" variant="h3">Нет больше целей для ревью</StyledHeaderOnDark>
-          }
+                      }
+                    </StyledPaper>
+                    <StyledMobileStepper
+                      steps={maxSteps}
+                      variant="text"
+                      position="bottom"
+                      activeStep={activeStep}
+                      nextButton={
+                        (
+                          <ButtonUI
+                            handleClick={habits[activeStep].isNumerical
+                              ? handleSubmit
+                              : onCheck}
+                            type="check"
+                            sizeui="large"
+                          />
+                        )
+                      }
+                      backButton={
+                        !habits[activeStep].isNumerical
+                          ? <ButtonUI handleClick={onCancel} type="cancel" sizeui="large" />
+                          : null
+                      }
+                    />
+                  </Fragment>
+                )
+                : (
+                  <StyledHeaderOnDark container direction="column" alignItems="center">
+                    <Typography align="center" variant="h3">Нет больше целей для ревью</Typography>
+                    <StyledCloseButton variant="outlined" onClick={closeDialog}>
+                    Закрыть окно
+                    </StyledCloseButton>
+                  </StyledHeaderOnDark>
+                )
+            }
+            </StyledContent>
           </StyledContent>
-        </StyledContent>
-      </Grid>
-    </BgImageTransparent>
+        </Grid>
+      </BgImageTransparent>
+    </StyledDialog>
   );
 };
 
@@ -96,11 +110,13 @@ Review.propTypes = {
   habits: PropTypes.instanceOf(Object),
   maxSteps: PropTypes.number,
   date: PropTypes.string,
+  isOpen: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
   handleBlur: PropTypes.func,
   onCheck: PropTypes.func,
-  onCancel: PropTypes.func
+  onCancel: PropTypes.func,
+  closeDialog: PropTypes.func
 };
 
 Review.defaultProps = {
@@ -115,7 +131,8 @@ Review.defaultProps = {
   handleChange: () => false,
   handleBlur: () => false,
   onCheck: () => false,
-  onCancel: () => false
+  onCancel: () => false,
+  closeDialog: () => false
 };
 
 export { Review };
