@@ -2,11 +2,9 @@ import styled from 'styled-components';
 
 
 import Dialog from '@material-ui/core/Dialog';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 
 import { theme } from '../../ui/Themes';
 import { StyledInput } from '../../ui/formStyled';
@@ -58,25 +56,5 @@ export const StyledMobileStepper = styled(MobileStepper)`
       button{
         margin: 0 40px;
       }
-  }
-`;
-
-export const StyledHeaderOnDark = styled(Grid)`
-  &&{
-    color: ${palette.text.light};
-  }
-  background-color: ${palette.surface.main};
-  box-shadow: 0 0 5px 2px ${palette.shadow};
-  padding: 20px;
-  border-radius: 10px;
-`;
-
-export const StyledCloseButton = styled(Button)`
-  &&{
-      border-color: ${palette.border.main};
-      border-radius: 20px;
-      font-weight: 400;
-      color: ${palette.text.light};
-      margin-top: 30px;
   }
 `;
