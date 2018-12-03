@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import { ConfirmBlock } from '../../ui/ConfirmBlock';
 import { Transition } from '../../ui/Transition';
 import { NavbarSub } from '../../ui/NavbarSub';
 import { ButtonUI } from '../../ui/ButtonUI';
 
-import { StyledPaper, StyledMobileStepper, StyledInputReview, StyledDate, StyledHeaderOnDark, StyledCloseButton, StyledDialog } from './styled';
+import { StyledPaper, StyledMobileStepper, StyledInputReview, StyledDate, StyledDialog } from './styled';
 import { BgImageTransparent, StyledContent } from '../../globalStyled';
 import back from '../../img/back-lake.jpg';
 
@@ -85,14 +86,7 @@ const Review = (props) => {
                     />
                   </Fragment>
                 )
-                : (
-                  <StyledHeaderOnDark container direction="column" alignItems="center">
-                    <Typography align="center" variant="h3">Нет больше целей для ревью</Typography>
-                    <StyledCloseButton variant="outlined" onClick={closeDialog}>
-                    Закрыть окно
-                    </StyledCloseButton>
-                  </StyledHeaderOnDark>
-                )
+                : <ConfirmBlock closeDialog={closeDialog} text="Нет больше целей для ревью" />
             }
             </StyledContent>
           </StyledContent>

@@ -22,7 +22,7 @@ const NavbarSub = (props) => {
                 <CloseIcon />
               </StyledIconButton>)
             : (
-              <StyledIconButton coloricon={coloricon} onClick={closeDialog}>
+              <StyledIconButton coloricon={coloricon} onClick={closeDialog} href="/">
                 <ArrowBackIcon />
               </StyledIconButton>)
           }
