@@ -7,7 +7,9 @@ import { StyledContent, StyledTitle } from '../../globalStyled';
 import { StyledHeader } from './styled';
 
 import { Navbar } from '../../ui/Navbar';
-import { SubNav } from '../../ui/SubNav';
+import SubMenuContainer from '../../containers/SubMenuContainer';
+import AddHabitContainer from '../../containers/AddHabitContainer';
+import ReviewContainer from '../../containers/ReviewContainer';
 
 import HabitsContainer from '../../containers/HabitsContainer';
 import { HorizontalCalendContainer } from '../../containers/HorizontalCalendContainer';
@@ -28,11 +30,13 @@ const Home = (props) => {
         <StyledContent container justify="center">
           <Grid item md={8} xs={12} align="center">
             <HorizontalCalendContainer />
-            <SubNav />
+            <SubMenuContainer />
             <HabitsContainer />
           </Grid>
         </StyledContent>
       </Grid>
+      <AddHabitContainer />
+      <ReviewContainer />
     </Grid>
   );
 };
@@ -41,7 +45,5 @@ Home.propTypes = {
   month: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired
 };
-
-Home.defaultProps = {};
 
 export { Home };

@@ -4,27 +4,31 @@ import { connect } from 'react-redux';
 
 import { habitsData } from '../data';
 import { Habits } from '../components/Habits';
+import { dialogAddHabitOpenAction } from '../services/dialogs/actions';
 
 class HabitsContainer extends PureComponent {
   getHabitsItem = () => {};
 
   render() {
-    const { habits } = this.props;
-    return <Habits habitsData={habitsData} />;
+    const { habits } = habitsData;
+    const { openDialog } = this.props;
+    return <Habits habits={habits} openDialog={openDialog} />;
   }
 }
 
 HabitsContainer.propTypes = {
-  habits: PropTypes.instanceOf(Object)
+  openDialog: PropTypes.func
 };
 
 HabitsContainer.defaultProps = {
-  habits: {}
+  openDialog: () => false
 };
 
 const mapStateToProps = state => ({ ...state });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  openDialog: () => dispatch(dialogAddHabitOpenAction())
+});
 
 export default connect(
   mapStateToProps,

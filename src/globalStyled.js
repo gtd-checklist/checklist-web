@@ -40,6 +40,7 @@ export const StyledTitle = styled(Typography)`
   flex: auto;
   letter-spacing: 0.05em;
   text-transform: capitalize;
+  padding-top: 20px;
   &&{
     font-size: 2.4em;
     font-weight: 300;
@@ -68,7 +69,6 @@ export const BgImageTransparent = styled(Grid)`
     background-image: url('${props => props.back}');
     background-position: center;
     background-size: cover;
-    opacity: 0.7;
     top: 0;
     left: 0;
     bottom: 0;

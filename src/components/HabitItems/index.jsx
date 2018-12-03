@@ -8,13 +8,13 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import { StyledList, StyledListItem, StyledListItemText, StyledStatus, StyledCheckIcon } from './styled';
 
 const HabitItems = (props) => {
-  const { habitsData } = props;
+  const { habits } = props;
   return (
     <StyledList>
-      {habitsData.map((item, indx) => (
+      {habits.map((item, indx) => (
         <StyledListItem key={indx}>
           <ListItemAvatar>
-            <StyledStatus aria-label="Status" type={item.type}>&nbsp;</StyledStatus>
+            <StyledStatus aria-label="Status" type={item.isNumerical.toString()}>&nbsp;</StyledStatus>
           </ListItemAvatar>
           <Grid container direction="column">
             <StyledListItemText
@@ -37,11 +37,11 @@ const HabitItems = (props) => {
 };
 
 HabitItems.propTypes = {
-  habitsData: PropTypes.instanceOf(Object)
+  habits: PropTypes.instanceOf(Object)
 };
 
 HabitItems.defaultProps = {
-  habitsData: {}
+  habits: {}
 };
 
 export { HabitItems };

@@ -1,24 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 
 import { HabitItems } from '../HabitItems';
+import { ButtonUI } from '../../ui/ButtonUI';
 
 import { StyledAddBlock } from './styled';
 
 const Habits = (props) => {
-  const { habitsData } = props;
-  if (habitsData.length) {
-    return (<HabitItems habitsData={habitsData} />);
+  const { habits, openDialog } = props;
+  if (habits.length) {
+    return (<HabitItems habits={habits} />);
   }
   return (
     <StyledAddBlock>
-      <Button aria-label="Add" variant="fab" color="primary">
-        <AddIcon fontSize="large" color="inherit" />
-      </Button>
+      <ButtonUI type="add" sizeui="large" handleClick={openDialog} />
       <Typography variant="subtitle1">
         Добавьте свою первую задачу
       </Typography>
@@ -26,11 +23,13 @@ const Habits = (props) => {
 };
 
 Habits.propTypes = {
-  habitsData: PropTypes.instanceOf(Object)
+  habits: PropTypes.instanceOf(Object),
+  openDialog: PropTypes.func
 };
 
 Habits.defaultProps = {
-  habitsData: {}
+  habits: {},
+  openDialog: () => false
 };
 
 export { Habits };
