@@ -4,7 +4,7 @@ import HomeContainer from './containers/HomeContainer';
 import HabitsContainer from './containers/HabitsContainer';
 import AddHabitContainer from './containers/AddHabitContainer';
 import ReviewContainer from './containers/ReviewContainer';
-import Page404 from './containers/Page404';
+import { Page404 } from './components/Page404';
 
 const ROUTE_PATHS = {
   root: '/',

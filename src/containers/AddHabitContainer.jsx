@@ -15,7 +15,9 @@ class AddHabitContainer extends PureComponent {
   };
 
   render() {
-    const { openDialog, closeDialog } = this.props;
+    const { openDialog, closeDialog, history } = this.props;
+
+    console.log('addhabit props', this.props);
     const formInitValues = {
       habitName: '',
       habitDescr: '',
@@ -27,7 +29,6 @@ class AddHabitContainer extends PureComponent {
       habitDays: [false, false, false, false, false, false, false]
     };
 
-    const { history } = this.props;
     const { goBack } = history;
 
     return (
@@ -37,8 +38,7 @@ class AddHabitContainer extends PureComponent {
         onSubmit={this.formSubmit}
         render={props => (
           <AddHabit {...props} openDialog={openDialog} closeDialog={closeDialog} goBack={goBack} />
-        )
-        }
+        )}
       />
     );
   }

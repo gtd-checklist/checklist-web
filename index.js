@@ -27,7 +27,13 @@ const App = () => (
           <CssBaseline />
           <GlobalStyle />
           <Switch>
-            { routes.map((route, index) => <ProtectedRoute key={index} {...route} />) }
+            {
+              routes.map((route, index) => (
+                <ProtectedRoute
+                  key={index}
+                  history={history}
+                  {...route}
+                />))}
           </Switch>
         </Fragment>
       </MuiThemeProvider>
@@ -48,5 +54,7 @@ render(App);
 
 // Webpack Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept(path.resolve(__dirname, './src'), () => { render(App); });
+  module.hot.accept(path.resolve(__dirname, './src'), () => {
+    render(App);
+  });
 }

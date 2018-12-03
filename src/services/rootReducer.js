@@ -8,8 +8,8 @@ import list from './list/reducer';
 import reviewList from './review/reducer';
 
 export const rootReducer = combineReducers({
-  routing: routerReducer,
   auth,
+  routing: routerReducer,
   dialogs,
   responseStatus,
   list,

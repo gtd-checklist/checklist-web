@@ -1,10 +1,14 @@
-import { initState } from '../initState';
 import {
   AUTHENTICATED,
   UNAUTHENTICATED,
   AUTHENTICATION_ERROR,
   REGISTRATION_ERROR
 } from './actions';
+
+const initState = {
+  authenticated: false,
+  error: null
+};
 
 export default function (state = initState, action) {
   switch (action.type) {

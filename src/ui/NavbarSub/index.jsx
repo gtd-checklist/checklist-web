@@ -42,13 +42,15 @@ const NavbarSub = (props) => {
 NavbarSub.propTypes = {
   action: PropTypes.func,
   actionType: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
+  coloricon: PropTypes.string
 };
 
 NavbarSub.defaultProps = {
   action: () => null,
   actionType: '',
-  title: ''
+  title: '',
+  coloricon: ''
 };
 
 export { NavbarSub };

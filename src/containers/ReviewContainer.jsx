@@ -36,11 +36,11 @@ class ReviewContainer extends PureComponent {
 
   onCheck = () => {
     this.onReview(true, null);
-  }
+  };
 
   onCancel = () => {
     this.onReview(false, null);
-  }
+  };
 
   formSubmit = (values, { resetForm }) => {
     this.onReview(null, values.userResult);
@@ -62,7 +62,7 @@ class ReviewContainer extends PureComponent {
       activeStep: 0,
       habitsReview: []
     });
-  }
+  };
 
   render() {
     const { activeStep } = this.state;

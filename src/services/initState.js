@@ -1,5 +1,6 @@
 const initState = {
-  authenticated: false
+  authenticated: false,
+
 };
 
 export { initState };

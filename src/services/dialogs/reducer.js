@@ -4,12 +4,13 @@ import {
   DIALOG_CLOSE
 } from './actions';
 
-const initialState = {
+const initState = {
   openDialog: ''
 };
 
-export default function (state = initialState, action) {
+export default function (state = initState, action) {
   console.log('dispatch ', state, action);
+
   switch (action.type) {
     case DIALOG_ADDHABIT_OPEN:
       return { openDialog: 'addHabit' };
