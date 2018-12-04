@@ -8,7 +8,7 @@ import { ReviewScheme } from '../utils/schemaValidators';
 
 import { habitsData } from '../data';
 import { getFullDate } from '../utils/getData';
-import { dialogReviewHabitCloseAction } from '../services/dialogs/actions';
+import { dialogCloseAction } from '../services/dialogs/actions';
 
 class ReviewContainer extends PureComponent {
   constructor(props) {
@@ -53,7 +53,7 @@ class ReviewContainer extends PureComponent {
 
   render() {
     const { activeStep } = this.state;
-    const { isOpen, closeDialog } = this.props;
+    const { openDialog, closeDialog } = this.props;
     const formInitValues = {
       userResult: ''
     };
@@ -72,7 +72,7 @@ class ReviewContainer extends PureComponent {
             activeStep={activeStep}
             maxSteps={maxSteps}
             date={date}
-            isOpen={isOpen}
+            openDialog={openDialog}
             onCancel={this.onCancel}
             onCheck={this.onCheck}
             closeDialog={closeDialog}
@@ -100,11 +100,11 @@ ReviewContainer.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  isOpen: state.dialogs.isOpenReviewHabitDialog
+  openDialog: state.dialogs.openDialog
 });
 
 const mapDispatchToProps = dispatch => ({
-  closeDialog: () => dispatch(dialogReviewHabitCloseAction())
+  closeDialog: () => dispatch(dialogCloseAction())
 });
 
 export default connect(

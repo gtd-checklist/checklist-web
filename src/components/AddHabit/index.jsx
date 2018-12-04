@@ -15,11 +15,11 @@ import { StyledContent } from '../../globalStyled';
 
 const AddHabit = (props) => {
   const {
-    touched, errors, values, isOpen,
+    touched, errors, values, openDialog,
     handleChange, handleBlur, handleSubmit, closeDialog
   } = props;
   return (
-    <Dialog fullScreen open={isOpen} onClose={closeDialog} TransitionComponent={Transition}>
+    <Dialog fullScreen open={openDialog === 'addHabit'} onClose={closeDialog} TransitionComponent={Transition}>
       <Grid container justify="center">
         <NavbarSub title="Новая цель" action="back" closeDialog={closeDialog} />
         <Grid item md={6} xs={12}>
