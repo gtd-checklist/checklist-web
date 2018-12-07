@@ -59,22 +59,6 @@ const ListHabits = (props) => {
                 </Fragment>
               ))
             }
-            {/*
-            <List>
-              <StyledListItem>
-                <Status isNumerical="true" top="true" />
-                <Grid container direction="column">
-                  <ListItemText
-                    primary={
-                      <Typography variant="h6" component="span">Вставать утром</Typography>}
-                    secondary={
-                      <Typography variant="subtitle1" component="span">Подъем до 7 утра</Typography>
-                    }
-                  />
-                  <Calendar weekNames={weekNames} />
-                </Grid>
-              </StyledListItem>
-            </List> */}
           </Grid>
         </StyledContent>
       </Grid>
