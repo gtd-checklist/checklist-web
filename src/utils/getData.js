@@ -3,7 +3,7 @@ import { week } from './week';
 const getWeekDay = (firstDay, indx) => {
   const currentDay = new Date();
   const weekDay = new Date(currentDay.setDate(firstDay + indx));
-  return weekDay.getDate();
+  return weekDay;
 };
 
 export const getCurrentDayNumber = () => {
@@ -13,12 +13,20 @@ export const getCurrentDayNumber = () => {
   return (currentDayNumber);
 };
 
-export const getDataWeek = () => {
-  const currentDay = new Date();
-  const firstDay = (currentDay.getDate() - getCurrentDayNumber());
-  const weekDate = week.map((item, indx) => (
-    { name: item, date: getWeekDay(firstDay, indx) }));
+export const getDataWeek = (day) => {
+  const currentDay = day ? new Date(day) : new Date();
+  const firstDay = day ? currentDay.getDate() : (currentDay.getDate() - getCurrentDayNumber());
+  const weekDate = week.map((item, indx) => {
+    const weekDay = getWeekDay(firstDay, indx);
+    return { name: item, date: weekDay.getDate(), fullDate: weekDay };
+  });
   return weekDate;
+};
+
+export const getWeekNumber = (day) => {
+  const currentDay = new Date(day);
+  const weekNumber = Math.floor(currentDay.getDate() / 7) + 1;
+  return weekNumber;
 };
 
 export const getMonth = () => {

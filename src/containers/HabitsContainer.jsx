@@ -7,8 +7,6 @@ import { Habits } from '../components/Habits';
 import { dialogAddHabitOpenAction } from '../services/dialogs/actions';
 
 class HabitsContainer extends PureComponent {
-  getHabitsItem = () => {};
-
   render() {
     const { habits } = habitsData;
     const { openDialog } = this.props;
