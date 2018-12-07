@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 
 import { AddHabit } from '../components/AddHabit';
-import { dialogAddHabitCloseAction } from '../services/dialogs/actions';
+import { dialogCloseAction } from '../services/dialogs/actions';
 import { NewHabitsScheme } from '../utils/schemaValidators';
 
 class AddHabitContainer extends PureComponent {
@@ -15,7 +15,7 @@ class AddHabitContainer extends PureComponent {
   };
 
   render() {
-    const { isOpen, closeDialog } = this.props;
+    const { openDialog, closeDialog } = this.props;
     const formInitValues = {
       habitName: '',
       habitDescr: '',
@@ -32,7 +32,7 @@ class AddHabitContainer extends PureComponent {
         validationSchema={NewHabitsScheme}
         onSubmit={this.formSubmit}
         render={props => (
-          <AddHabit {...props} isOpen={isOpen} closeDialog={closeDialog} />
+          <AddHabit {...props} openDialog={openDialog} closeDialog={closeDialog} />
         )
         }
       />
@@ -44,7 +44,7 @@ AddHabitContainer.propTypes = {
   touched: PropTypes.instanceOf(Object),
   errors: PropTypes.instanceOf(Object),
   values: PropTypes.instanceOf(Object),
-  isOpen: PropTypes.bool.isRequired,
+  openDialog: PropTypes.string.isRequired,
   handleChange: PropTypes.func,
   handleBlur: PropTypes.func,
   handleSubmit: PropTypes.func,
@@ -62,11 +62,11 @@ AddHabitContainer.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  isOpen: state.dialogs.isOpenAddHabitDialog
+  openDialog: state.dialogs.openDialog
 });
 
 const mapDispatchToProps = dispatch => ({
-  closeDialog: () => dispatch(dialogAddHabitCloseAction())
+  closeDialog: () => dispatch(dialogCloseAction())
 });
 
 export default connect(

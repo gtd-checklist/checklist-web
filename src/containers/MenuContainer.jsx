@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 
 import { routes } from '../routes';
 import { Menu } from '../components/Menu';
@@ -26,13 +25,5 @@ class MenuContainer extends PureComponent {
     );
   }
 }
-
-MenuContainer.propTypes = {
-  // habits: PropTypes.instanceOf(Object)
-};
-
-MenuContainer.defaultProps = {
-  // habits: {}
-};
 
 export { MenuContainer };

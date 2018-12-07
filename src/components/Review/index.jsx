@@ -15,13 +15,13 @@ import back from '../../img/back-lake.jpg';
 
 const Review = (props) => {
   const {
-    activeStep, values, touched, errors, maxSteps, date, habits, isOpen,
+    activeStep, values, touched, errors, maxSteps, date, habits, openDialog,
     handleSubmit, handleChange, handleBlur, onCancel, onCheck, closeDialog
   } = props;
   return (
     <StyledDialog
       fullScreen
-      open={isOpen}
+      open={openDialog === 'reviewHabit'}
       onClose={closeDialog}
       TransitionComponent={Transition}
     >
@@ -104,7 +104,7 @@ Review.propTypes = {
   habits: PropTypes.instanceOf(Object),
   maxSteps: PropTypes.number,
   date: PropTypes.string,
-  isOpen: PropTypes.bool.isRequired,
+  openDialog: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
   handleBlur: PropTypes.func,
