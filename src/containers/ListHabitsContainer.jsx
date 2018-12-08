@@ -2,11 +2,16 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { habitsListMonth } from '../data';
 import { ListHabits } from '../components/ListHabits';
 import { getDataWeek, getWeekNumber } from '../utils/getData';
+import { showListHabitsAction } from '../services/list/actions';
 
 class ListHabitsContainer extends PureComponent {
+  componentDidMount() {
+    const { showListHabits } = this.props;
+    showListHabits();
+  }
+
   getHabitsWeek = firstDay => getDataWeek(firstDay);
 
   getHabitsWeekNumber = firstDay => getWeekNumber(firstDay);
@@ -20,7 +25,8 @@ class ListHabitsContainer extends PureComponent {
   );
 
   render() {
-    const { weeks } = habitsListMonth;
+    const { list } = this.props;
+    const { weeks } = list;
     return (
       <ListHabits
         weeks={weeks}
@@ -33,16 +39,23 @@ class ListHabitsContainer extends PureComponent {
 }
 
 ListHabitsContainer.propTypes = {
-
+  list: PropTypes.instanceOf(Object),
+  showListHabits: PropTypes.func
 };
 
 ListHabitsContainer.defaultProps = {
-
+  list: {},
+  showListHabits: () => false
 };
 
-const mapStateToProps = state => ({ ...state });
+const mapStateToProps = state => ({
+  list: state.list,
+  loading: state.list.loading
+});
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  showListHabits: () => dispatch(showListHabitsAction())
+});
 
 export default connect(
   mapStateToProps,
