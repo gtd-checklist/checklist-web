@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
-import { Home } from '../components/Home';
+import { Header } from '../components/Header';
 import { getMonth, getYear } from '../utils/getData';
 
-class HomeContainer extends PureComponent {
+class HeaderContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,15 +22,15 @@ class HomeContainer extends PureComponent {
 
   render() {
     const { month, year } = this.state;
-    return <Home month={month} year={year} />;
+    return <Header month={month} year={year} />;
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomeContainer);
+)(HeaderContainer);

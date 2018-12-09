@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
-import { BackCalend, StyledList, StyledListItem, StyledListItemText } from './styled';
+import { StyledListItem, BackCalend, StyledList, StyledListItemText } from './styled';
 
 const HorizontalCalend = (props) => {
   const { selectedIndex, handleListItemClick, week, currentDay } = props;

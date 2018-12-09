@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
-import { StyledList, StyledListItem, StyledListItemText, StyledStatus, StyledCheckIcon } from './styled';
+import { Status } from '../../ui/Status';
+
+import { StyledList, StyledListItem, StyledListItemText, StyledCheckIcon } from './styled';
 
 const HabitItems = (props) => {
   const { habits } = props;
@@ -13,9 +14,7 @@ const HabitItems = (props) => {
     <StyledList>
       {habits.map((item, indx) => (
         <StyledListItem key={indx}>
-          <ListItemAvatar>
-            <StyledStatus aria-label="Status" type={item.isNumerical.toString()}>&nbsp;</StyledStatus>
-          </ListItemAvatar>
+          <Status isNumerical={item.isNumerical} />
           <Grid container direction="column">
             <StyledListItemText
               primary={

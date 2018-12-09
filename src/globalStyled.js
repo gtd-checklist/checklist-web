@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const StyledContent = styled(Grid)`
   @media (max-width: 960px) {
-    min-height: 100%;
+    /*min-height: 100%;*/
   }
 `;
 

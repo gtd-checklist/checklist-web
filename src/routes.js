@@ -1,6 +1,7 @@
 import AuthorizationContainer from './containers/AuthorizationContainer';
 import RegistrationContainer from './containers/RegistrationContainer';
-import HomeContainer from './containers/HomeContainer';
+import ListHabitsContainer from './containers/ListHabitsContainer';
+import { Home } from './components/Home';
 import { Page404 } from './components/Page404';
 import { Temp } from './components/Temp';
 
@@ -29,13 +30,13 @@ const routes = [
   {
     path: ROUTE_PATHS.root,
     name: 'Главная',
-    component: HomeContainer,
+    component: Home,
     exact: true
   },
   {
     path: ROUTE_PATHS.list,
     name: 'Список целей',
-    component: Temp,
+    component: ListHabitsContainer,
     exact: true
   },
   {
