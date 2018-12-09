@@ -49,8 +49,7 @@ ListHabitsContainer.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  list: state.list,
-  loading: state.list.loading
+  list: state.list
 });
 
 const mapDispatchToProps = dispatch => ({

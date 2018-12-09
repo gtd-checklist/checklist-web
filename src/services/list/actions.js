@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const SHOW_LIST_HABITS = 'SHOW_LIST_HABITS';
-export const LOADING_LIST_HABITS = 'LOADING_LIST_HABITS';
 
 const apiUrl = 'https://checklist.now.sh/api/v1/journal/:month';
 
