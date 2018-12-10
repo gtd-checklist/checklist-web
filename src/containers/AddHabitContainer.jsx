@@ -32,7 +32,7 @@ class AddHabitContainer extends PureComponent {
         initialValues={AddHabitContainer.formInitValues}
         validationSchema={NewHabitsScheme}
         onSubmit={this.formSubmit}
-        render={props => <AddHabit {...props} {...this.props} />}
+        render={props => <AddHabit {...this.props} {...props} />}
       />
     );
   }
