@@ -23,13 +23,19 @@ export const addReviewHabitsSuccess = data => (
 );
 
 export const showReviewListHabitsAction = () => async (dispatch) => {
-  await axios.get(apiUrl)
-    .then(response => dispatch(showReviewList(response.data)))
-    .catch(error => console.error(error));
+  try {
+    const response = await axios.get(apiUrl);
+    dispatch(showReviewList(response.data));
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const addReviewHabitsAction = ({ date, habitsResolution }) => async (dispatch) => {
-  await axios.post(apiUrl, { date, habitsResolution })
-    .then(response => dispatch(addReviewHabitsSuccess(response.data)))
-    .catch(error => console.error(error));
+  try {
+    const response = await axios.post(apiUrl, { date, habitsResolution });
+    dispatch(addReviewHabitsSuccess(response.data));
+  } catch (error) {
+    console.error(error);
+  }
 };
