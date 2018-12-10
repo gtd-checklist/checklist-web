@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 
 import { HorizontalCalend } from '../components/HorizontalCalend';
 
-import { getDataWeek, getCurrentDayNumber } from '../utils/getData';
+import { getWeekDate, getCurrentDayNumber } from '../utils/getData';
 
 class HorizontalCalendContainer extends PureComponent {
   constructor(props) {
@@ -15,7 +15,7 @@ class HorizontalCalendContainer extends PureComponent {
   }
 
   componentDidMount() {
-    const data = getDataWeek();
+    const data = getWeekDate();
     const current = getCurrentDayNumber();
     this.setState({
       selectedIndex: current,

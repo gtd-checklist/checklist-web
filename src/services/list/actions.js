@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 export const SHOW_LIST_HABITS = 'SHOW_LIST_HABITS';
-export const LOADING_LIST_HABITS = 'LOADING_LIST_HABITS';
 
-const apiUrl = 'https://checklist.now.sh/api/v1/journal/:month';
+const apiUrl = 'https://checklist.now.sh/api/v1/journal/';
 
 export const showList = list => (
   {
@@ -12,8 +11,11 @@ export const showList = list => (
   }
 );
 
-export const showListHabitsAction = () => async (dispatch) => {
-  await axios.get(apiUrl)
-    .then(response => dispatch(showList(response.data)))
-    .catch(error => console.error(error));
+export const showListHabitsAction = month => async (dispatch) => {
+  try {
+    const response = await axios.get(`${apiUrl}:${month}`);
+    dispatch(showList(response.data));
+  } catch (error) {
+    console.error(error);
+  }
 };

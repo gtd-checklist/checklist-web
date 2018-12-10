@@ -14,7 +14,7 @@ const HabitItems = (props) => {
     <StyledList>
       {habits.map((item, indx) => (
         <StyledListItem key={indx}>
-          <Status isNumerical={item.isNumerical} />
+          <Status isNumerical={(item.isNumerical).toString()} />
           <Grid container direction="column">
             <StyledListItemText
               primary={

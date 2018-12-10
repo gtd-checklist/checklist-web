@@ -17,8 +17,9 @@ export const StyledListItemCalendar = styled(ListItem)`
   border-bottom-width: 4px;
   border-bottom-style: solid;
   border-bottom-color: ${(props) => {
-    if (props.done && props.planned) return palette.secondary.main;
-    if (!props.done && props.planned) return palette.error.main;
+    if (props.planned) {
+      return props.done ? palette.secondary.main : palette.error.main;
+    }
     return 'transparent';
   }};
   color: ${props => (props.planned ? palette.text.main : palette.text.light)};

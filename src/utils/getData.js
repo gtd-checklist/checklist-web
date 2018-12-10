@@ -13,7 +13,7 @@ export const getCurrentDayNumber = () => {
   return (currentDayNumber);
 };
 
-export const getDataWeek = (day) => {
+export const getWeekDate = (day) => {
   const currentDay = day ? new Date(day) : new Date();
   const firstDay = day ? currentDay.getDate() : (currentDay.getDate() - getCurrentDayNumber());
   const weekDate = week.map((item, indx) => {
@@ -29,9 +29,9 @@ export const getWeekNumber = (day) => {
   return weekNumber;
 };
 
-export const getMonth = () => {
+export const getMonth = (type) => {
   const currentDay = new Date();
-  const month = currentDay.toLocaleString('ru', { month: 'long' });
+  const month = type === 'number' ? (currentDay.getMonth() + 1) : currentDay.toLocaleString('ru', { month: 'long' });
   return month;
 };
 
