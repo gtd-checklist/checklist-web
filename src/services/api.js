@@ -38,6 +38,10 @@ export const register = async (username, email, pass) => {
   return null;
 }
 
+export const fetchHabits = () => {
+  return axiosInstance.get(endpoints.habits);
+}
+
 export const postNewHabit = (values) => {
   return setTimeout(() => Promise.resolve({}), 1000); //axiosInstance.post(endpoints.habits, values);
 }

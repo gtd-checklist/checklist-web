@@ -1,30 +1,12 @@
 import {
   DIALOG_ADDHABIT_OPEN,
   DIALOG_REVIEWHABIT_OPEN,
-  DIALOG_CLOSE,
-  POST_NEW_HABIT_SUCCESS,
-  POST_NEW_HABIT_WAITING,
-  POST_NEW_HABIT_FAILURE
+  DIALOG_CLOSE
 } from './actions';
 
 const initState = {
-  openDialog: '',
-  waiting: false,
-  error: null
+  openDialog: ''
 };
-
-function addHabitReducer(state = initState, action) {
-  switch (action.type) {
-    case POST_NEW_HABIT_SUCCESS:
-      return Object.assign({}, state, { openDialog: '', waiting: false });
-    case POST_NEW_HABIT_WAITING:
-      return Object.assign({}, state, { waiting: true });
-    case POST_NEW_HABIT_FAILURE:
-      return Object.assign({}, state, { openDialog: '', error: action.payload });
-    default:
-      return state;
-  }
-}
 
 export default function (state = initState, action) {
   switch (action.type) {
@@ -35,6 +17,6 @@ export default function (state = initState, action) {
     case DIALOG_CLOSE:
       return { openDialog: '' };
     default:
-      return addHabitReducer(state, action);
+      return state;
   }
 }
