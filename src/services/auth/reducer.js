@@ -5,9 +5,12 @@ import {
   REGISTRATION_ERROR
 } from './actions';
 
-export default function (state = {}, action) {
-  console.log('dispatch ', state, action);
+const initState = {
+  authenticated: false,
+  error: null
+};
 
+export default function (state = initState, action) {
   switch (action.type) {
     case AUTHENTICATED:
       return { ...state, authenticated: true };

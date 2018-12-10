@@ -6,10 +6,10 @@ import { ButtonUI } from '../../ui/ButtonUI';
 import { StyledNavBar } from './styled';
 
 const SubMenu = (props) => {
-  const { openAddHabitDialog, openReviewHabitDialog } = props;
+  const { openAddHabitDialog, onClickReview } = props;
   return (
     <StyledNavBar container justify="flex-end" alignItems="center">
-      <ButtonUI type="check" sizeui="large" handleClick={openReviewHabitDialog} />
+      <ButtonUI type="check" sizeui="large" handleClick={onClickReview} />
       <ButtonUI type="add" sizeui="small" handleClick={openAddHabitDialog} />
     </StyledNavBar>
   );
@@ -17,12 +17,12 @@ const SubMenu = (props) => {
 
 SubMenu.propTypes = {
   openAddHabitDialog: PropTypes.func,
-  openReviewHabitDialog: PropTypes.func
+  onClickReview: PropTypes.func
 };
 
 SubMenu.defaultProps = {
   openAddHabitDialog: () => false,
-  openReviewHabitDialog: () => false
+  onClickReview: () => false
 };
 
 export { SubMenu };

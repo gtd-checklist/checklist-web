@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import Grid from '@material-ui/core/Grid';
 
@@ -15,13 +15,24 @@ import { StyledContent } from '../../globalStyled';
 
 const AddHabit = (props) => {
   const {
-    touched, errors, values, isOpen,
-    handleChange, handleBlur, handleSubmit, closeDialog
+    touched,
+    errors,
+    values,
+    openDialog,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    closeDialog
   } = props;
   return (
-    <Dialog fullScreen open={isOpen} onClose={closeDialog} TransitionComponent={Transition}>
+    <Dialog
+      fullScreen
+      open={openDialog === 'addHabit'}
+      onClose={closeDialog}
+      TransitionComponent={Transition}
+    >
       <Grid container justify="center">
-        <NavbarSub title="Новая цель" action="back" closeDialog={closeDialog} />
+        <NavbarSub title="Новая цель" actionType="back" closeDialog={closeDialog} />
         <Grid item md={6} xs={12}>
           <StyledContent container direction="column" justify="space-between">
             <StyledContent>
@@ -68,16 +79,14 @@ const AddHabit = (props) => {
                       helperText={errors.habitType}
                       margin="normal"
                     >
-                      <MenuItem value=""><em>Не выбран</em></MenuItem>
+                      <MenuItem value="">
+                        <em>Не выбран</em>
+                      </MenuItem>
                       <MenuItem value="simple">простой (да/нет)</MenuItem>
                       <MenuItem value="number">числовой</MenuItem>
                     </StyledInputNewHabit>
                   </StyledFormControl>
-                  {
-                  values.habitType === 'number'
-                    ? <NumberTypeForms {...props} />
-                    : null
-                  }
+                  {values.habitType === 'number' ? <NumberTypeForms {...props} /> : null}
                   <StyledFormControl margin="normal">
                     <StyledInputNewHabit
                       id="repeat"
@@ -90,16 +99,17 @@ const AddHabit = (props) => {
                       helperText={errors.habitRepeat}
                       margin="normal"
                     >
-                      <MenuItem value=""><em>Выбрать вариант</em></MenuItem>
+                      <MenuItem value="">
+                        <em>Выбрать вариант</em>
+                      </MenuItem>
                       <MenuItem value="custom">Выбрать дни недели</MenuItem>
                       <MenuItem value="everyday">Ежедневно</MenuItem>
                     </StyledInputNewHabit>
                   </StyledFormControl>
-                  {values.habitRepeat === 'custom'
-                    ? <CheckDays {...props} />
-                    : null
-                  }
-                  <StyledButton variant="contained" type="submit" color="secondary" fullWidth>Создать цель</StyledButton>
+                  {values.habitRepeat === 'custom' ? <CheckDays {...props} /> : null}
+                  <StyledButton variant="contained" type="submit" color="secondary" fullWidth>
+                    Создать цель
+                  </StyledButton>
                 </StyledForm>
               </StyledBackForm>
             </StyledContent>
@@ -108,6 +118,24 @@ const AddHabit = (props) => {
       </Grid>
     </Dialog>
   );
+};
+
+AddHabit.propTypes = {
+  touched: PropTypes.instanceOf(Object),
+  errors: PropTypes.instanceOf(Object),
+  values: PropTypes.instanceOf(Object),
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+  handleBlur: PropTypes.func
+};
+
+AddHabit.defaultProps = {
+  touched: {},
+  errors: {},
+  values: {},
+  handleSubmit: () => false,
+  handleChange: () => false,
+  handleBlur: () => false
 };
 
 export { AddHabit };

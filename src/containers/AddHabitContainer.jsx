@@ -4,37 +4,35 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 
 import { AddHabit } from '../components/AddHabit';
-import { dialogAddHabitCloseAction } from '../services/dialogs/actions';
+import { dialogCloseAction } from '../services/dialogs/actions';
+import { addNewHabitAction } from '../services/habits/actions';
 import { NewHabitsScheme } from '../utils/schemaValidators';
 
 class AddHabitContainer extends PureComponent {
-  formSubmit = (values, { resetForm }) => {
-    const { closeDialog } = this.props;
-    resetForm();
+  static formInitValues = {
+    habitName: '',
+    habitDescr: '',
+    habitType: '',
+    habitCondition: '',
+    habitHours: '',
+    habittypeHours: '',
+    habitRepeat: '',
+    habitDays: [false, false, false, false, false, false, false]
+  };
+
+  formSubmit = (values) => {
+    const { addNewHabit, closeDialog } = this.props;
+    addNewHabit(values);
     closeDialog();
   };
 
   render() {
-    const { isOpen, closeDialog } = this.props;
-    const formInitValues = {
-      habitName: '',
-      habitDescr: '',
-      habitType: '',
-      habitCondition: '',
-      habitHours: '',
-      habittypeHours: '',
-      habitRepeat: '',
-      habitDays: [false, false, false, false, false, false, false]
-    };
     return (
       <Formik
-        initialValues={formInitValues}
+        initialValues={AddHabitContainer.formInitValues}
         validationSchema={NewHabitsScheme}
         onSubmit={this.formSubmit}
-        render={props => (
-          <AddHabit {...props} isOpen={isOpen} closeDialog={closeDialog} />
-        )
-        }
+        render={props => <AddHabit {...props} {...this.props} />}
       />
     );
   }
@@ -44,7 +42,7 @@ AddHabitContainer.propTypes = {
   touched: PropTypes.instanceOf(Object),
   errors: PropTypes.instanceOf(Object),
   values: PropTypes.instanceOf(Object),
-  isOpen: PropTypes.bool.isRequired,
+  openDialog: PropTypes.string.isRequired,
   handleChange: PropTypes.func,
   handleBlur: PropTypes.func,
   handleSubmit: PropTypes.func,
@@ -62,11 +60,12 @@ AddHabitContainer.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  isOpen: state.dialogs.isOpenAddHabitDialog
+  openDialog: state.dialogs.openDialog
 });
 
 const mapDispatchToProps = dispatch => ({
-  closeDialog: () => dispatch(dialogAddHabitCloseAction())
+  closeDialog: () => dispatch(dialogCloseAction()),
+  addNewHabit: values => dispatch(addNewHabitAction(values))
 });
 
 export default connect(

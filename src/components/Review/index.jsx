@@ -15,18 +15,18 @@ import back from '../../img/back-lake.jpg';
 
 const Review = (props) => {
   const {
-    activeStep, values, touched, errors, maxSteps, date, habits, isOpen,
+    activeStep, values, touched, errors, maxSteps, date, habits, openDialog,
     handleSubmit, handleChange, handleBlur, onCancel, onCheck, closeDialog
   } = props;
   return (
     <StyledDialog
       fullScreen
-      open={isOpen}
+      open={openDialog === 'reviewHabit'}
       onClose={closeDialog}
       TransitionComponent={Transition}
     >
       <BgImageTransparent container justify="center" back={back} color="primary">
-        <NavbarSub title="Ревью достижения целей" action="back" coloricon="white" closeDialog={closeDialog} />
+        <NavbarSub title="Ревью достижения целей" actionType="back" coloricon="white" closeDialog={closeDialog} />
         <Grid item md={6} xs={12}>
           <StyledContent container direction="column" justify="space-between">
             <StyledContent>
@@ -104,7 +104,7 @@ Review.propTypes = {
   habits: PropTypes.instanceOf(Object),
   maxSteps: PropTypes.number,
   date: PropTypes.string,
-  isOpen: PropTypes.bool.isRequired,
+  openDialog: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
   handleBlur: PropTypes.func,

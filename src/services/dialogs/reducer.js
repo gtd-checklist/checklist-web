@@ -1,32 +1,21 @@
 import {
-  DIALOGADDHABITOPEN,
-  DIALOGADDHABITCLOSE,
-  DIALOGREVIEWHABITOPEN,
-  DIALOGREVIEWHABITCLOSE
+  DIALOG_ADDHABIT_OPEN,
+  DIALOG_REVIEWHABIT_OPEN,
+  DIALOG_CLOSE
 } from './actions';
 
-const initialState = {
-  isOpenAddHabitDialog: false,
-  isOpenReviewHabitDialog: false
+const initState = {
+  openDialog: ''
 };
 
-export default function (state = initialState, action) {
-  console.log('dispatch ', state, action);
+export default function (state = initState, action) {
   switch (action.type) {
-    case DIALOGADDHABITOPEN:
-      return {
-        isOpenAddHabitDialog: true,
-        isOpenReviewHabitDialog: false
-      };
-    case DIALOGADDHABITCLOSE:
-      return initialState;
-    case DIALOGREVIEWHABITOPEN:
-      return {
-        isOpenReviewHabitDialog: true,
-        isOpenAddHabitDialog: false
-      };
-    case DIALOGREVIEWHABITCLOSE:
-      return initialState;
+    case DIALOG_ADDHABIT_OPEN:
+      return { openDialog: 'addHabit' };
+    case DIALOG_REVIEWHABIT_OPEN:
+      return { openDialog: 'reviewHabit' };
+    case DIALOG_CLOSE:
+      return { openDialog: '' };
     default:
       return state;
   }

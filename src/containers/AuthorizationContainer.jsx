@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
@@ -10,14 +10,9 @@ import { AuthorizationSchema } from '../utils/schemaValidators';
 import { signInAction } from '../services/auth/actions';
 import { ROUTE_PATHS } from '../routes';
 
-class AuthorizationContainer extends PureComponent {
+class AuthorizationContainer extends Component {
   formSubmit = (values, { setStatus }) => {
     const { signIn } = this.props;
-
-    if (values.userEmail !== 'user@user.by' || values.userPass !== '123') {
-      setStatus({ errorMessage: 'Введен неверный логин или пароль' });
-      return;
-    }
 
     setStatus({ errorMessage: '' });
     signIn(values.userEmail, values.userPass);
@@ -32,7 +27,7 @@ class AuthorizationContainer extends PureComponent {
     const { authenticated } = this.props;
 
     if (authenticated) {
-      return <Redirect to={{ pathname: ROUTE_PATHS.auth, state: { from: location } }} />;
+      return <Redirect to={ROUTE_PATHS.root} />;
     }
 
     return (
@@ -68,9 +63,14 @@ AuthorizationContainer.defaultProps = {
   handleSubmit: () => false
 };
 
-const mapStateToProps = state => ({
-  authenticated: state.authenticated
-});
+
+const mapStateToProps = (state) => {
+  console.log('state', state);
+
+  return {
+    authenticated: state.auth.authenticated
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   signIn: (email, pass) => dispatch(signInAction(email, pass))

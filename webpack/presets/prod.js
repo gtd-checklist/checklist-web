@@ -6,7 +6,10 @@ const baseConfig = require('./base');
 module.exports = (env) => {
   const config = merge([
     {
-      mode: 'production'
+      mode: 'production',
+      optimization: {
+        minimize: true
+      }
     },
     parts.entry({ hotReload: false }),
     parts.output({ optimize: true }),

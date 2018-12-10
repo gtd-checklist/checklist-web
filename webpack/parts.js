@@ -23,21 +23,17 @@ exports.entry = ({ hotReload }) => {
   return { entry, plugins };
 };
 
-exports.output = ({ optimize }) => {
+exports.output = () => {
   const output = {
     path: paths.dist,
-    filename: 'bundles/[name].bundle.js',
+    filename: 'bundle.js',
     publicPath: '/'
   };
-
-  if (optimize) {
-    output.filename = 'bundles/[name].[chunkhash].bundle.js';
-  }
 
   return { output };
 };
 
-exports.scripts = ({ sourceMaps, optimize }) => {
+exports.scripts = () => {
   const result = {
     module: {
       rules: [
@@ -54,15 +50,6 @@ exports.scripts = ({ sourceMaps, optimize }) => {
       ]
     }
   };
-
-  if (optimize) {
-    result.plugins = [
-      new webpack.optimize.UglifyJsPlugin({
-        sourceMap: sourceMaps,
-        compress: { warnings: false }
-      })
-    ];
-  }
 
   return result;
 };
@@ -169,8 +156,6 @@ exports.defineConstants = (env) => {
   if (env.production) {
     consts.REST_ROOT = restConfig.production.restRoot;
     consts['process.env.NODE_ENV'] = 'production';
-  } else {
-    consts.REST_ROOT = restConfig.development.restRoot;
   }
 
   return {

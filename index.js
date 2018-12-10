@@ -20,19 +20,21 @@ export const store = configureStore();
 export const history = createBrowserHistory();
 
 const App = () => (
-  <Router history={history}>
-    <Provider store={store}>
+  <Provider store={store}>
+    <Router history={history}>
       <MuiThemeProvider theme={theme}>
         <Fragment>
           <CssBaseline />
           <GlobalStyle />
           <Switch>
-            { routes.map((route, index) => <ProtectedRoute key={index} {...route} />) }
+            {routes.map((route, index) => (
+              <ProtectedRoute key={index} {...route} />
+            ))}
           </Switch>
         </Fragment>
       </MuiThemeProvider>
-    </Provider>
-  </Router>
+    </Router>
+  </Provider>
 );
 
 const render = (Component) => {
@@ -40,7 +42,7 @@ const render = (Component) => {
     <AppContainer warnings={false}>
       <Component />
     </AppContainer>,
-    document.getElementById('root'),
+    document.getElementById('root')
   );
 };
 
@@ -48,5 +50,7 @@ render(App);
 
 // Webpack Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept(path.resolve(__dirname, '/src'), () => { render(App); });
+  module.hot.accept(path.resolve(__dirname, './src'), () => {
+    render(App);
+  });
 }

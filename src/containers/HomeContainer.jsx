@@ -1,61 +1,33 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from 'react';
 
-import { Home } from '../components/Home';
-import { getMonth, getYear } from '../utils/getData';
-import { ROUTE_PATHS } from '../routes';
-import { dialogAddHabitOpenAction, dialogReviewHabitOpenAction } from '../services/dialogs/actions';
+import Grid from '@material-ui/core/Grid';
 
-class HomeContainer extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      month: '',
-      year: ''
-    };
-  }
+import { StyledContent } from '../globalStyled';
 
-  componentDidMount() {
-    const { location, openAddHabitDialog, openReviewHabitDialog } = this.props;
-    if (location.pathname === ROUTE_PATHS.newHabit) {
-      openAddHabitDialog();
-    }
-    if (location.pathname === ROUTE_PATHS.review) {
-      openReviewHabitDialog();
-    }
-    this.setState({
-      month: getMonth(),
-      year: getYear()
-    });
-  }
+import { Navbar } from '../ui/Navbar';
+import SubMenuContainer from './SubMenuContainer';
+import AddHabitContainer from './AddHabitContainer';
+import ReviewContainer from './ReviewContainer';
+import HeaderContainer from './HeaderContainer';
+import HabitsContainer from './HabitsContainer';
+import HorizontalCalendContainer from './HorizontalCalendContainer';
 
-  render() {
-    const { month, year } = this.state;
-    return <Home month={month} year={year} />;
-  }
-}
+const Home = () => (
+  <Grid container>
+    <Grid item xs={12}>
+      <Navbar />
+      <HeaderContainer />
+      <StyledContent container justify="center">
+        <Grid item md={8} xs={12} align="center">
+          <HorizontalCalendContainer />
+          <SubMenuContainer />
+          <HabitsContainer />
+        </Grid>
+      </StyledContent>
+    </Grid>
+    <AddHabitContainer />
+    <ReviewContainer />
+  </Grid>
+);
 
-HomeContainer.propTypes = {
-  openAddHabitDialog: PropTypes.func,
-  openReviewHabitDialog: PropTypes.func,
-  location: PropTypes.instanceOf(Object)
-};
-
-HomeContainer.defaultProps = {
-  openAddHabitDialog: () => false,
-  openReviewHabitDialog: () => false,
-  location: {}
-};
-
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = dispatch => ({
-  openAddHabitDialog: () => dispatch(dialogAddHabitOpenAction()),
-  openReviewHabitDialog: () => dispatch(dialogReviewHabitOpenAction())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeContainer);
+export default Home;
