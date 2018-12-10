@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 
 import { AddHabit } from '../components/AddHabit';
-import { dialogCloseAction, addNewHabitAction } from '../services/dialogs/actions';
+import { dialogCloseAction } from '../services/dialogs/actions';
+import { addNewHabitAction } from '../services/habits/actions';
 import { NewHabitsScheme } from '../utils/schemaValidators';
 
 class AddHabitContainer extends PureComponent {

@@ -43,7 +43,14 @@ export const fetchHabits = () => {
 }
 
 export const postNewHabit = (values) => {
-  return setTimeout(() => Promise.resolve({}), 1000); //axiosInstance.post(endpoints.habits, values);
+  const test = {
+    "name": "TEst",
+    "description": "testsetst",
+    "isNumerical": true,
+    "repeat": ["пн", "вт", "пт"]
+  }
+
+  return axiosInstance.post(endpoints.habits, values);
 }
 
 export const fetchJournal = (month) => {

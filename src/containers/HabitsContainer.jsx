@@ -14,6 +14,9 @@ class HabitsContainer extends PureComponent {
 
   render() {
     const { habits, openDialog } = this.props;
+
+    console.log(habits);
+
     return <Habits habits={habits} openDialog={openDialog} />;
   }
 }
