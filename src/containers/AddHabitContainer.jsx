@@ -27,13 +27,12 @@ class AddHabitContainer extends PureComponent {
   };
 
   render() {
-    const { openDialog, closeDialog } = this.props;
     return (
       <Formik
         initialValues={AddHabitContainer.formInitValues}
         validationSchema={NewHabitsScheme}
         onSubmit={this.formSubmit}
-        render={props => <AddHabit {...props} openDialog={openDialog} closeDialog={closeDialog} />}
+        render={props => <AddHabit {...this.props} {...props} />}
       />
     );
   }
