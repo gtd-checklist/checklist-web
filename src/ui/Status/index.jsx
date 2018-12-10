@@ -9,7 +9,7 @@ const Status = (props) => {
   const { isNumerical, top } = props;
   return (
     <ListItemAvatar>
-      <StyledStatus aria-label="Status" type={isNumerical.toString()} top={top}>&nbsp;</StyledStatus>
+      <StyledStatus aria-label="Status" type={isNumerical} top={top}>&nbsp;</StyledStatus>
     </ListItemAvatar>
   );
 };
