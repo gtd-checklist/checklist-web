@@ -1,17 +1,16 @@
 import AuthorizationContainer from './containers/AuthorizationContainer';
 import RegistrationContainer from './containers/RegistrationContainer';
 import HomeContainer from './containers/HomeContainer';
-import HabitsContainer from './containers/HabitsContainer';
-import AddHabitContainer from './containers/AddHabitContainer';
-import ReviewContainer from './containers/ReviewContainer';
+import JournalContainer from './containers/JournalContainer';
+import Stub from './containers/Stub';
 import { Page404 } from './components/Page404';
 
 const ROUTE_PATHS = {
   root: '/',
   auth: '/auth',
   registration: '/registration',
-  list: '/list',
-  calend: '/calendar',
+  journal: '/journal',
+  calendar: '/calendar',
   profile: '/profile',
   report: '/report',
   page404: '*'
@@ -31,37 +30,36 @@ const routes = [
   {
     path: ROUTE_PATHS.root,
     name: 'Главная',
-    component: Home,
+    component: HomeContainer,
     exact: true
   },
   {
-    path: ROUTE_PATHS.list,
+    path: ROUTE_PATHS.journal,
     name: 'Список целей',
-    component: ListHabitsContainer,
+    component: JournalContainer,
     exact: true
   },
   {
-    path: ROUTE_PATHS.calend,
+    path: ROUTE_PATHS.calendar,
     name: 'Календарь',
-    component: Temp,
+    component: Stub,
     exact: true
   },
   {
     path: ROUTE_PATHS.profile,
     name: 'Профиль',
-    component: Temp,
+    component: Stub,
     exact: true
   },
   {
     path: ROUTE_PATHS.report,
     name: 'Отчет',
-    component: Temp,
+    component: Stub,
     exact: true
   },
   {
     path: ROUTE_PATHS.page404,
-    component: Page404,
-    exact: true
+    component: Page404
   }
 ];
 

@@ -23,14 +23,13 @@ class ProtectedRoute extends PureComponent {
 
     console.log('route props', this.props);
 
-    return <Route {...this.props} history={this.props.history} />;
+    return <Route {...this.props} />;
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
-  authenticated: state.auth.authenticated,
-  responseStatus: state.responseStatus.responseStatus
+  authenticated: state.auth.authenticated
 });
 
 export default connect(mapStateToProps)(ProtectedRoute);

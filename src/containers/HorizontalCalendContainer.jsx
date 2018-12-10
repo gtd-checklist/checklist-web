@@ -43,4 +43,4 @@ class HorizontalCalendContainer extends PureComponent {
   }
 }
 
-export { HorizontalCalendContainer };
+export default HorizontalCalendContainer;

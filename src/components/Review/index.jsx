@@ -26,7 +26,7 @@ const Review = (props) => {
       TransitionComponent={Transition}
     >
       <BgImageTransparent container justify="center" back={back} color="primary">
-        <NavbarSub title="Ревью достижения целей" action="back" coloricon="white" closeDialog={closeDialog} />
+        <NavbarSub title="Ревью достижения целей" actionType="back" coloricon="white" closeDialog={closeDialog} />
         <Grid item md={6} xs={12}>
           <StyledContent container direction="column" justify="space-between">
             <StyledContent>

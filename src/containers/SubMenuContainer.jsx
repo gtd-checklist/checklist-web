@@ -9,7 +9,6 @@ import { showReviewListHabitsAction } from '../services/review/actions';
 class SubMenuContainer extends PureComponent {
   onClickReview = () => {
     const { showReviewListHabits, openReviewHabitDialog } = this.props;
-    // console.log(showReviewListHabits);
     showReviewListHabits();
     openReviewHabitDialog();
   }

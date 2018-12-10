@@ -4,41 +4,34 @@ import { connect } from 'react-redux';
 import { Formik } from 'formik';
 
 import { AddHabit } from '../components/AddHabit';
-import { dialogCloseAction } from '../services/dialogs/actions';
+import { dialogCloseAction, addNewHabitAction } from '../services/dialogs/actions';
 import { NewHabitsScheme } from '../utils/schemaValidators';
 
 class AddHabitContainer extends PureComponent {
-  formSubmit = (values, { resetForm }) => {
-    const { closeDialog } = this.props;
-    resetForm();
+  static formInitValues = {
+    habitName: '',
+    habitDescr: '',
+    habitType: '',
+    habitCondition: '',
+    habitHours: '',
+    habittypeHours: '',
+    habitRepeat: '',
+    habitDays: [false, false, false, false, false, false, false]
+  };
+
+  formSubmit = (values) => {
+    const { addNewHabit, closeDialog } = this.props;
+    addNewHabit(values);
     closeDialog();
   };
 
   render() {
-    const { openDialog, closeDialog, history } = this.props;
-
-    console.log('addhabit props', this.props);
-    const formInitValues = {
-      habitName: '',
-      habitDescr: '',
-      habitType: '',
-      habitCondition: '',
-      habitHours: '',
-      habittypeHours: '',
-      habitRepeat: '',
-      habitDays: [false, false, false, false, false, false, false]
-    };
-
-    const { goBack } = history;
-
     return (
       <Formik
-        initialValues={formInitValues}
+        initialValues={AddHabitContainer.formInitValues}
         validationSchema={NewHabitsScheme}
         onSubmit={this.formSubmit}
-        render={props => (
-          <AddHabit {...props} openDialog={openDialog} closeDialog={closeDialog} goBack={goBack} />
-        )}
+        render={props => <AddHabit {...props} {...this.props} />}
       />
     );
   }
@@ -70,7 +63,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  closeDialog: () => dispatch(dialogCloseAction())
+  closeDialog: () => dispatch(dialogCloseAction()),
+  addNewHabit: values => dispatch(addNewHabitAction(values))
 });
 
 export default connect(
