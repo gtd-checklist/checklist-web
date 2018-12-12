@@ -8,8 +8,6 @@ export const REGISTERED = 'REGISTERED';
 export const REGISTRATION_ERROR = 'REGISTRATION_ERROR';
 
 export const signInAction = (email, pass) => async (dispatch) => {
-  console.log('signin', email, pass);
-
   try {
     const token = await getAuthToken(email, pass);
     dispatch({ type: AUTHENTICATED });

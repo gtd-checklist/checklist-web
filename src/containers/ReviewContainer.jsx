@@ -51,8 +51,7 @@ class ReviewContainer extends PureComponent {
     const { habitsReview } = this.state;
     const { addReviewHabits, review } = this.props;
     const resultReview = { data: review.date, habitsResolution: habitsReview };
-    addReviewHabits(resultReview);
-    console.log(resultReview);
+    // addReviewHabits(resultReview);
   }
 
   closeDialogReview = () => {
