@@ -18,6 +18,7 @@ const Review = (props) => {
     activeStep, values, touched, errors, maxSteps, date, habits, openDialog,
     handleSubmit, handleChange, handleBlur, onCancel, onCheck, closeDialog
   } = props;
+  console.log(openDialog);
   return (
     <StyledDialog
       fullScreen

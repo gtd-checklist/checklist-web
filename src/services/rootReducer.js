@@ -4,7 +4,7 @@ import { routerReducer } from 'react-router-redux';
 import auth from './auth/reducer';
 import dialogs from './dialogs/reducer';
 import journal from './journal/reducer';
-import reviewList from './review/reducer';
+import review from './review/reducer';
 import habits from './habits/reducer';
 
 export const rootReducer = combineReducers({
@@ -13,5 +13,5 @@ export const rootReducer = combineReducers({
   dialogs,
   habits,
   journal,
-  reviewList
+  review
 });

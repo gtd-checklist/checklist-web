@@ -8,7 +8,7 @@ import { ReviewScheme } from '../utils/schemaValidators';
 
 import { getFullDate } from '../utils/getData';
 import { dialogCloseAction } from '../services/dialogs/actions';
-import { addReviewHabitsAction } from '../services/review/actions';
+import { addReviewHabitAction } from '../services/review/actions';
 
 class ReviewContainer extends PureComponent {
   constructor(props) {
@@ -21,8 +21,8 @@ class ReviewContainer extends PureComponent {
 
   onReview = (isResolved, value) => {
     const { activeStep } = this.state;
-    const { reviewList } = this.props;
-    const { habits } = reviewList;
+    const { review } = this.props;
+    const { habits } = review;
     const maxSteps = habits.length - 1;
     const habitId = habits[activeStep].id;
     this.setState(prevState => ({
@@ -49,8 +49,8 @@ class ReviewContainer extends PureComponent {
 
   createData = () => {
     const { habitsReview } = this.state;
-    const { addReviewHabits, reviewList } = this.props;
-    const resultReview = { data: reviewList.date, habitsResolution: habitsReview };
+    const { addReviewHabits, review } = this.props;
+    const resultReview = { data: review.date, habitsResolution: habitsReview };
     addReviewHabits(resultReview);
     console.log(resultReview);
   }
@@ -66,11 +66,11 @@ class ReviewContainer extends PureComponent {
 
   render() {
     const { activeStep } = this.state;
-    const { openDialog, reviewList } = this.props;
+    const { openDialog, review } = this.props;
     const formInitValues = { userResult: '' };
-    if (Object.keys(reviewList).length !== 0) {
-      const { habits } = reviewList;
-      const date = getFullDate(reviewList.date);
+    if (Object.keys(review).length !== 0) {
+      const { habits } = review;
+      const date = getFullDate(review.date);
       const maxSteps = habits.length;
       return (
         <Formik
@@ -101,7 +101,7 @@ ReviewContainer.propTypes = {
   touched: PropTypes.instanceOf(Object),
   errors: PropTypes.instanceOf(Object),
   values: PropTypes.instanceOf(Object),
-  reviewList: PropTypes.instanceOf(Object),
+  review: PropTypes.instanceOf(Object),
   handleChange: PropTypes.func,
   handleBlur: PropTypes.func
 };
@@ -110,20 +110,20 @@ ReviewContainer.defaultProps = {
   touched: {},
   errors: {},
   values: {},
-  reviewList: {},
+  review: {},
   handleChange: () => false,
   handleBlur: () => false
 };
 
 const mapStateToProps = state => ({
   openDialog: state.dialogs.openDialog,
-  reviewList: state.reviewList,
+  review: state.review.review,
   activeStep: state.activeStep
 });
 
 const mapDispatchToProps = dispatch => ({
   closeDialog: () => dispatch(dialogCloseAction()),
-  addReviewHabits: resultReview => dispatch(addReviewHabitsAction(resultReview))
+  addHabitsReview: resultReview => dispatch(addReviewHabitAction(resultReview))
 });
 
 export default connect(
