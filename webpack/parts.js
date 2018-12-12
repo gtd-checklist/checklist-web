@@ -153,10 +153,10 @@ exports.commonChunks = () => ({
 exports.defineConstants = (env) => {
   const consts = {};
 
-  if (env.production) {
-    consts.REST_ROOT = restConfig.production.restRoot;
-    consts['process.env.NODE_ENV'] = 'production';
-  }
+  // if (env.production) {
+  //   consts.REST_ROOT = restConfig.production.restRoot;
+  //   consts['process.env.NODE_ENV'] = 'production';
+  // }
 
   return {
     plugins: [
