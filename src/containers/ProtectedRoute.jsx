@@ -20,9 +20,6 @@ class ProtectedRoute extends PureComponent {
     // if (authenticated && isAuthLink) {
     //   return <Redirect to={{ pathname: ROUTE_PATHS.root, state: { from: location } }} />;
     // }
-
-    console.log('route props', this.props);
-
     return <Route {...this.props} />;
   }
 }

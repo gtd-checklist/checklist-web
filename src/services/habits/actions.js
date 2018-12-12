@@ -10,9 +10,6 @@ export const FETCH_HABITS_FAILURE = 'FETCH_HABITS_FAILURE';
 
 export const addNewHabitAction = values => async (dispatch) => {
   dispatch({ type: POST_NEW_HABIT_WAITING });
-
-  console.log(values);
-
   try {
     const response = await postNewHabit(values);
     dispatch({

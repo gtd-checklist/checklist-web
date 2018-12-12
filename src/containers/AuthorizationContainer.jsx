@@ -63,14 +63,9 @@ AuthorizationContainer.defaultProps = {
   handleSubmit: () => false
 };
 
-
-const mapStateToProps = (state) => {
-  console.log('state', state);
-
-  return {
-    authenticated: state.auth.authenticated
-  };
-};
+const mapStateToProps = state => ({
+  authenticated: state.auth.authenticated
+});
 
 const mapDispatchToProps = dispatch => ({
   signIn: (email, pass) => dispatch(signInAction(email, pass))
