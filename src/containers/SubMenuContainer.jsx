@@ -4,21 +4,22 @@ import PropTypes from 'prop-types';
 
 import { SubMenu } from '../components/SubMenu';
 import { dialogAddHabitOpenAction, dialogReviewHabitOpenAction } from '../services/dialogs/actions';
-import { showReviewListHabitsAction } from '../services/review/actions';
+import { fetchHabitsReviewAction } from '../services/review/actions';
 
 class SubMenuContainer extends PureComponent {
   onClickReview = () => {
-    const { showReviewListHabits, openReviewHabitDialog } = this.props;
-    showReviewListHabits();
-    openReviewHabitDialog();
+    const { fetchHabitsReview, dialogReviewHabitOpen } = this.props;
+    fetchHabitsReview();
+    dialogReviewHabitOpen();
   }
 
   render() {
-    const { openAddHabitDialog } = this.props;
+    const { openAddHabitDialog, waiting } = this.props;
     return (
       <SubMenu
         openAddHabitDialog={openAddHabitDialog}
         onClickReview={this.onClickReview}
+        waiting={waiting}
       />
     );
   }
@@ -26,22 +27,25 @@ class SubMenuContainer extends PureComponent {
 
 SubMenuContainer.propTypes = {
   openAddHabitDialog: PropTypes.func,
-  openReviewHabitDialog: PropTypes.func,
-  showReviewListHabits: PropTypes.func
+  dialogReviewHabitOpen: PropTypes.func,
+  fetchHabitsReview: PropTypes.func,
+  waiting: PropTypes.bool.isRequired
 };
 
 SubMenuContainer.defaultProps = {
   openAddHabitDialog: () => false,
-  openReviewHabitDialog: () => false,
-  showReviewListHabits: () => false
+  dialogReviewHabitOpen: () => false,
+  fetchHabitsReview: () => false
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  waiting: state.review.waiting
+});
 
 const mapDispatchToProps = dispatch => ({
   openAddHabitDialog: () => dispatch(dialogAddHabitOpenAction()),
-  openReviewHabitDialog: () => dispatch(dialogReviewHabitOpenAction()),
-  showReviewListHabits: () => dispatch(showReviewListHabitsAction())
+  dialogReviewHabitOpen: () => dispatch(dialogReviewHabitOpenAction()),
+  fetchHabitsReview: () => dispatch(fetchHabitsReviewAction())
 });
 
 export default connect(

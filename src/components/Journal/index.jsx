@@ -1,21 +1,18 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
 
+import { Loader } from '../../ui/Loader';
 import { Navbar } from '../../ui/Navbar';
-import { Status } from '../../ui/Status';
-import { Calendar } from './Calendar';
+import { JournalItems } from './JournalItems';
 import HeaderContainer from '../../containers/HeaderContainer';
 
 import { StyledContent } from '../../globalStyled';
-import { StyledListItem, StyledWeekName } from './styled';
 
 const Journal = (props) => {
   const {
+    waiting,
     weeks,
     getHabitsWeek,
     getHabitsWeekNumber,
@@ -28,42 +25,17 @@ const Journal = (props) => {
         <Navbar />
         <HeaderContainer />
         <StyledContent container justify="center">
-          <Grid item md={8} xs={12} align="center">
-            {weeks.map((item, indx) => (
-              <Fragment key={indx}>
-                <StyledWeekName variant="overline">
-                  {getHabitsWeekNumber(item.from)}
-                  &nbsp;неделя&nbsp;
-                </StyledWeekName>
-                {item.habits.map(itemHabits => (
-                  <List key={itemHabits.id}>
-                    <StyledListItem>
-                      <Status isNumerical="true" top="true" />
-                      <Grid container direction="column">
-                        <ListItemText
-                          primary={(
-                            <Typography variant="h6" component="span">
-                              {itemHabits.name}
-                            </Typography>
-)}
-                          secondary={(
-                            <Typography variant="subtitle1" component="span">
-                              {itemHabits.description}
-                            </Typography>
-)}
-                        />
-                        <Calendar
-                          planned={createPlannedDate(itemHabits.plannedIn)}
-                          resolved={createResolvedDate(itemHabits.resolvedIn)}
-                          weekNames={getHabitsWeek(item.from)}
-                        />
-                      </Grid>
-                    </StyledListItem>
-                  </List>
-                ))}
-              </Fragment>
-            ))}
-          </Grid>
+          {waiting
+            ? <Loader />
+            : (
+              <JournalItems
+                weeks={weeks}
+                getHabitsWeek={getHabitsWeek}
+                getHabitsWeekNumber={getHabitsWeekNumber}
+                createPlannedDate={createPlannedDate}
+                createResolvedDate={createResolvedDate}
+              />)
+          }
         </StyledContent>
       </Grid>
     </Grid>
@@ -71,6 +43,7 @@ const Journal = (props) => {
 };
 
 Journal.propTypes = {
+  waiting: PropTypes.bool.isRequired,
   weeks: PropTypes.instanceOf(Array),
   getHabitsWeek: PropTypes.func,
   getHabitsWeekNumber: PropTypes.func,

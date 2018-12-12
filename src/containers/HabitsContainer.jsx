@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Habits } from '../components/Habits';
+import { Loader } from '../ui/Loader';
 import { dialogAddHabitOpenAction } from '../services/dialogs/actions';
 import { fetchHabitsAction } from '../services/habits/actions';
 
@@ -13,10 +14,11 @@ class HabitsContainer extends PureComponent {
   }
 
   render() {
-    const { habits, openDialog } = this.props;
+    const { habits, openDialog, waiting } = this.props;
 
-    console.log(habits);
-
+    if (waiting) {
+      return <Loader />;
+    }
     return <Habits habits={habits} openDialog={openDialog} />;
   }
 }
@@ -24,7 +26,8 @@ class HabitsContainer extends PureComponent {
 HabitsContainer.propTypes = {
   habits: PropTypes.arrayOf(Object),
   openDialog: PropTypes.func,
-  fetchHabits: PropTypes.func.isRequired
+  fetchHabits: PropTypes.func.isRequired,
+  waiting: PropTypes.bool.isRequired
 };
 
 HabitsContainer.defaultProps = {
@@ -33,7 +36,8 @@ HabitsContainer.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  habits: state.habits.habits
+  habits: state.habits.habits,
+  waiting: state.habits.waiting
 });
 
 const mapDispatchToProps = dispatch => ({
