@@ -22,10 +22,11 @@ class JournalContainer extends PureComponent {
   createResolvedDate = resolved => resolved.map(itemResolved => new Date(itemResolved).getDate());
 
   render() {
-    const { journal } = this.props;
+    const { journal, waiting } = this.props;
     const { weeks } = journal;
     return (
       <Journal
+        waiting={waiting}
         weeks={weeks}
         getHabitsWeek={this.getHabitsWeek}
         getHabitsWeekNumber={this.getHabitsWeekNumber}
@@ -38,7 +39,8 @@ class JournalContainer extends PureComponent {
 
 JournalContainer.propTypes = {
   journal: PropTypes.instanceOf(Object),
-  fetchJournal: PropTypes.func
+  fetchJournal: PropTypes.func,
+  waiting: PropTypes.bool.isRequired
 };
 
 JournalContainer.defaultProps = {
@@ -47,7 +49,8 @@ JournalContainer.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  journal: state.journal.journal
+  journal: state.journal.journal,
+  waiting: state.journal.waiting
 });
 
 const mapDispatchToProps = dispatch => ({

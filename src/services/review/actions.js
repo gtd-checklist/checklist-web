@@ -1,37 +1,42 @@
-import axios from 'axios';
+import { fetchHabitsReview, postHabitsReview } from '../api';
 
-export const SHOW_REVIEW_LIST_HABITS = 'SHOW_REVIEW_LIST_HABITS';
-export const ADD_REVIEW_HABITS = 'ADD_REVIEW_HABITS';
+export const FETCH_HABITS_REVIEW_SUCCESS = 'FETCH_HABITS_REVIEW_SUCCESS';
+export const FETCH_HABITS_REVIEW_WAITING = 'FETCH_HABITS_REVIEW_WAITING';
+export const FETCH_HABITS_REVIEW_FAILURE = 'FETCH_HABITS_REVIEW_FAILURE';
 
-const apiUrl = 'https://checklist.now.sh/api/v1/review';
+export const POST_NEW_HABITS_REVIEW_SUCCESS = 'POST_NEW_HABITS_REVIEW_SUCCESS';
+export const POST_NEW_HABITS_REVIEW_WAITING = 'POST_NEW_HABITS_REVIEW_WAITING';
+export const POST_NEW_HABITS_REVIEW_FAILURE = 'POST_NEW_HABITS_REVIEW_FAILURE';
 
-export const showReviewList = reviewList => ({
-  type: SHOW_REVIEW_LIST_HABITS,
-  reviewList
-});
+export const addReviewHabitAction = values => async (dispatch) => {
+  dispatch({ type: POST_NEW_HABITS_REVIEW_WAITING });
 
-export const addReviewHabitsSuccess = data => ({
-  type: ADD_REVIEW_HABITS,
-  payload: {
-    date: data.date,
-    habitsResolution: data.habitsResolution
-  }
-});
-
-export const showReviewListHabitsAction = () => async (dispatch) => {
   try {
-    const response = await axios.get(apiUrl);
-    dispatch(showReviewList(response.data));
-  } catch (error) {
-    console.error(error);
+    const response = await postHabitsReview(values);
+    dispatch({
+      type: POST_NEW_HABITS_REVIEW_SUCCESS,
+      payload: response.data
+    });
+  } catch (e) {
+    dispatch({
+      type: POST_NEW_HABITS_REVIEW_FAILURE,
+      payload: e.message
+    });
   }
 };
 
-export const addReviewHabitsAction = ({ date, habitsResolution }) => async (dispatch) => {
+export const fetchHabitsReviewAction = () => async (dispatch) => {
+  dispatch({ type: FETCH_HABITS_REVIEW_WAITING });
   try {
-    const response = await axios.post(apiUrl, { date, habitsResolution });
-    dispatch(addReviewHabitsSuccess(response.data));
-  } catch (error) {
-    console.error(error);
+    const response = await fetchHabitsReview();
+    dispatch({
+      type: FETCH_HABITS_REVIEW_SUCCESS,
+      payload: response.data
+    });
+  } catch (e) {
+    dispatch({
+      type: FETCH_HABITS_REVIEW_FAILURE,
+      payload: e.message
+    });
   }
 };

@@ -9,6 +9,7 @@ const URL = 'https://checklist.now.sh/api/v1';
 const endpoints = {
   auth: `${URL}/auth`,
   habits: `${URL}/habits`,
+  review: `${URL}/review`,
   fetchJournal: (month) => `${URL}/journal/${month}`
 }
 
@@ -55,4 +56,12 @@ export const postNewHabit = (values) => {
 
 export const fetchJournal = (month) => {
   return axiosInstance.get(endpoints.fetchJournal(month));
+}
+
+export const fetchHabitsReview = () => {
+  return axiosInstance.get(endpoints.review);
+}
+
+export const postHabitsReview = (values) => {
+  return axiosInstance.post(endpoints.review, values);
 }
