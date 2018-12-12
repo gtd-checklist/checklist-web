@@ -8,6 +8,8 @@ import { dialogCloseAction } from '../services/dialogs/actions';
 import { addNewHabitAction } from '../services/habits/actions';
 import { NewHabitsScheme } from '../utils/schemaValidators';
 
+const days = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+
 class AddHabitContainer extends PureComponent {
   static formInitValues = {
     habitName: '',
@@ -15,14 +17,22 @@ class AddHabitContainer extends PureComponent {
     habitType: '',
     habitCondition: '',
     habitHours: '',
-    habittypeHours: '',
+    habitTypeHours: '',
     habitRepeat: '',
     habitDays: [false, false, false, false, false, false, false]
   };
 
   formSubmit = (values) => {
     const { addNewHabit, closeDialog } = this.props;
-    addNewHabit(values);
+
+    const habit = {
+      name: values.habitName,
+      description: values.habitDescr,
+      isNumerical: values.habitType === 'number',
+      repeat: values.habitDays.reduce((acc, day, i) => (day ? acc.concat([days[i]]) : acc), [])
+    };
+
+    addNewHabit(habit);
     closeDialog();
   };
 
@@ -32,7 +42,7 @@ class AddHabitContainer extends PureComponent {
         initialValues={AddHabitContainer.formInitValues}
         validationSchema={NewHabitsScheme}
         onSubmit={this.formSubmit}
-        render={props => <AddHabit {...props} {...this.props} />}
+        render={props => <AddHabit {...this.props} {...props} />}
       />
     );
   }
