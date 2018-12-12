@@ -9,8 +9,11 @@ import { fetchHabitsAction } from '../services/habits/actions';
 
 class HabitsContainer extends PureComponent {
   componentDidMount() {
-    const { fetchHabits } = this.props;
-    fetchHabits();
+    const { fetchHabits, habits } = this.props;
+
+    if (!habits.length) {
+      fetchHabits();
+    }
   }
 
   render() {
